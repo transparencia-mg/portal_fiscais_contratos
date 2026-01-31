@@ -8,6 +8,8 @@
     <!-- ==================== ESTILOS E BIBLIOTECAS ==================== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
@@ -18,22 +20,26 @@
     <style>
         /* ==================== VARIÁVEIS DE CORES ==================== */
         :root {
-            --primary-dark: #29435A;
-            --primary-darker: #132837;
-            --accent-red: #B93C42;
-            --accent-bright: #DB233F;
-            --background-light: #EEEFF5;
-            --success-green: #28a745;
-            --warning-yellow: #ffc107;
-            --info-blue: #17a2b8;
-            --secondary-blue: #3F704D;
-            --secondary-brown: #8B7355;
-            --secondary-teal: #20B2AA;
+            --primary-dark: #1A5276;
+            --primary-darker: #0E2F44;
+            --accent-blue: #3498DB;
+            --accent-bright: #2980B9;
+            --background-light: #F2F4F7;
+            --success-green: #27AE60;
+            --warning-yellow: #F39C12;
+            --info-blue: #17A589;
+            --secondary-purple: #8E44AD;
+            --secondary-orange: #E67E22;
+            --secondary-teal: #16A085;
+            --danger-red: #E74C3C;
+            --hover-blue: #006A82;
+            --btn-danger: #dc3545;
+            --btn-danger-hover: #bb2d3b;
         }
         
         /* ==================== ESTILOS GERAIS ==================== */
         body {
-            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--background-light);
             padding-bottom: 30px;
         }
@@ -45,7 +51,7 @@
             padding: 20px 0;
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-bottom: 4px solid var(--accent-red);
+            border-bottom: 4px solid var(--accent-blue);
         }
         
         .logo-container {
@@ -57,7 +63,7 @@
         .logo {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-bright) 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-bright) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -65,7 +71,7 @@
             color: white;
             font-weight: bold;
             font-size: 20px;
-            box-shadow: 0 3px 8px rgba(219, 35, 63, 0.25);
+            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.25);
         }
         
         .header-title {
@@ -118,7 +124,7 @@
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 5px solid var(--accent-red);
+            border-left: 5px solid var(--accent-blue);
         }
         
         .filter-label {
@@ -140,8 +146,8 @@
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--accent-red);
-            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
         }
         
         /* ==================== CARDS DE MÉTRICAS ==================== */
@@ -151,7 +157,7 @@
             padding: 20px 15px;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
-            border-top: 4px solid var(--accent-red);
+            border-top: 4px solid var(--accent-blue);
             transition: all 0.3s ease;
             height: 100%;
             position: relative;
@@ -177,6 +183,14 @@
         
         .metric-card.info {
             border-top-color: var(--info-blue);
+        }
+        
+        .metric-card.purple {
+            border-top-color: var(--secondary-purple);
+        }
+        
+        .metric-card.orange {
+            border-top-color: var(--secondary-orange);
         }
         
         .metric-value {
@@ -205,7 +219,7 @@
         }
         
         .metric-change.positive {
-            background-color: rgba(40, 167, 69, 0.1);
+            background-color: rgba(39, 174, 96, 0.1);
             color: var(--success-green);
         }
         
@@ -249,6 +263,7 @@
             overflow: hidden;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
+            border: 1px solid #dee2e6;
         }
         
         .table-header {
@@ -269,7 +284,7 @@
         }
         
         .table-badge {
-            background: var(--accent-red);
+            background: var(--accent-blue);
             color: white;
             padding: 4px 12px;
             border-radius: 15px;
@@ -290,11 +305,12 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            background-color: #f8f9fa !important;
+            background-color: var(--primary-dark) !important;
         }
         
         .table-fixed-header-container table thead th {
-            background-color: #f8f9fa !important;
+            background-color: var(--primary-dark) !important;
+            color: white !important;
             position: sticky;
             top: 0;
             z-index: 20;
@@ -311,11 +327,13 @@
             font-size: 13px;
             border-collapse: separate;
             border-spacing: 0;
+            border: 1px solid #dee2e6;
         }
         
+        /* Adicionar bordas verticais ao cabeçalho da tabela */
         .table thead th {
-            background-color: #f8f9fa !important;
-            color: var(--primary-dark);
+            background-color: var(--primary-dark) !important;
+            color: white !important;
             font-weight: 600;
             border: none;
             padding: 12px 10px;
@@ -329,6 +347,16 @@
             top: 0;
             z-index: 20;
             white-space: nowrap;
+            border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .table thead th:first-child {
+            border-left: none !important;
+        }
+        
+        .table thead th:last-child {
+            border-right: none !important;
         }
         
         .sort-icon {
@@ -336,10 +364,11 @@
             margin-left: 4px;
             font-size: 9px;
             transition: opacity 0.2s ease;
+            color: white;
         }
         
         .table thead th:hover {
-            background-color: #f1f3f5 !important;
+            background-color: var(--primary-darker) !important;
         }
         
         .table thead th:hover .sort-icon {
@@ -358,10 +387,36 @@
         .table thead th.sorted-desc .sort-icon::after {
             content: "↓";
         }
+
+        /* Aplicar bordas verticais a TODAS as tabelas */
+        .table-container table th, 
+        .table-container table td {
+            border-left: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+            vertical-align: middle;
+        }
+        
+        .table-container table th:first-child,
+        .table-container table td:first-child {
+            border-left: none;
+        }
+        
+        .table-container table th:last-child,
+        .table-container table td:last-child {
+            border-right: none;
+        }
+        
+        /* Borda inferior para linhas */
+        .table-container table tbody tr {
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .table-container table tbody tr:last-child {
+            border-bottom: none;
+        }
         
         .table tbody tr {
             transition: background-color 0.2s ease;
-            border-bottom: 1px solid #f1f1f1;
         }
         
         .table tbody tr:hover {
@@ -373,10 +428,15 @@
             vertical-align: middle;
             font-size: 13px;
         }
+
+        /* Colunas numéricas centralizadas */
+        .table td.text-center {
+            text-align: center !important;
+        }
         
         /* Coluna de ações na tabela */
         .actions-column {
-            width: 100px;
+            width: 90px;
             text-align: center;
         }
         
@@ -410,7 +470,7 @@
         
         /* ==================== BOTÕES ==================== */
         .btn-primary-custom {
-            background: linear-gradient(to right, var(--accent-red), var(--accent-bright));
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-bright));
             border: none;
             padding: 10px 20px;
             font-weight: 600;
@@ -421,9 +481,28 @@
         }
         
         .btn-primary-custom:hover {
-            background: linear-gradient(to right, var(--accent-bright), var(--accent-red));
+            background: linear-gradient(to right, var(--accent-bright), var(--accent-blue));
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(219, 35, 63, 0.2);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            color: white;
+        }
+        
+        /* Botão Pesquisar azul */
+        .btn-search-custom {
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-bright));
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            color: white;
+        }
+        
+        .btn-search-custom:hover {
+            background: linear-gradient(to right, #006A82, var(--accent-blue));
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
             color: white;
         }
         
@@ -442,7 +521,7 @@
             background-color: var(--primary-dark);
             color: white;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(41, 67, 90, 0.15);
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.15);
         }
         
         .btn-export {
@@ -465,6 +544,23 @@
             color: white;
             transform: translateY(-1px);
         }
+
+        .btn-primary-custom .material-icons,
+        .btn-secondary-custom .material-icons,
+        .btn-search-custom .material-icons {
+            font-size: 16px;
+            vertical-align: middle;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        .btn-primary-custom,
+        .btn-secondary-custom,
+        .btn-search-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         /* ==================== MENU DE NAVEGAÇÃO ==================== */
         .nav-tabs-container {
@@ -473,34 +569,85 @@
             padding: 12px;
             margin-bottom: 20px;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            margin-top: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        
+
         .nav-tabs {
-            border: none;
+            border: none !important;
             gap: 4px;
             flex-wrap: nowrap;
-            overflow-x: auto;
+            min-width: max-content;
+            padding-bottom: 5px;
+            margin-bottom: 0 !important;
         }
-        
+
+        .nav-tabs .nav-item {
+            flex-shrink: 0;
+        }
+
         .nav-tabs .nav-link {
-            border: none;
-            border-radius: 6px;
-            padding: 10px 15px;
+            border: none !important;
+            border-radius: 6px !important;
+            padding: 10px 15px !important;
             font-weight: 600;
-            color: var(--primary-dark);
+            color: #1a5276 !important;
             transition: all 0.3s ease;
             font-size: 13px;
             white-space: nowrap;
+            display: inline-flex !important;
+            align-items: center;
+            background: none !important;
         }
-        
+
         .nav-tabs .nav-link:hover {
-            background-color: rgba(41, 67, 90, 0.05);
-            color: var(--accent-red);
+            background-color: rgba(26, 82, 118, 0.05) !important;
+            color: #3498db !important;
         }
-        
+
         .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
-            color: white;
+            background: linear-gradient(135deg, #1a5276 0%, #154360 100%) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .nav-tabs .nav-link .material-icons {
+            font-size: 16px !important;
+            margin-right: 8px !important;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        .nav-tabs .nav-link.active .material-icons {
+            color: white !important;
+        }
+
+        .nav-tabs-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .nav-tabs-container::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .nav-tabs-container::-webkit-scrollbar-thumb {
+            background: #dee2e6;
+            border-radius: 4px;
+        }
+
+        .nav-tabs-container::-webkit-scrollbar-thumb:hover {
+            background: #adb5bd;
+        }
+
+        .nav-tabs-container {
+            scrollbar-width: thin;
+            scrollbar-color: #dee2e6 #f8f9fa;
+        }
+
+        .nav-tabs {
+            border-bottom: none !important;
         }
         
         /* ==================== AÇÕES ==================== */
@@ -521,6 +668,17 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        /* Container para alinhar itens à direita */
+        .right-aligned-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
         }
         
         /* ==================== LOADING OVERLAY ==================== */
@@ -541,9 +699,9 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(41, 67, 90, 0.1);
+            border: 4px solid rgba(26, 82, 118, 0.1);
             border-radius: 50%;
-            border-top-color: var(--accent-red);
+            border-top-color: var(--accent-blue);
             animation: spin 1s linear infinite;
         }
         
@@ -563,7 +721,7 @@
         }
 
         /* ==================== LINK CLICÁVEL ==================== */
-        .clickable-link {
+        .orgao-link {
             color: var(--primary-dark);
             text-decoration: none;
             font-weight: 600;
@@ -572,25 +730,33 @@
             display: inline-block;
             padding: 2px 4px;
             border-radius: 4px;
-            border-bottom: 1px dashed rgba(41, 67, 90, 0.3);
             font-size: 13px;
+            border-bottom: none !important;
+            text-transform: none;
         }
-        
-        .clickable-link:hover {
-            color: var(--accent-red);
-            background-color: rgba(185, 60, 66, 0.05);
-            border-bottom: 1px solid var(--accent-red);
+
+        .orgao-link:hover {
+            color: var(--danger-red) !important;
+            background-color: rgba(231, 76, 60, 0.05);
             transform: translateY(-1px);
+            text-decoration: none !important;
         }
-        
-        .clickable-link:active {
+
+        .orgao-link.selected {
+            color: var(--hover-blue) !important;
+            background-color: rgba(0, 106, 130, 0.1);
+        }
+
+        .orgao-link:active {
             transform: translateY(0);
         }
-        
+
         /* Para a tabela específica da visão geral */
-        #visaoGeralTable .clickable-link {
+        #visaoGeralTable .orgao-link {
             padding: 4px 8px;
             margin: -4px -8px;
+            text-transform: none;
+            font-weight: 600;
         }
         
         /* ==================== PAGINAÇÃO ==================== */
@@ -636,24 +802,24 @@
             align-items: center;
             gap: 8px;
             font-size: 12px;
-            color: white;
+            color: var(--primary-dark);
             font-weight: 600;
         }
         
         .items-per-page select {
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid var(--primary-dark);
             border-radius: 6px;
             padding: 5px 10px;
             font-size: 12px;
             width: auto;
             min-width: 70px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
+            background-color: white;
+            color: var(--primary-dark);
         }
         
         .items-per-page select option {
-            background-color: var(--primary-dark);
-            color: white;
+            background-color: white;
+            color: var(--primary-dark);
         }
         
         /* ==================== CARDS ==================== */
@@ -669,7 +835,7 @@
         .card-stats .value {
             font-size: 24px;
             font-weight: 700;
-            color: var(--accent-red);
+            color: var(--accent-blue);
             margin: 8px 0;
         }
 
@@ -701,7 +867,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
         }
         
         .search-box-container label {
@@ -719,11 +888,12 @@
             transition: all 0.3s ease !important;
             width: 100% !important;
             max-width: 300px !important;
+            background: white;
         }
         
         .search-box-container input:focus {
-            border-color: var(--accent-red) !important;
-            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15) !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15) !important;
             outline: none !important;
         }
         
@@ -735,7 +905,7 @@
         .modal-detail .modal-header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
             color: white;
-            border-bottom: 4px solid var(--accent-red);
+            border-bottom: 4px solid var(--accent-blue);
         }
         
         .modal-detail .modal-body {
@@ -744,7 +914,7 @@
         }
         
         .detail-info {
-            background-color: rgba(41, 67, 90, 0.05);
+            background-color: rgba(26, 82, 118, 0.05);
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
@@ -796,12 +966,140 @@
         }
         
         .detail-table tbody tr:hover {
-            background-color: rgba(41, 67, 90, 0.04);
+            background-color: rgba(26, 82, 118, 0.04);
         }
         
         .detail-table tbody td {
             padding: 8px 10px;
             vertical-align: middle;
+        }
+        
+        /* ==================== DATA ATUALIZAÇÃO MINIMALISTA ==================== */
+        .data-atualizacao-container {
+            text-align: center;
+            margin: 10px 0 20px 0;
+            font-size: 12px;
+            color: var(--primary-darker);
+            opacity: 0.8;
+        }
+        
+        /* ==================== BADGES PARA STATUS ==================== */
+        .badge-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        
+        .badge-ativo {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--success-green);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+        
+        .badge-concluido {
+            background-color: rgba(108, 117, 125, 0.15);
+            color: #6c757d;
+            border-color: rgba(108, 117, 125, 0.3);
+        }
+        
+        .badge-suspenso {
+            background-color: rgba(243, 156, 18, 0.15);
+            color: var(--warning-yellow);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+        
+        .badge-rescindido {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: #E74C3C;
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+        
+        /* ==================== VALORES MONETÁRIOS ==================== */
+        .valor-monetario {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .valor-inicial {
+            color: #6c757d;
+            font-size: 11px;
+            text-decoration: line-through;
+        }
+        
+        .valor-atual {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+        
+        /* ==================== LINKS DE CONTRATO ==================== */
+        .contrato-link {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .contrato-link:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+        
+        /* ==================== TAGS PARA TIPOS DE CONTRATO ==================== */
+        .tag-tipo {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-right: 4px;
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+        }
+        
+        .tag-administrativo {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .tag-obras {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        .tag-servicos {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        
+        .tag-compra {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        /* ==================== TRUNCATE TEXT ==================== */
+        .text-truncate-multiline {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 3em;
+            line-height: 1.5em;
         }
         
         /* ==================== RESPONSIVIDADE ==================== */
@@ -864,7 +1162,7 @@
             }
             
             .actions-column {
-                width: 80px;
+                width: 70px;
             }
             
             .btn-action {
@@ -879,7 +1177,8 @@
             }
             
             .btn-primary-custom,
-            .btn-secondary-custom {
+            .btn-secondary-custom,
+            .btn-search-custom {
                 padding: 8px 15px;
                 font-size: 12px;
             }
@@ -912,7 +1211,7 @@
             }
             
             .actions-column {
-                width: 70px;
+                width: 60px;
             }
             
             .btn-action {
@@ -923,155 +1222,6 @@
             .btn-action span {
                 display: none;
             }
-        }
-
-        /* ==================== BADGES PARA STATUS ==================== */
-        .badge-status {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .badge-ativo {
-            background-color: rgba(40, 167, 69, 0.15);
-            color: #28a745;
-        }
-        
-        .badge-concluido {
-            background-color: rgba(108, 117, 125, 0.15);
-            color: #6c757d;
-        }
-        
-        .badge-suspenso {
-            background-color: rgba(255, 193, 7, 0.15);
-            color: #ffc107;
-        }
-        
-        .badge-rescindido {
-            background-color: rgba(220, 53, 69, 0.15);
-            color: #dc3545;
-        }
-        
-        /* ==================== VALORES MONETÁRIOS ==================== */
-        .valor-monetario {
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        
-        .valor-inicial {
-            color: #6c757d;
-            font-size: 11px;
-            text-decoration: line-through;
-        }
-        
-        .valor-atual {
-            color: var(--accent-red);
-            font-weight: 700;
-        }
-        
-        /* ==================== LINKS DE CONTRATO ==================== */
-        .contrato-link {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .contrato-link:hover {
-            color: var(--accent-red);
-            text-decoration: underline;
-        }
-        
-        /* ==================== TAGS PARA TIPOS DE CONTRATO ==================== */
-        .tag-tipo {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-right: 4px;
-            margin-bottom: 2px;
-        }
-        
-        .tag-administrativo {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-        }
-        
-        .tag-obras {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-        }
-        
-        .tag-servicos {
-            background-color: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-        }
-        
-        .tag-compra {
-            background-color: rgba(139, 92, 246, 0.1);
-            color: #8b5cf6;
-        }
-        
-        /* ==================== CARTÃO DE CONTRATO ==================== */
-        .contrato-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary-dark);
-            transition: all 0.3s ease;
-        }
-        
-        .contrato-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contrato-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .contrato-numero {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 16px;
-        }
-        
-        .contrato-detalhes {
-            font-size: 12px;
-            color: #6c757d;
-            margin-bottom: 5px;
-        }
-        
-        .contrato-valor {
-            font-weight: 600;
-            color: var(--accent-red);
-            font-size: 14px;
-        }
-        
-        /* ==================== TRUNCATE TEXT ==================== */
-        .text-truncate-multiline {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-height: 3em;
-            line-height: 1.5em;
         }
     </style>
 </head>
@@ -1123,22 +1273,22 @@
             <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="dashboard1-tab" data-bs-toggle="tab" data-bs-target="#dashboard1" type="button" role="tab">
-                        <i class="fas fa-chart-bar me-2"></i>Visão Geral
+                        <i class="material-icons me-2">bar_chart</i>Visão Geral
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard2-tab" data-bs-toggle="tab" data-bs-target="#dashboard2" type="button" role="tab">
-                        <i class="fas fa-user-tie me-2"></i>Consulta por Fiscal
+                        <i class="material-icons me-2">person_search</i>Consulta por Fiscal
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard3-tab" data-bs-toggle="tab" data-bs-target="#dashboard3" type="button" role="tab">
-                        <i class="fas fa-file-contract me-2"></i>Consulta por Contrato
+                        <i class="material-icons me-2">description</i>Consulta por Contrato
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard4-tab" data-bs-toggle="tab" data-bs-target="#dashboard4" type="button" role="tab">
-                        <i class="fas fa-download me-2"></i>Downloads
+                        <i class="material-icons me-2">downloading</i>Downloads
                     </button>
                 </li>
             </ul>
@@ -1150,6 +1300,12 @@
             <!-- ==================== DASHBOARD 1: VISÃO GERAL ==================== -->
             <div class="tab-pane fade show active" id="dashboard1" role="tabpanel">
                 
+                <!-- Data de Atualização -->
+                <div class="data-atualizacao-container">
+                    <i class="fas fa-sync-alt me-2"></i>
+                    <span id="data-atualizacao-body">Última atualização: Carregando...</span>
+                </div>
+
                 <!-- Filtros Dashboard 1 -->
                 <div class="filter-container">
                     <div class="row">
@@ -1199,8 +1355,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
-                                <button class="btn-primary-custom" id="aplicarFiltros">
-                                    <i class="fas fa-filter me-2"></i>Pesquisar
+                                <button class="btn-search-custom" id="aplicarFiltros">
+                                    <i class="fas fa-search me-2"></i>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltros">
                                     <i class="fas fa-redo me-2"></i>Limpar Filtros
@@ -1259,25 +1415,25 @@
                             <i class="fas fa-print me-2"></i> Imprimir
                         </button>
                     </div>
+                    <div class="right-aligned-container">
+                        <div class="search-box-container">
+                            <label for="searchResumo">Buscar órgão:</label>
+                            <input type="text" id="searchResumo" placeholder="Buscar por nome...">
+                        </div>
+                        <div class="items-per-page">
+                            <span>Itens por página:</span>
+                            <select id="itemsPerPageDashboard1">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tabela Dashboard 1 - VISÃO GERAL POR ÓRGÃO -->
                 <div class="table-container">
-                    <div class="table-header">
-                        <h3 class="table-title">Visão Geral por Órgão</h3>
-                        <div class="d-flex align-items-center gap-3 ms-auto">
-                            <div class="items-per-page">
-                                <span>Itens por página:</span>
-                                <select id="itemsPerPageDashboard1">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50" selected>50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            <span class="table-badge" id="resumoCountDashboard1">0 registros</span>
-                        </div>
-                    </div>
                     <div class="table-fixed-header-container">
                         <table class="table table-hover" id="visaoGeralTable">
                             <thead>
@@ -1396,7 +1552,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
-                                <button class="btn-primary-custom" id="pesquisarFiscais">
+                                <button class="btn-search-custom" id="pesquisarFiscais">
                                     <i class="fas fa-search me-2"></i>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltrosDashboard2">
@@ -1407,28 +1563,24 @@
                     </div>
                 </div>
 
-                <!-- Campo de Busca de Registros Dashboard 2 -->
+                <!-- Ações Dashboard 2 -->
                 <div class="actions-container mb-4">
-                    <div class="export-buttons">
-                        <button class="btn-export" id="exportCSVDashboard2">
-                            <i class="fas fa-file-csv"></i> Exportar CSV
-                        </button>
-                        <button class="btn-export" id="printDashboard2">
-                            <i class="fas fa-print"></i> Imprimir
-                        </button>
-                    </div>
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="export-buttons">
+                            <button class="btn-export" id="exportCSVDashboard2">
+                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+                            </button>
+                            <button class="btn-export" id="printDashboard2">
+                                <i class="fas fa-print me-2"></i> Imprimir
+                            </button>
+                        </div>
 
-                    <div class="search-box-container">
-                        <label for="searchFiscais">Buscar registros:</label>
-                        <input type="text" id="searchFiscais" placeholder="Buscar por nome, órgão, contrato ou fornecedor...">
-                    </div>
-                </div>
+                        <div class="right-aligned-container">
+                            <div class="search-box-container">
+                                <label for="searchFiscais">Buscar registros:</label>
+                                <input type="text" id="searchFiscais" placeholder="Buscar por nome, órgão, contrato ou fornecedor...">
+                            </div>
 
-                <!-- Tabela de Fiscais Dashboard 2 -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <h3 class="table-title">Consulta por Fiscal</h3>
-                        <div class="d-flex align-items-center gap-3 ms-auto">
                             <div class="items-per-page">
                                 <span>Itens por página:</span>
                                 <select id="itemsPerPageDashboard2">
@@ -1438,9 +1590,14 @@
                                     <option value="100">100</option>
                                 </select>
                             </div>
+                            
                             <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Tabela de Fiscais Dashboard 2 -->
+                <div class="table-container">
                     <div class="table-fixed-header-container">
                         <table class="table table-hover" id="fiscaisTable">
                             <thead>
@@ -1555,7 +1712,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
-                                <button class="btn-primary-custom" id="pesquisarContratos">
+                                <button class="btn-search-custom" id="pesquisarContratos">
                                     <i class="fas fa-search me-2"></i>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltrosDashboard3">
@@ -1566,28 +1723,24 @@
                     </div>
                 </div>
 
-                <!-- Campo de Busca de Registros Dashboard 3 -->
+                <!-- Ações Dashboard 3 -->
                 <div class="actions-container mb-4">
-                    <div class="export-buttons">
-                        <button class="btn-export" id="exportCSVDashboard3">
-                            <i class="fas fa-file-csv"></i> Exportar CSV
-                        </button>
-                        <button class="btn-export" id="printDashboard3">
-                            <i class="fas fa-print"></i> Imprimir
-                        </button>
-                    </div>
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="export-buttons">
+                            <button class="btn-export" id="exportCSVDashboard3">
+                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+                            </button>
+                            <button class="btn-export" id="printDashboard3">
+                                <i class="fas fa-print me-2"></i> Imprimir
+                            </button>
+                        </div>
 
-                    <div class="search-box-container">
-                        <label for="searchContratos">Buscar registros:</label>
-                        <input type="text" id="searchContratos" placeholder="Buscar por número, órgão, fornecedor ou objeto...">
-                    </div>
-                </div>
+                        <div class="right-aligned-container">
+                            <div class="search-box-container">
+                                <label for="searchContratos">Buscar registros:</label>
+                                <input type="text" id="searchContratos" placeholder="Buscar por número, órgão, fornecedor ou objeto...">
+                            </div>
 
-                <!-- Tabela de Contratos Dashboard 3 -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <h3 class="table-title">Consulta por Contrato</h3>
-                        <div class="d-flex align-items-center gap-3 ms-auto">
                             <div class="items-per-page">
                                 <span>Itens por página:</span>
                                 <select id="itemsPerPageDashboard3">
@@ -1597,9 +1750,14 @@
                                     <option value="100">100</option>
                                 </select>
                             </div>
+                            
                             <span class="table-badge" id="resumoCountDashboard3">0 registros</span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Tabela de Contratos Dashboard 3 -->
+                <div class="table-container">
                     <div class="table-fixed-header-container">
                         <table class="table table-hover" id="contratosTable">
                             <thead>
@@ -1642,32 +1800,31 @@
                 
                 <!-- Filtro de Download -->
                 <div class="filter-container">
-                    <div class="row">
+                    <div class="row align-items-end">
                         <div class="col-md-6">
-                            <div class="mb-3">
+                            <div class="mb-0">
                                 <label for="anoDownload" class="form-label filter-label">Selecione o Ano para Download</label>
                                 <select class="form-select" id="anoDownload">
                                     <option value="">Selecione um ano...</option>
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
-                                    <option value="2025" selected>2025</option>
+                                    <option value="2025">2025</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex align-items-end">
-                            <button class="btn-primary-custom w-100" id="downloadAnoCSV">
-                                <i class="fas fa-download me-2"></i>Baixar CSV do Ano Selecionado
-                            </button>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-end h-100">
+                                <button class="btn-primary-custom w-100 mt-3" id="downloadAnoCSV">
+                                    <i class="fas fa-download me-2"></i>Baixar CSV do Ano Selecionado
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Informações sobre os dados -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <h3 class="table-title">Informações sobre os Dados</h3>
-                    </div>
+                <div class="table-container mt-4">
                     <div class="p-4">
                         <div class="row">
                             <div class="col-md-6 col-12">
@@ -2000,13 +2157,16 @@
         let lastDataHash = null;
         
         const chartColors = {
-            primary: '#29435A',
-            accent: '#B93C42',
-            bright: '#DB233F',
-            dark: '#132837',
-            secondaryBlue: '#3F704D',
-            secondaryBrown: '#8B7355',
-            secondaryTeal: '#20B2AA'
+            primary: '#1A5276',
+            accent: '#3498DB',
+            bright: '#2980B9',
+            dark: '#0E2F44',
+            success: '#27AE60',
+            warning: '#F39C12',
+            info: '#17A589',
+            purple: '#8E44AD',
+            orange: '#E67E22',
+            teal: '#16A085'
         };
 
         // URLs dos CSVs no GitHub
@@ -2235,6 +2395,11 @@
                 filterContratosTable(currentSearchTerm);
             });
             
+            document.getElementById('searchResumo').addEventListener('input', function(e) {
+                currentSearchTerm = e.target.value.toLowerCase();
+                filterResumoTable(currentSearchTerm);
+            });
+            
             // Troca de abas
             document.getElementById('dashboard1-tab').addEventListener('click', function() {
                 setTimeout(updateDashboard1, 100);
@@ -2311,6 +2476,7 @@
             const dataFormatada = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
             document.getElementById('data-atualizacao-header').textContent = dataFormatada;
             document.getElementById('footer-atualizacao').textContent = dataFormatada;
+            document.getElementById('data-atualizacao-body').textContent = `Última atualização: ${dataFormatada}`;
         }
 
         // Função para formatar valor monetário
@@ -2682,6 +2848,7 @@
             document.getElementById('orgaoDashboard1').value = '';
             document.getElementById('situacaoDashboard1').value = 'all';
             document.getElementById('tipoDashboard1').value = '';
+            document.getElementById('searchResumo').value = '';
             
             // Carregar dados de 2025
             switchYearData('2025').then(() => {
@@ -2721,6 +2888,19 @@
             switchYearData('2025').then(() => {
                 updateDashboard3();
             });
+        }
+
+        function filterResumoTable(searchTerm) {
+            const searchLower = searchTerm.toLowerCase();
+            
+            if (!searchTerm.trim()) {
+                updateResumoTable();
+                return;
+            }
+            
+            // Implementação simples de filtro local
+            // Esta função será implementada quando necessário
+            console.log('Filtrando resumo por:', searchTerm);
         }
 
         function filterFiscaisTable(searchTerm) {
@@ -2981,23 +3161,23 @@
                 return `
                 <tr>
                     <td>
-                        <a href="#" onclick="filtrarPorOrgao('${item.orgao}')" class="clickable-link" title="Clique para filtrar por este órgão">
+                        <a href="#" onclick="filtrarPorOrgao('${item.orgao.replace(/'/g, "\\'")}')" class="orgao-link" title="Clique para filtrar por este órgão">
                             ${item.orgao}
                         </a>
                     </td>
-                    <td>${item.contratos.toLocaleString('pt-BR')}</td>
-                    <td>${item.fiscais.toLocaleString('pt-BR')}</td>
-                    <td>${formatCurrency(item.valor_total)}</td>
+                    <td class="text-center">${item.contratos.toLocaleString('pt-BR')}</td>
+                    <td class="text-center">${item.fiscais.toLocaleString('pt-BR')}</td>
+                    <td class="text-center">${formatCurrency(item.valor_total)}</td>
                 </tr>
             `}).join('');
             
             // Gerar rodapé
             const footerHTML = `
                 <tr class="table-total-row">
-                    <td><strong>TOTAL GERAL (${totalOrgaos} órgãos)</strong></td>
-                    <td><strong>${totalContratos.toLocaleString('pt-BR')}</strong></td>
-                    <td><strong>${totalFiscais.toLocaleString('pt-BR')}</strong></td>
-                    <td><strong>${formatCurrency(totalValor)}</strong></td>
+                    <td><strong>TOTAL GERAL (${totalOrgaos.toLocaleString('pt-BR')} órgãos)</strong></td>
+                    <td class="text-center"><strong>${totalContratos.toLocaleString('pt-BR')}</strong></td>
+                    <td class="text-center"><strong>${totalFiscais.toLocaleString('pt-BR')}</strong></td>
+                    <td class="text-center"><strong>${formatCurrency(totalValor)}</strong></td>
                 </tr>
             `;
             
@@ -3091,11 +3271,6 @@
             
             currentPageDashboard1 = page;
             updateResumoTable();
-            
-            const tableContainer = document.querySelector('#dashboard1 .table-container');
-            if (tableContainer) {
-                tableContainer.scrollIntoView({ behavior: 'smooth' });
-            }
         };
 
         function updateCharts1() {
@@ -3127,9 +3302,9 @@
             
             // Cores para o gráfico
             const pieColors = [
-                chartColors.primary, chartColors.secondaryBlue, chartColors.accent,
-                chartColors.secondaryBrown, chartColors.secondaryTeal, chartColors.bright,
-                '#4ECDC4', '#FF6B6B'
+                chartColors.primary, chartColors.success, chartColors.accent,
+                chartColors.warning, chartColors.purple, chartColors.orange,
+                chartColors.info, chartColors.teal
             ];
             
             if (charts.orgao) {
@@ -3276,8 +3451,9 @@
                     datasets: [{
                         data: tiposArray.map(item => item.count),
                         backgroundColor: [
-                            '#29435A', '#B93C42', '#DB233F', '#3F704D',
-                            '#8B7355', '#20B2AA', '#4ECDC4', '#FF6B6B'
+                            chartColors.primary, chartColors.accent, chartColors.success,
+                            chartColors.warning, chartColors.purple, chartColors.orange,
+                            chartColors.info, chartColors.teal
                         ],
                         borderWidth: 2,
                         borderColor: '#fff'
@@ -3409,13 +3585,13 @@
             const rowsHTML = currentData.map(fiscal => `
                 <tr>
                     <td>
-                        <a href="#" onclick="showFiscalDetails('${fiscal.nome_fiscal.replace(/'/g, "\\'")}')" class="clickable-link" title="Clique para ver detalhes">
+                        <a href="#" onclick="showFiscalDetails('${fiscal.nome_fiscal.replace(/'/g, "\\'")}')" class="orgao-link" title="Clique para ver detalhes">
                             <strong>${fiscal.nome_fiscal}</strong>
                         </a>
                     </td>
                     <td>${fiscal.orgao}</td>
                     <td>
-                        <a href="#" onclick="showContratoDetails('${fiscal.numero_contrato.replace(/'/g, "\\'")}')" class="clickable-link" title="Clique para ver detalhes do contrato">
+                        <a href="#" onclick="showContratoDetails('${fiscal.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link" title="Clique para ver detalhes do contrato">
                             ${fiscal.numero_contrato}
                         </a>
                     </td>
@@ -3523,11 +3699,6 @@
             
             currentPageDashboard2 = page;
             updateFiscaisTable();
-            
-            const tableContainer = document.querySelector('#dashboard2 .table-container');
-            if (tableContainer) {
-                tableContainer.scrollIntoView({ behavior: 'smooth' });
-            }
         };
 
         // ==================== DASHBOARD 3: CONSULTA POR CONTRATO ====================
@@ -3604,7 +3775,7 @@
             const rowsHTML = currentData.map(contrato => `
                 <tr>
                     <td>
-                        <a href="#" onclick="showContratoDetails('${contrato.numero_contrato.replace(/'/g, "\\'")}')" class="clickable-link" title="Clique para ver detalhes">
+                        <a href="#" onclick="showContratoDetails('${contrato.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link" title="Clique para ver detalhes">
                             <strong>${contrato.numero_contrato}</strong>
                         </a>
                     </td>
@@ -3726,11 +3897,6 @@
             
             currentPageDashboard3 = page;
             updateContratosTable();
-            
-            const tableContainer = document.querySelector('#dashboard3 .table-container');
-            if (tableContainer) {
-                tableContainer.scrollIntoView({ behavior: 'smooth' });
-            }
         };
 
         // ==================== FUNÇÕES PARA MOSTRAR DETALHES ====================
@@ -4054,12 +4220,6 @@
                         
                         // Aplicar o filtro
                         applyFilters('dashboard3');
-                        
-                        // Rolar para a tabela
-                        const tableContainer = document.querySelector('#dashboard3 .table-container');
-                        if (tableContainer) {
-                            tableContainer.scrollIntoView({ behavior: 'smooth' });
-                        }
                     }, 350);
                 } else {
                     console.error('Elemento da aba não encontrado');
