@@ -20,21 +20,37 @@
     <style>
         /* ==================== VARIÁVEIS DE CORES ==================== */
         :root {
-            --primary-dark: #1A5276;
-            --primary-darker: #0E2F44;
-            --accent-blue: #3498DB;
-            --accent-bright: #2980B9;
-            --background-light: #F2F4F7;
-            --success-green: #27AE60;
-            --warning-yellow: #F39C12;
-            --info-blue: #17A589;
-            --secondary-purple: #8E44AD;
-            --secondary-orange: #E67E22;
-            --secondary-teal: #16A085;
-            --danger-red: #E74C3C;
-            --hover-blue: #006A82;
-            --btn-danger: #dc3545;
-            --btn-danger-hover: #bb2d3b;
+            --primary-dark: #29435A;
+            --primary-darker: #132837;
+            --accent-red: #B93C42;
+            --accent-bright: #DB233F;
+            --background-light: #EEEFF5;
+
+            --success-green: #28a745;
+            --warning-yellow: #ffc107;
+            --info-blue: #17a2b8;
+
+            --secondary-blue: #3F704D;
+            --secondary-brown: #8B7355;
+            --secondary-teal: #20B2AA;
+            --hover-blue: #006a82;
+
+            /* ===== NOVAS PARA GRÁFICOS ===== */
+            --chart-blue-1: #2F5D8A;
+            --chart-blue-2: #4A7DAA;
+            --chart-blue-3: #1F6F8B;
+
+            --chart-orange-1: #D97A30;
+            --chart-orange-2: #C65A2C;
+            --chart-red-2:    #A8323A;
+
+            --chart-green-1: #2F7A5C;
+            --chart-green-2: #5A8F6E;
+            --chart-lime:    #7FAF3F;
+
+            --chart-purple: #6B5B95;
+            --chart-gray:   #6C7A89;
+            --chart-brown:  #9C6B4A;
         }
         
         /* ==================== ESTILOS GERAIS ==================== */
@@ -42,79 +58,45 @@
             font-family: 'Montserrat', Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--background-light);
             padding-bottom: 30px;
+            overflow-y: visible !important;
+            overflow-x: visible !important;
+            overflow: visible !important;
+            height: auto;
         }
         
-        /* ==================== HEADER PRINCIPAL ==================== */
-        .main-header {
-            background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-bottom: 4px solid var(--accent-blue);
+        html {
+            overflow-y: visible !important;
+            overflow-x: visible !important;
+            overflow: visible !important;
+            height: auto;
         }
         
-        .logo-container {
+        /* ==================== DATA ATUALIZAÇÃO CENTRALIZADA ==================== */
+        .data-atualizacao-container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
+            margin-bottom: 20px;
+            padding: 10px 0;
         }
         
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-bright) 100%);
-            border-radius: 50%;
+        .data-atualizacao-box {
+            background: white;
+            border-radius: 8px;
+            padding: 8px 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.25);
-        }
-        
-        .header-title {
-            font-weight: 700;
-            font-size: 22px;
-            margin: 0;
-            line-height: 1.2;
-        }
-        
-        .header-subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            margin: 5px 0 0 0;
-        }
-
-        .header-info {
-            margin-top: 8px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .link-legislacao {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
+            gap: 8px;
             font-size: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: color 0.3s;
+            color: var(--primary-dark);
+            font-weight: 600;
         }
         
-        .link-legislacao:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .badge-atualizacao-header {
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 3px 8px;
-            border-radius: 15px;
-            font-size: 11px;
+        .data-atualizacao-box i {
+            font-size: 14px;
+            color: var(--accent-red);
         }
         
         /* ==================== FILTROS ==================== */
@@ -124,7 +106,7 @@
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 5px solid var(--accent-blue);
+            border-left: 5px solid var(--accent-red);
         }
         
         .filter-label {
@@ -146,8 +128,8 @@
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15);
         }
         
         /* ==================== CARDS DE MÉTRICAS ==================== */
@@ -157,7 +139,7 @@
             padding: 20px 15px;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
-            border-top: 4px solid var(--accent-blue);
+            border-top: 4px solid var(--accent-red);
             transition: all 0.3s ease;
             height: 100%;
             position: relative;
@@ -183,14 +165,6 @@
         
         .metric-card.info {
             border-top-color: var(--info-blue);
-        }
-        
-        .metric-card.purple {
-            border-top-color: var(--secondary-purple);
-        }
-        
-        .metric-card.orange {
-            border-top-color: var(--secondary-orange);
         }
         
         .metric-value {
@@ -219,7 +193,7 @@
         }
         
         .metric-change.positive {
-            background-color: rgba(39, 174, 96, 0.1);
+            background-color: rgba(40, 167, 69, 0.1);
             color: var(--success-green);
         }
         
@@ -256,7 +230,7 @@
             width: 100%;
         }
         
-        /* ==================== TABELAS ==================== */
+        /* ==================== TABELAS COM BORDAS ==================== */
         .table-container {
             background: white;
             border-radius: 10px;
@@ -284,7 +258,7 @@
         }
         
         .table-badge {
-            background: var(--accent-blue);
+            background: var(--accent-red);
             color: white;
             padding: 4px 12px;
             border-radius: 15px;
@@ -292,7 +266,6 @@
             font-weight: 600;
         }
         
-        /* Container para tabela com cabeçalho fixo */
         .table-fixed-header-container {
             position: relative;
             max-height: 500px;
@@ -300,7 +273,6 @@
             padding: 0;
         }
         
-        /* Cabeçalho fixo para todas as tabelas */
         .table-fixed-header-container table thead {
             position: sticky;
             top: 0;
@@ -330,7 +302,6 @@
             border: 1px solid #dee2e6;
         }
         
-        /* Adicionar bordas verticais ao cabeçalho da tabela */
         .table thead th {
             background-color: var(--primary-dark) !important;
             color: white !important;
@@ -360,7 +331,7 @@
         }
         
         .sort-icon {
-            opacity: 0.5;
+            opacity: 0.8;
             margin-left: 4px;
             font-size: 9px;
             transition: opacity 0.2s ease;
@@ -387,8 +358,7 @@
         .table thead th.sorted-desc .sort-icon::after {
             content: "↓";
         }
-
-        /* Aplicar bordas verticais a TODAS as tabelas */
+        
         .table-container table th, 
         .table-container table td {
             border-left: 1px solid #dee2e6;
@@ -406,7 +376,6 @@
             border-right: none;
         }
         
-        /* Borda inferior para linhas */
         .table-container table tbody tr {
             border-bottom: 1px solid #f1f1f1;
         }
@@ -427,6 +396,26 @@
             padding: 12px 10px;
             vertical-align: middle;
             font-size: 13px;
+        }
+        
+        /* ALINHAMENTO DA COLUNA RESPONSÁVEL LEGAL PARA ESQUERDA */
+        .table tbody td.responsavel-legal {
+            text-align: left !important;
+            font-style: normal;
+        }
+        
+        .table tbody td.quantidade {
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Garantir que todas as colunas do dashboard 1 sejam centralizadas */
+        #visaoGeralTable tbody td {
+            text-align: center;
+        }
+        
+        #visaoGeralTable tbody td:first-child {
+            text-align: left;
         }
 
         /* Colunas numéricas centralizadas */
@@ -468,100 +457,6 @@
             transform: translateY(-1px);
         }
         
-        /* ==================== BOTÕES ==================== */
-        .btn-primary-custom {
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-bright));
-            border: none;
-            padding: 10px 20px;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            color: white;
-        }
-        
-        .btn-primary-custom:hover {
-            background: linear-gradient(to right, var(--accent-bright), var(--accent-blue));
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-            color: white;
-        }
-        
-        /* Botão Pesquisar azul */
-        .btn-search-custom {
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-bright));
-            border: none;
-            padding: 10px 20px;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            color: white;
-        }
-        
-        .btn-search-custom:hover {
-            background: linear-gradient(to right, #006A82, var(--accent-blue));
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-            color: white;
-        }
-        
-        .btn-secondary-custom {
-            background: white;
-            border: 2px solid var(--primary-dark);
-            color: var(--primary-dark);
-            padding: 10px 20px;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-        }
-        
-        .btn-secondary-custom:hover {
-            background-color: var(--primary-dark);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.15);
-        }
-        
-        .btn-export {
-            background: white;
-            border: 2px solid var(--primary-dark);
-            color: var(--primary-dark);
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-        
-        .btn-export:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .btn-primary-custom .material-icons,
-        .btn-secondary-custom .material-icons,
-        .btn-search-custom .material-icons {
-            font-size: 16px;
-            vertical-align: middle;
-            margin-right: 8px;
-            line-height: 1;
-        }
-
-        .btn-primary-custom,
-        .btn-secondary-custom,
-        .btn-search-custom {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
         /* ==================== MENU DE NAVEGAÇÃO ==================== */
         .nav-tabs-container {
             background: white;
@@ -592,7 +487,7 @@
             border-radius: 6px !important;
             padding: 10px 15px !important;
             font-weight: 600;
-            color: #1a5276 !important;
+            color: var(--primary-dark) !important;
             transition: all 0.3s ease;
             font-size: 13px;
             white-space: nowrap;
@@ -602,12 +497,12 @@
         }
 
         .nav-tabs .nav-link:hover {
-            background-color: rgba(26, 82, 118, 0.05) !important;
-            color: #3498db !important;
+            background-color: rgba(41, 67, 90, 0.05) !important;
+            color: var(--accent-red) !important;
         }
 
         .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, #1a5276 0%, #154360 100%) !important;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%) !important;
             color: white !important;
             border: none !important;
         }
@@ -650,36 +545,257 @@
             border-bottom: none !important;
         }
         
-        /* ==================== AÇÕES ==================== */
-        .actions-container {
-            background: white;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
+        /* ==================== BOTÕES ==================== */
+        .btn-primary-custom {
+            background: linear-gradient(to right, var(--accent-red), var(--accent-bright));
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            color: white;
         }
         
-        .export-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            background: white;
-            padding: 8px 12px;
+        .btn-primary-custom:hover {
+            background: var(--primary-darker);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(19, 40, 55, 0.2);
+            color: white;
+        }
+        
+        .btn-search-custom {
+            background: var(--accent-red);
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
             border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            color: white;
+        }
+        
+        .btn-search-custom:hover {
+            background: var(--primary-darker);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(19, 40, 55, 0.2);
+            color: white;
+        }
+        
+        .btn-secondary-custom {
+            background: white;
+            border: 2px solid var(--primary-darker);
+            color: var(--primary-darker);
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        
+        .btn-secondary-custom:hover {
+            background-color: var(--primary-darker);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(19, 40, 55, 0.15);
+        }
+        
+        .btn-export {
+            background: white;
+            border: 2px solid var(--primary-darker);
+            color: var(--primary-darker);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .btn-export:hover {
+            background: var(--primary-darker);
+            color: white;
+            transform: translateY(-1px);
         }
 
-        /* Container para alinhar itens à direita */
-        .right-aligned-container {
+        .btn-primary-custom .material-icons,
+        .btn-secondary-custom .material-icons,
+        .btn-search-custom .material-icons {
+            font-size: 16px;
+            vertical-align: middle;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        .btn-primary-custom,
+        .btn-secondary-custom,
+        .btn-search-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* ==================== DROPDOWN DE COMPARTILHAMENTO ==================== */
+        .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .share-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 180px;
+            margin-top: 5px;
+        }
+        
+        .share-options.show {
+            display: block;
+        }
+        
+        .share-option {
+            padding: 10px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-left: auto;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-darker);
         }
+        
+        .share-option:hover {
+            background-color: rgba(19, 40, 55, 0.05);
+        }
+        
+        .share-option i {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .share-option.facebook i { color: #4267B2; }
+        .share-option.twitter i { color: #1DA1F2; }
+        .share-option.linkedin i { color: #0077b5; }
+        .share-option.whatsapp i { color: #25D366; }
+        .share-option.copy i { color: var(--primary-darker); }
+        
+
+	/* ==================== AÇÕES ==================== */
+.actions-container {
+    background: white;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.actions-container .d-flex {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+}
+
+.export-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    background: transparent; /* Remove o fundo branco duplicado */
+    padding: 0; /* Remove o padding extra */
+}
+
+.right-aligned-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px;
+    margin-left: auto;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.search-box-container {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Reduzido de 8px para 4px */
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    background: transparent;
+    padding: 0;
+}
+
+.search-box-container label {
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 12px;
+    margin-right: 0; /* Garante que não tem margin extra */
+}
+
+    width: 250px !important;
+    max-width: 250px !important;
+    flex-shrink: 0;
+    border: 2px solid var(--primary-darker) !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    background: white;
+    margin-left: 0; /* Garante que não tem margin extra */
+}
+
+.items-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: transparent;
+    padding: 0;
+}
+
+.items-per-page span {
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.items-per-page select {
+    width: 80px;
+    flex-shrink: 0;
+    border: 2px solid var(--primary-darker);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: white;
+    color: var(--primary-darker);
+}
+
+.table-badge {
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: var(--accent-red);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
         
         /* ==================== LOADING OVERLAY ==================== */
         .loading-overlay {
@@ -699,9 +815,9 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(26, 82, 118, 0.1);
+            border: 4px solid rgba(41, 67, 90, 0.1);
             border-radius: 50%;
-            border-top-color: var(--accent-blue);
+            border-top-color: var(--accent-red);
             animation: spin 1s linear infinite;
         }
         
@@ -736,8 +852,8 @@
         }
 
         .orgao-link:hover {
-            color: var(--danger-red) !important;
-            background-color: rgba(231, 76, 60, 0.05);
+            color: var(--accent-red) !important;
+            background-color: rgba(185, 60, 66, 0.05);
             transform: translateY(-1px);
             text-decoration: none !important;
         }
@@ -751,7 +867,6 @@
             transform: translateY(0);
         }
 
-        /* Para a tabela específica da visão geral */
         #visaoGeralTable .orgao-link {
             padding: 4px 8px;
             margin: -4px -8px;
@@ -796,7 +911,6 @@
             color: var(--primary-dark);
         }
         
-        /* Itens por página */
         .items-per-page {
             display: flex;
             align-items: center;
@@ -807,19 +921,19 @@
         }
         
         .items-per-page select {
-            border: 2px solid var(--primary-dark);
+            border: 2px solid var(--primary-darker);
             border-radius: 6px;
             padding: 5px 10px;
             font-size: 12px;
             width: auto;
             min-width: 70px;
             background-color: white;
-            color: var(--primary-dark);
+            color: var(--primary-darker);
         }
         
         .items-per-page select option {
             background-color: white;
-            color: var(--primary-dark);
+            color: var(--primary-darker);
         }
         
         /* ==================== CARDS ==================== */
@@ -835,7 +949,7 @@
         .card-stats .value {
             font-size: 24px;
             font-weight: 700;
-            color: var(--accent-blue);
+            color: var(--accent-red);
             margin: 8px 0;
         }
 
@@ -851,15 +965,6 @@
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 15px;
-            color: var(--primary-dark);
-            font-size: 0.85rem;
-            border-top: 1px solid #dee2e6;
-            margin-top: 30px;
         }
         
         /* ==================== BUSCA RÁPIDA ==================== */
@@ -881,7 +986,7 @@
         }
         
         .search-box-container input {
-            border: 2px solid var(--primary-dark) !important;
+            border: 2px solid var(--primary-darker) !important;
             border-radius: 6px !important;
             padding: 8px 12px !important;
             font-size: 13px !important;
@@ -892,8 +997,8 @@
         }
         
         .search-box-container input:focus {
-            border-color: var(--accent-blue) !important;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15) !important;
+            border-color: var(--accent-red) !important;
+            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15) !important;
             outline: none !important;
         }
         
@@ -905,7 +1010,7 @@
         .modal-detail .modal-header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
             color: white;
-            border-bottom: 4px solid var(--accent-blue);
+            border-bottom: 4px solid var(--accent-red);
         }
         
         .modal-detail .modal-body {
@@ -914,7 +1019,7 @@
         }
         
         .detail-info {
-            background-color: rgba(26, 82, 118, 0.05);
+            background-color: rgba(41, 67, 90, 0.05);
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
@@ -966,21 +1071,12 @@
         }
         
         .detail-table tbody tr:hover {
-            background-color: rgba(26, 82, 118, 0.04);
+            background-color: rgba(41, 67, 90, 0.04);
         }
         
         .detail-table tbody td {
             padding: 8px 10px;
             vertical-align: middle;
-        }
-        
-        /* ==================== DATA ATUALIZAÇÃO MINIMALISTA ==================== */
-        .data-atualizacao-container {
-            text-align: center;
-            margin: 10px 0 20px 0;
-            font-size: 12px;
-            color: var(--primary-darker);
-            opacity: 0.8;
         }
         
         /* ==================== BADGES PARA STATUS ==================== */
@@ -997,9 +1093,9 @@
         }
         
         .badge-ativo {
-            background-color: rgba(39, 174, 96, 0.15);
+            background-color: rgba(40, 167, 69, 0.15);
             color: var(--success-green);
-            border-color: rgba(39, 174, 96, 0.3);
+            border-color: rgba(40, 167, 69, 0.3);
         }
         
         .badge-concluido {
@@ -1009,15 +1105,15 @@
         }
         
         .badge-suspenso {
-            background-color: rgba(243, 156, 18, 0.15);
+            background-color: rgba(255, 193, 7, 0.15);
             color: var(--warning-yellow);
-            border-color: rgba(243, 156, 18, 0.3);
+            border-color: rgba(255, 193, 7, 0.3);
         }
         
         .badge-rescindido {
-            background-color: rgba(231, 76, 60, 0.15);
-            color: #E74C3C;
-            border-color: rgba(231, 76, 60, 0.3);
+            background-color: rgba(185, 60, 66, 0.15);
+            color: var(--accent-red);
+            border-color: rgba(185, 60, 66, 0.3);
         }
         
         /* ==================== VALORES MONETÁRIOS ==================== */
@@ -1033,7 +1129,7 @@
         }
         
         .valor-atual {
-            color: var(--accent-blue);
+            color: var(--accent-red);
             font-weight: 700;
         }
         
@@ -1050,7 +1146,7 @@
         }
         
         .contrato-link:hover {
-            color: var(--accent-blue);
+            color: var(--accent-red);
             text-decoration: underline;
         }
         
@@ -1104,29 +1200,6 @@
         
         /* ==================== RESPONSIVIDADE ==================== */
         @media (max-width: 768px) {
-            .main-header {
-                padding: 15px 0;
-                margin-bottom: 20px;
-            }
-            
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .header-title {
-                font-size: 18px;
-            }
-            
-            .header-subtitle {
-                font-size: 12px;
-            }
-            
-            .header-info {
-                justify-content: center;
-            }
-            
             .metric-value {
                 font-size: 20px;
             }
@@ -1195,6 +1268,12 @@
             .detail-table {
                 font-size: 11px;
             }
+            
+            .right-aligned-container {
+                margin-left: 0;
+                width: 100%;
+                justify-content: space-between;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1222,49 +1301,28 @@
             .btn-action span {
                 display: none;
             }
+            
+            .right-aligned-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-box-container {
+                width: 100%;
+            }
+            
+            .search-box-container input {
+                max-width: 100% !important;
+            }
+            
+            .items-per-page {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- ==================== HEADER PRINCIPAL ==================== -->
-    <header class="main-header">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo-container">
-                    <div class="logo">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <div>
-                        <h1 class="header-title">Fiscais de Contratos</h1>
-                        <p class="header-subtitle">Governo do Estado de Minas Gerais - Designação de Fiscais para Contratos</p>
-                        <div class="header-info">
-                            <a href="https://dados.mg.gov.br/dataset/fiscais_contratos" target="_blank" class="link-legislacao">
-                                <i class="fas fa-external-link-alt"></i> Portal de Dados Abertos MG
-                            </a>
-                            <a href="https://github.com/transparencia-mg/fiscais_contratos" target="_blank" class="link-legislacao">
-                                <i class="fab fa-github"></i> Repositório GitHub
-                            </a>
-                            <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm" target="_blank" class="link-legislacao">
-                                <i class="fas fa-gavel"></i> Lei Federal 14.133/2021
-                            </a>
-                            <span class="badge-atualizacao-header">
-                                <i class="fas fa-sync-alt"></i> Última atualização: <span id="data-atualizacao-header">Carregando...</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Informação de Fonte de Dados -->
-                <div class="text-end">
-                    <div class="btn-export" style="background: rgba(255, 255, 255, 0.2); color: white; border-color: white;">
-                        <i class="fas fa-database me-2"></i> Fonte: GitHub
-                    </div>
-                    <small class="text-white d-block mt-1" style="font-size: 10px;">Atualização automática</small>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
     <div class="container">
@@ -1273,39 +1331,42 @@
             <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="dashboard1-tab" data-bs-toggle="tab" data-bs-target="#dashboard1" type="button" role="tab">
-                        <i class="material-icons me-2">bar_chart</i>Visão Geral
+                        <span class="material-icons me-2">bar_chart</span>Visão Geral
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard2-tab" data-bs-toggle="tab" data-bs-target="#dashboard2" type="button" role="tab">
-                        <i class="material-icons me-2">person_search</i>Consulta por Fiscal
+                        <span class="material-icons me-2">person_search</span>Consulta por Fiscal
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard3-tab" data-bs-toggle="tab" data-bs-target="#dashboard3" type="button" role="tab">
-                        <i class="material-icons me-2">description</i>Consulta por Contrato
+                        <span class="material-icons me-2">description</span>Consulta por Contrato
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="dashboard4-tab" data-bs-toggle="tab" data-bs-target="#dashboard4" type="button" role="tab">
-                        <i class="material-icons me-2">downloading</i>Downloads
+                        <span class="material-icons me-2">downloading</span>Downloads
                     </button>
                 </li>
             </ul>
         </div>
+
+    <!-- ==================== DATA DE ATUALIZAÇÃO CENTRALIZADA ==================== -->
+    <div class="container mt-3">
+        <div class="data-atualizacao-container">
+            <div class="data-atualizacao-box">
+                <span class="material-icons">update</span>
+                Atualizado em: <span id="data-atualizacao-header">Carregando...</span>
+            </div>
+        </div>
+    </div>
 
         <!-- ==================== CONTEÚDO DAS ABAS ==================== -->
         <div class="tab-content" id="dashboardTabsContent">
             
             <!-- ==================== DASHBOARD 1: VISÃO GERAL ==================== -->
             <div class="tab-pane fade show active" id="dashboard1" role="tabpanel">
-                
-                <!-- Data de Atualização -->
-                <div class="data-atualizacao-container">
-                    <i class="fas fa-sync-alt me-2"></i>
-                    <span id="data-atualizacao-body">Última atualização: Carregando...</span>
-                </div>
-
                 <!-- Filtros Dashboard 1 -->
                 <div class="filter-container">
                     <div class="row">
@@ -1313,7 +1374,6 @@
                             <div class="mb-3">
                                 <label for="anoDashboard1" class="form-label filter-label">Ano</label>
                                 <select class="form-select" id="anoDashboard1">
-                                    <option value="all">Todos os Anos</option>
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -1326,7 +1386,7 @@
                                 <label for="orgaoDashboard1" class="form-label filter-label">Órgão</label>
                                 <input type="text" class="form-control" list="orgaosListDashboard1" id="orgaoDashboard1" placeholder="Digite ou selecione...">
                                 <datalist id="orgaosListDashboard1">
-                                    <option value="all">Todos os Órgãos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1334,7 +1394,7 @@
                             <div class="mb-3">
                                 <label for="situacaoDashboard1" class="form-label filter-label">Situação</label>
                                 <select class="form-select" id="situacaoDashboard1">
-                                    <option value="all">Todas</option>
+                                    <option value="">Todas</option>
                                     <option value="ATIVO">Ativo</option>
                                     <option value="CONCLUÍDO">Concluído</option>
                                     <option value="SUSPENSO">Suspenso</option>
@@ -1347,7 +1407,7 @@
                                 <label for="tipoDashboard1" class="form-label filter-label">Tipo do Contrato</label>
                                 <input type="text" class="form-control" list="tiposListDashboard1" id="tipoDashboard1" placeholder="Digite ou selecione...">
                                 <datalist id="tiposListDashboard1">
-                                    <option value="all">Todos os Tipos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1356,10 +1416,10 @@
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
                                 <button class="btn-search-custom" id="aplicarFiltros">
-                                    <i class="fas fa-search me-2"></i>Pesquisar
+                                    <span class="material-icons me-2">search</span>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltros">
-                                    <i class="fas fa-redo me-2"></i>Limpar Filtros
+                                    <span class="material-icons me-2">refresh</span>Limpar Filtros
                                 </button>
                             </div>
                         </div>
@@ -1405,32 +1465,47 @@
                     </div>
                 </div>
 
-                <!-- Ações Dashboard 1 -->
-                <div class="actions-container mb-4">
-                    <div class="export-buttons">
-                        <button class="btn-export" id="exportCSVDashboard1">
-                            <i class="fas fa-file-csv me-2"></i> Exportar CSV
-                        </button>
-                        <button class="btn-export" id="printDashboard1">
-                            <i class="fas fa-print me-2"></i> Imprimir
-                        </button>
-                    </div>
-                    <div class="right-aligned-container">
-                        <div class="search-box-container">
-                            <label for="searchResumo">Buscar órgão:</label>
-                            <input type="text" id="searchResumo" placeholder="Buscar por nome...">
-                        </div>
-                        <div class="items-per-page">
-                            <span>Itens por página:</span>
-                            <select id="itemsPerPageDashboard1">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50" selected>50</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
-                    </div>
+ 		
+		<!-- Ações Dashboard 1 -->
+<div class="actions-container mb-4">
+    <div class="d-flex align-items-center gap-3 w-100">
+        <div class="export-buttons">
+            <button class="btn-export" id="exportCSVDashboard1">
+                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+            </button>
+            <button class="btn-export" id="printDashboard1">
+                <i class="fas fa-print me-2"></i> Imprimir
+            </button>
+            <div class="share-dropdown">
+                <button class="btn-export" id="shareButton1">
+                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                </button>
+                <div class="share-options" id="shareOptions1">
+                    <!-- mesmas opções -->
                 </div>
+            </div>
+        </div>
+
+        <div class="right-aligned-container">
+            <div class="search-box-container">
+                <label for="searchResumo">Buscar:</label>
+                <input type="text" id="searchResumo" placeholder="Nome do órgão...">
+            </div>
+
+            <div class="items-per-page">
+                <span>Itens:</span>
+                <select id="itemsPerPageDashboard1">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            
+            <span class="table-badge" id="resumoCountDashboard1">0 órgãos</span>
+        </div>
+    </div>
+</div>
 
                 <!-- Tabela Dashboard 1 - VISÃO GERAL POR ÓRGÃO -->
                 <div class="table-container">
@@ -1485,7 +1560,6 @@
                             <div class="mb-3">
                                 <label for="anoDashboard2" class="form-label filter-label">Ano</label>
                                 <select class="form-select" id="anoDashboard2">
-                                    <option value="all">Todos os Anos</option>
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -1504,7 +1578,7 @@
                                 <label for="orgaoDashboard2" class="form-label filter-label">Órgão</label>
                                 <input type="text" class="form-control" list="orgaosListDashboard2" id="orgaoDashboard2" placeholder="Digite ou selecione...">
                                 <datalist id="orgaosListDashboard2">
-                                    <option value="all">Todos os Órgãos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1512,7 +1586,7 @@
                             <div class="mb-3">
                                 <label for="situacaoDashboard2" class="form-label filter-label">Situação</label>
                                 <select class="form-select" id="situacaoDashboard2">
-                                    <option value="all">Todas</option>
+                                    <option value="">Todas</option>
                                     <option value="ATIVO">Ativo</option>
                                     <option value="CONCLUÍDO">Concluído</option>
                                     <option value="SUSPENSO">Suspenso</option>
@@ -1534,7 +1608,7 @@
                                 <label for="fornecedorDashboard2" class="form-label filter-label">Fornecedor</label>
                                 <input type="text" class="form-control" list="fornecedoresListDashboard2" id="fornecedorDashboard2" placeholder="Digite o nome...">
                                 <datalist id="fornecedoresListDashboard2">
-                                    <option value="all">Todos os Fornecedores</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1543,7 +1617,7 @@
                                 <label for="tipoDashboard2" class="form-label filter-label">Tipo do Contrato</label>
                                 <input type="text" class="form-control" list="tiposListDashboard2" id="tipoDashboard2" placeholder="Digite ou selecione...">
                                 <datalist id="tiposListDashboard2">
-                                    <option value="all">Todos os Tipos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1553,48 +1627,57 @@
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
                                 <button class="btn-search-custom" id="pesquisarFiscais">
-                                    <i class="fas fa-search me-2"></i>Pesquisar
+                                    <span class="material-icons me-2">search</span>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltrosDashboard2">
-                                    <i class="fas fa-times me-2"></i>Limpar Filtros
+                                    <span class="material-icons me-2">close</span>Limpar Filtros
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ações Dashboard 2 -->
-                <div class="actions-container mb-4">
-                    <div class="d-flex align-items-center gap-3 w-100">
-                        <div class="export-buttons">
-                            <button class="btn-export" id="exportCSVDashboard2">
-                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
-                            </button>
-                            <button class="btn-export" id="printDashboard2">
-                                <i class="fas fa-print me-2"></i> Imprimir
-                            </button>
-                        </div>
 
-                        <div class="right-aligned-container">
-                            <div class="search-box-container">
-                                <label for="searchFiscais">Buscar registros:</label>
-                                <input type="text" id="searchFiscais" placeholder="Buscar por nome, órgão, contrato ou fornecedor...">
-                            </div>
-
-                            <div class="items-per-page">
-                                <span>Itens por página:</span>
-                                <select id="itemsPerPageDashboard2">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50" selected>50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            
-                            <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
-                        </div>
-                    </div>
+<!-- Ações Dashboard 2 -->
+<div class="actions-container mb-4">
+    <div class="d-flex align-items-center gap-3 w-100">
+        <div class="export-buttons">
+            <button class="btn-export" id="exportCSVDashboard2">
+                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+            </button>
+            <button class="btn-export" id="printDashboard2">
+                <i class="fas fa-print me-2"></i> Imprimir
+            </button>
+            <div class="share-dropdown">
+                <button class="btn-export" id="shareButton2">
+                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                </button>
+                <div class="share-options" id="shareOptions2">
+                    <!-- opções -->
                 </div>
+            </div>
+        </div>
+
+        <div class="right-aligned-container">
+            <div class="search-box-container">
+                <label for="searchFiscais">Buscar:</label>
+                <input type="text" id="searchFiscais" placeholder="Nome, órgão, contrato...">
+            </div>
+
+            <div class="items-per-page">
+                <span>Itens:</span>
+                <select id="itemsPerPageDashboard2">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            
+            <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
+        </div>
+    </div>
+</div>
 
                 <!-- Tabela de Fiscais Dashboard 2 -->
                 <div class="table-container">
@@ -1645,7 +1728,6 @@
                             <div class="mb-3">
                                 <label for="anoDashboard3" class="form-label filter-label">Ano</label>
                                 <select class="form-select" id="anoDashboard3">
-                                    <option value="all">Todos os Anos</option>
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -1664,7 +1746,7 @@
                                 <label for="orgaoDashboard3" class="form-label filter-label">Órgão</label>
                                 <input type="text" class="form-control" list="orgaosListDashboard3" id="orgaoDashboard3" placeholder="Digite ou selecione...">
                                 <datalist id="orgaosListDashboard3">
-                                    <option value="all">Todos os Órgãos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1672,7 +1754,7 @@
                             <div class="mb-3">
                                 <label for="situacaoDashboard3" class="form-label filter-label">Situação</label>
                                 <select class="form-select" id="situacaoDashboard3">
-                                    <option value="all">Todas</option>
+                                    <option value="">Todas</option>
                                     <option value="ATIVO">Ativo</option>
                                     <option value="CONCLUÍDO">Concluído</option>
                                     <option value="SUSPENSO">Suspenso</option>
@@ -1688,7 +1770,7 @@
                                 <label for="fornecedorDashboard3" class="form-label filter-label">Fornecedor</label>
                                 <input type="text" class="form-control" list="fornecedoresListDashboard3" id="fornecedorDashboard3" placeholder="Digite o nome...">
                                 <datalist id="fornecedoresListDashboard3">
-                                    <option value="all">Todos os Fornecedores</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1697,7 +1779,7 @@
                                 <label for="tipoDashboard3" class="form-label filter-label">Tipo do Contrato</label>
                                 <input type="text" class="form-control" list="tiposListDashboard3" id="tipoDashboard3" placeholder="Digite ou selecione...">
                                 <datalist id="tiposListDashboard3">
-                                    <option value="all">Todos os Tipos</option>
+                                    <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
@@ -1713,48 +1795,56 @@
                         <div class="col-12">
                             <div class="d-flex gap-3 flex-wrap">
                                 <button class="btn-search-custom" id="pesquisarContratos">
-                                    <i class="fas fa-search me-2"></i>Pesquisar
+                                    <span class="material-icons me-2">search</span>Pesquisar
                                 </button>
                                 <button class="btn-secondary-custom" id="limparFiltrosDashboard3">
-                                    <i class="fas fa-times me-2"></i>Limpar Filtros
+                                    <span class="material-icons me-2">close</span>Limpar Filtros
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ações Dashboard 3 -->
-                <div class="actions-container mb-4">
-                    <div class="d-flex align-items-center gap-3 w-100">
-                        <div class="export-buttons">
-                            <button class="btn-export" id="exportCSVDashboard3">
-                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
-                            </button>
-                            <button class="btn-export" id="printDashboard3">
-                                <i class="fas fa-print me-2"></i> Imprimir
-                            </button>
-                        </div>
-
-                        <div class="right-aligned-container">
-                            <div class="search-box-container">
-                                <label for="searchContratos">Buscar registros:</label>
-                                <input type="text" id="searchContratos" placeholder="Buscar por número, órgão, fornecedor ou objeto...">
-                            </div>
-
-                            <div class="items-per-page">
-                                <span>Itens por página:</span>
-                                <select id="itemsPerPageDashboard3">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50" selected>50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            
-                            <span class="table-badge" id="resumoCountDashboard3">0 registros</span>
-                        </div>
-                    </div>
+		<!-- Ações Dashboard 3 -->
+<div class="actions-container mb-4">
+    <div class="d-flex align-items-center gap-3 w-100">
+        <div class="export-buttons">
+            <button class="btn-export" id="exportCSVDashboard3">
+                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+            </button>
+            <button class="btn-export" id="printDashboard3">
+                <i class="fas fa-print me-2"></i> Imprimir
+            </button>
+            <div class="share-dropdown">
+                <button class="btn-export" id="shareButton3">
+                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                </button>
+                <div class="share-options" id="shareOptions3">
+                    <!-- mesmas opções -->
                 </div>
+            </div>
+        </div>
+
+        <div class="right-aligned-container">
+            <div class="search-box-container">
+                <label for="searchContratos">Buscar:</label>
+                <input type="text" id="searchContratos" placeholder="Número, órgão, fornecedor...">
+            </div>
+
+            <div class="items-per-page">
+                <span>Itens:</span>
+                <select id="itemsPerPageDashboard3">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            
+            <span class="table-badge" id="resumoCountDashboard3">0 contratos</span>
+        </div>
+    </div>
+</div>
 
                 <!-- Tabela de Contratos Dashboard 3 -->
                 <div class="table-container">
@@ -1816,7 +1906,7 @@
                         <div class="col-md-6">
                             <div class="d-flex align-items-end h-100">
                                 <button class="btn-primary-custom w-100 mt-3" id="downloadAnoCSV">
-                                    <i class="fas fa-download me-2"></i>Baixar CSV do Ano Selecionado
+                                    <span class="material-icons me-2">download</span>Baixar CSV do Ano Selecionado
                                 </button>
                             </div>
                         </div>
@@ -1829,7 +1919,7 @@
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="card-stats">
-                                    <i class="fas fa-database fa-3x mb-3" style="color: var(--primary-dark);"></i>
+                                    <span class="material-icons" style="font-size: 48px; color: var(--primary-dark);">database</span>
                                     <h4>Fonte dos Dados</h4>
                                     <p class="text-muted" style="font-size: 13px;">Dados atualizados automaticamente do GitHub</p>
                                     <div class="mt-3">
@@ -1843,14 +1933,14 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="card-stats">
-                                    <i class="fas fa-external-link-alt fa-3x mb-3" style="color: var(--primary-dark);"></i>
+                                    <span class="material-icons" style="font-size: 48px; color: var(--primary-dark);">open_in_new</span>
                                     <h4>Portal de Dados Abertos</h4>
-                                    <p class="text-muted" style="font-size: 13px;">Acesse o conjunto de dados de fiscais de contratos do Estado de Minas Gerais</p>
+                                    <p class="text-muted" style="font-size: 13px;">Acesse o conjunto de dados de fiscais de contratos de Minas Gerais</p>
                                     <div class="mt-3">
                                         <a href="https://dados.mg.gov.br/dataset/fiscais_contratos" 
                                            target="_blank" 
                                            class="btn-export w-100 d-block text-decoration-none">
-                                            <i class="fas fa-external-link-alt me-2"></i>Acessar Portal
+                                            <span class="material-icons me-2" style="font-size: 14px;">open_in_new</span>Acessar Portal
                                         </a>
                                     </div>
                                 </div>
@@ -1959,13 +2049,13 @@
                             </div>
                             
                             <div class="alert alert-info mt-3">
-                                <i class="fas fa-info-circle me-2"></i>
+                                <span class="material-icons me-2" style="font-size: 18px; vertical-align: middle;">info</span>
                                 <strong>Fonte dos Dados:</strong> Os dados são carregados automaticamente do repositório GitHub 
                                 <a href="https://github.com/transparencia-mg/fiscais_contratos" target="_blank">transparencia-mg/fiscais_contratos</a>
                             </div>
                             
                             <div class="alert alert-success mt-2">
-                                <i class="fas fa-sync-alt me-2"></i>
+                                <span class="material-icons me-2" style="font-size: 18px; vertical-align: middle;">sync</span>
                                 <strong>Atualização Automática:</strong> Os dados são atualizados automaticamente quando novos arquivos são adicionados ao repositório GitHub.
                             </div>
                         </div>
@@ -1976,42 +2066,13 @@
         </div>
     </div>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer mt-4 pt-4 border-top">
-        <div class="container text-center text-muted">
-            <p class="mb-1">
-                <i class="fas fa-sync-alt me-2"></i> 
-                Data de Atualização — 
-                <span id="footer-atualizacao">Carregando...</span>
-            </p>
-            <p class="mb-0" style="font-size: 0.85rem;">
-                © 2025 Fiscais de Contratos - Governo do Estado de Minas Gerais
-            </p>
-            <p class="mt-2 mb-0 small">
-                <a href="https://dados.mg.gov.br" style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">
-                    <i class="fas fa-external-link-alt"></i> dados.mg.gov.br
-                </a>
-                | 
-                <a href="https://github.com/transparencia-mg/fiscais_contratos" 
-                   style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                | 
-                <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm" 
-                   style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">
-                    <i class="fas fa-gavel"></i> Lei 14.133/2021
-                </a>
-            </p>
-        </div>
-    </footer>
-
     <!-- ==================== MODAL DE DETALHES DO CONTRATO ==================== -->
     <div class="modal fade" id="contratoModal" tabindex="-1" aria-labelledby="contratoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-detail">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="contratoModalLabel">
-                        <i class="fas fa-file-contract me-2"></i>Detalhes do Contrato
+                        <span class="material-icons me-2">description</span>Detalhes do Contrato
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -2061,10 +2122,10 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" id="linkContratoArquivo" target="_blank" class="btn-primary-custom">
-                        <i class="fas fa-external-link-alt me-2"></i>Acessar Arquivo do Contrato
+                        <span class="material-icons me-2">open_in_new</span>Acessar Arquivo do Contrato
                     </a>
                     <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Fechar
+                        <span class="material-icons me-2">close</span>Fechar
                     </button>
                 </div>
             </div>
@@ -2077,7 +2138,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="fiscalModalLabel">
-                        <i class="fas fa-user-tie me-2"></i>Detalhes do Fiscal
+                        <span class="material-icons me-2">badge</span>Detalhes do Fiscal
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -2109,7 +2170,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Fechar
+                        <span class="material-icons me-2">close</span>Fechar
                     </button>
                 </div>
             </div>
@@ -2155,18 +2216,30 @@
         let currentSearchTerm = '';
         let lastGitHubCheck = null;
         let lastDataHash = null;
+        let lastLoadTime = null;
         
         const chartColors = {
-            primary: '#1A5276',
-            accent: '#3498DB',
-            bright: '#2980B9',
-            dark: '#0E2F44',
-            success: '#27AE60',
-            warning: '#F39C12',
-            info: '#17A589',
-            purple: '#8E44AD',
-            orange: '#E67E22',
-            teal: '#16A085'
+            primary: '#29435A',
+            accent: '#B93C42',
+            bright: '#DB233F',
+            dark: '#132837',
+            success: '#28a745',
+            warning: '#ffc107',
+            info: '#17a2b8',
+            purple: '#6B5B95',
+            orange: '#D97A30',
+            teal: '#20B2AA',
+            blue1: '#2F5D8A',
+            blue2: '#4A7DAA',
+            blue3: '#1F6F8B',
+            orange1: '#D97A30',
+            orange2: '#C65A2C',
+            red2: '#A8323A',
+            green1: '#2F7A5C',
+            green2: '#5A8F6E',
+            lime: '#7FAF3F',
+            brown: '#9C6B4A',
+            gray: '#6C7A89'
         };
 
         // URLs dos CSVs no GitHub
@@ -2184,42 +2257,35 @@
         // ==================== FUNÇÕES DE INICIALIZAÇÃO ====================
         document.addEventListener('DOMContentLoaded', async function() {
             console.log('=== INICIANDO DASHBOARD FISCAIS DE CONTRATOS ===');
-            console.log('Verificando atualizações no GitHub...');
-
+            
+            // Remover problemas de scroll
+            removeAllScrollIssues();
+            
+            // Inicializar dropdowns de compartilhamento
+            initializeShareButtons();
+            
+            console.log('Carregando dados mais recentes do GitHub...');
             showLoading(true);
             
             try {
-                // Verificar se há atualizações no GitHub
-                const hasUpdates = await checkGitHubUpdates();
+                // Carregar dados de 2025
+                await loadYearData('2025');
                 
-                if (hasUpdates || !lastDataHash) {
-                    console.log('Carregando dados mais recentes...');
-                    await loadYearData('2025');
-                    
-                    // Atualizar interface
-                    updateDataAtualizacao();
-                    updateFilterOptions();
-                    updateDashboard1();
-                    initializeDashboard2();
-                    initializeDashboard3();
-                    updateDashboard4();
-                    setupEventListeners();
-                    
-                    console.log('Dashboard atualizado com sucesso!');
-                } else {
-                    console.log('Usando dados em cache - sem atualizações no GitHub');
-                    
-                    // Usar dados já carregados
-                    contratosData = allData['2025'] || [];
-                    
-                    updateDataAtualizacao();
-                    updateFilterOptions();
-                    updateDashboard1();
-                    initializeDashboard2();
-                    initializeDashboard3();
-                    updateDashboard4();
-                    setupEventListeners();
-                }
+                // Atualizar interface
+                updateDataAtualizacao();
+                updateFilterOptions();
+                updateDashboard1();
+                initializeDashboard2();
+                initializeDashboard3();
+                updateDashboard4();
+                setupEventListeners();
+                
+                // Atualizar altura do iframe
+                setTimeout(function() {
+                    iframeUpdateHeight();
+                }, 500);
+                
+                console.log('Dashboard atualizado com sucesso!');
                 
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
@@ -2228,6 +2294,209 @@
                 showLoading(false);
             }
         });
+
+        // ==================== FUNÇÕES DE SCROLL E IFRAME ====================
+        function removeAllScrollIssues() {
+            console.log('Removendo problemas de scroll duplo...');
+            
+            const elements = [
+                document.body,
+                document.documentElement,
+                document.querySelector('.main-container'),
+                document.querySelector('.container.dashboard-spacing'),
+                document.querySelector('.tab-content'),
+                ...document.querySelectorAll('.tab-pane'),
+                ...document.querySelectorAll('.table-container'),
+                ...document.querySelectorAll('.row'),
+                ...document.querySelectorAll('.col'),
+                ...document.querySelectorAll('.container'),
+                ...document.querySelectorAll('.container-fluid')
+            ];
+            
+            elements.forEach(el => {
+                if (el && el.style) {
+                    el.style.overflowY = 'visible';
+                    el.style.overflowX = 'visible';
+                    el.style.overflow = 'visible';
+                }
+            });
+            
+            document.body.classList.remove('overflow-auto');
+            document.documentElement.classList.remove('overflow-auto');
+            
+            document.documentElement.style.height = 'auto';
+            document.body.style.height = 'auto';
+        }
+
+        function iframeUpdateHeight() {
+            console.log('Atualizando altura do iframe...');
+            
+            document.body.style.display = 'none';
+            document.body.offsetHeight;
+            document.body.style.display = '';
+            
+            const html = document.documentElement;
+            const body = document.body;
+            
+            const scrollHeight = Math.max(
+                body.scrollHeight, 
+                html.scrollHeight,
+                body.offsetHeight, 
+                html.offsetHeight
+            );
+            
+            const finalHeight = scrollHeight + 10;
+            
+            console.log('Altura calculada:', {
+                bodyScrollHeight: body.scrollHeight,
+                htmlScrollHeight: html.scrollHeight,
+                finalHeight: finalHeight
+            });
+            
+            window.parent.postMessage({ 
+                iframeHeight: finalHeight 
+            }, '*');
+            
+            return finalHeight;
+        }
+
+        // ==================== FUNÇÕES DE COMPARTILHAMENTO ====================
+        function initializeShareButtons() {
+            // Fechar dropdowns ao clicar fora
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.share-dropdown')) {
+                    document.querySelectorAll('.share-options').forEach(option => {
+                        option.classList.remove('show');
+                    });
+                }
+            });
+            
+            // Botão Compartilhar 1
+            const shareButton1 = document.getElementById('shareButton1');
+            if (shareButton1) {
+                shareButton1.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.querySelectorAll('.share-options').forEach(option => {
+                        option.classList.remove('show');
+                    });
+                    document.getElementById('shareOptions1').classList.toggle('show');
+                });
+            }
+            
+            // Botão Compartilhar 2
+            const shareButton2 = document.getElementById('shareButton2');
+            if (shareButton2) {
+                shareButton2.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.querySelectorAll('.share-options').forEach(option => {
+                        option.classList.remove('show');
+                    });
+                    document.getElementById('shareOptions2').classList.toggle('show');
+                });
+            }
+            
+            // Botão Compartilhar 3
+            const shareButton3 = document.getElementById('shareButton3');
+            if (shareButton3) {
+                shareButton3.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.querySelectorAll('.share-options').forEach(option => {
+                        option.classList.remove('show');
+                    });
+                    document.getElementById('shareOptions3').classList.toggle('show');
+                });
+            }
+        }
+
+        function copiarLink() {
+            const currentUrl = window.location.href;
+            
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                alert('Link copiado para a área de transferência!');
+            }).catch(err => {
+                console.error('Erro ao copiar:', err);
+                copiarFallback(currentUrl);
+            });
+            
+            // Fechar dropdown
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.classList.remove('show');
+            });
+        }
+
+        function copiarFallback(texto) {
+            const textarea = document.createElement('textarea');
+            textarea.value = texto;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                alert('Link copiado para a área de transferência!');
+            } catch (err) {
+                alert('Não foi possível copiar o link. Tente selecionar e copiar manualmente: ' + texto);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        function compartilharFacebook(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            
+            // Fechar dropdown
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.classList.remove('show');
+            });
+        }
+
+        function compartilharTwitter(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+            
+            // Fechar dropdown
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.classList.remove('show');
+            });
+        }
+
+        function compartilharLinkedIn(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+            
+            // Fechar dropdown
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.classList.remove('show');
+            });
+        }
+
+        function compartilharWhatsApp(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Confira os dados de fiscais de contratos do Governo de Minas Gerais');
+            window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+            
+            // Fechar dropdown
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.classList.remove('show');
+            });
+        }
+
+        // Tornar funções globais
+        window.copiarLink = copiarLink;
+        window.compartilharFacebook = compartilharFacebook;
+        window.compartilharTwitter = compartilharTwitter;
+        window.compartilharLinkedIn = compartilharLinkedIn;
+        window.compartilharWhatsApp = compartilharWhatsApp;
 
         // ==================== VERIFICAR ATUALIZAÇÕES NO GITHUB ====================
         async function checkGitHubUpdates() {
@@ -2240,16 +2509,15 @@
                     const latestCommit = commits[0];
                     const commitDate = new Date(latestCommit.commit.author.date);
                     
-                    // Verificar se é a primeira vez ou se houve atualização
                     if (!lastGitHubCheck || commitDate > lastGitHubCheck) {
                         lastGitHubCheck = commitDate;
-                        return true; // Há atualizações
+                        return true;
                     }
                 }
-                return false; // Sem atualizações
+                return false;
             } catch (error) {
                 console.error('Erro ao verificar atualizações:', error);
-                return true; // Em caso de erro, carregar dados
+                return false;
             }
         }
 
@@ -2261,7 +2529,6 @@
                 `${item['Número do contrato']}|${item['Nome Fornecedor']}|${item['Órgãos Participantes']}|${item['Fiscais do Contrato']}`
             ).join('|');
 
-            // 🔑 Conversão UTF-8 → Latin1 antes do btoa
             return btoa(unescape(encodeURIComponent(
                 dataString.length + dataString.substring(0, 50)
             )));
@@ -2269,9 +2536,10 @@
 
         // ==================== CARREGAR DADOS DO GITHUB ====================
         async function loadYearData(year) {
-            if (allData[year] && lastDataHash) {
+            if (allData[year]) {
                 console.log(`Dados de ${year} já carregados.`);
                 contratosData = allData[year];
+                filteredData = contratosData;
                 return;
             }
 
@@ -2292,7 +2560,6 @@
                     encoding: 'UTF-8',
                     complete: function (results) {
                         const data = results.data.map(row => {
-                            // Normalizar nomes de colunas (caso haja variações)
                             const contrato = {
                                 'Número do Processo Formatado': row['numero_do_processo_formatado'] || row['numero_processo'] || '',
                                 'Número do contrato': row['numero_do_contrato'] || row['numero_contrato'] || row['contrato'] || '',
@@ -2313,7 +2580,6 @@
                                 'Link Arquivo do Contrato': row['link_arquivo_do_contrato'] || row['link'] || ''
                             };
 
-                            // Extrair ano da data de publicação ou início de vigência
                             const dataStr = contrato['Data de Publicação'] || contrato['Data Início de Vigência'];
                             if (dataStr) {
                                 const match = dataStr.match(/\d{4}/);
@@ -2322,19 +2588,18 @@
                                 contrato.ANO = year;
                             }
 
-                            // Normalizar valores monetários
                             contrato['Valor inicial'] = parseFloat(contrato['Valor inicial'].toString().replace(/[^\d.,-]/g, '').replace('.', '').replace(',', '.'));
                             contrato['Valor atual'] = parseFloat(contrato['Valor atual'].toString().replace(/[^\d.,-]/g, '').replace('.', '').replace(',', '.'));
                             
-                            // Se não conseguir converter, usar 0
                             if (isNaN(contrato['Valor inicial'])) contrato['Valor inicial'] = 0;
                             if (isNaN(contrato['Valor atual'])) contrato['Valor atual'] = 0;
 
                             return contrato;
-                        }).filter(contrato => contrato['Número do contrato']); // só registros com número de contrato
+                        }).filter(contrato => contrato['Número do contrato']);
 
                         allData[year] = data;
                         contratosData = data;
+                        filteredData = contratosData;
 
                         console.log(`Dados de ${year} carregados: ${data.length} registros`);
                         resolve();
@@ -2385,6 +2650,11 @@
             document.getElementById('downloadAnoCSV').addEventListener('click', downloadYearCSV);
             
             // Campos de busca
+            document.getElementById('searchResumo').addEventListener('input', function(e) {
+                currentSearchTerm = e.target.value.toLowerCase();
+                filterResumoTable(currentSearchTerm);
+            });
+            
             document.getElementById('searchFiscais').addEventListener('input', function(e) {
                 currentSearchTerm = e.target.value.toLowerCase();
                 filterFiscaisTable(currentSearchTerm);
@@ -2395,20 +2665,30 @@
                 filterContratosTable(currentSearchTerm);
             });
             
-            document.getElementById('searchResumo').addEventListener('input', function(e) {
-                currentSearchTerm = e.target.value.toLowerCase();
-                filterResumoTable(currentSearchTerm);
-            });
-            
             // Troca de abas
             document.getElementById('dashboard1-tab').addEventListener('click', function() {
-                setTimeout(updateDashboard1, 100);
+                setTimeout(() => {
+                    updateDashboard1();
+                    iframeUpdateHeight();
+                }, 100);
             });
             document.getElementById('dashboard2-tab').addEventListener('click', function() {
-                setTimeout(updateDashboard2, 100);
+                setTimeout(() => {
+                    updateDashboard2();
+                    iframeUpdateHeight();
+                }, 100);
             });
             document.getElementById('dashboard3-tab').addEventListener('click', function() {
-                setTimeout(updateDashboard3, 100);
+                setTimeout(() => {
+                    updateDashboard3();
+                    iframeUpdateHeight();
+                }, 100);
+            });
+            document.getElementById('dashboard4-tab').addEventListener('click', function() {
+                setTimeout(() => {
+                    updateDashboard4();
+                    iframeUpdateHeight();
+                }, 100);
             });
             
             // Itens por página
@@ -2416,40 +2696,51 @@
                 itemsPerPageDashboard1 = parseInt(this.value);
                 currentPageDashboard1 = 1;
                 updateResumoTable();
+                iframeUpdateHeight();
             });
             
             document.getElementById('itemsPerPageDashboard2').addEventListener('change', function() {
                 itemsPerPageDashboard2 = parseInt(this.value);
                 currentPageDashboard2 = 1;
                 updateFiscaisTable();
+                iframeUpdateHeight();
             });
             
             document.getElementById('itemsPerPageDashboard3').addEventListener('change', function() {
                 itemsPerPageDashboard3 = parseInt(this.value);
                 currentPageDashboard3 = 1;
                 updateContratosTable();
+                iframeUpdateHeight();
             });
             
             // Mudança de ano nos selects
             document.getElementById('anoDashboard1').addEventListener('change', async function() {
                 const selectedYear = this.value;
-                if (selectedYear !== currentYear && selectedYear !== 'all') {
+                if (selectedYear !== currentYear) {
                     await switchYearData(selectedYear);
+                    iframeUpdateHeight();
                 }
             });
             
             document.getElementById('anoDashboard2').addEventListener('change', async function() {
                 const selectedYear = this.value;
-                if (selectedYear !== currentYear && selectedYear !== 'all') {
+                if (selectedYear !== currentYear) {
                     await switchYearData(selectedYear);
+                    iframeUpdateHeight();
                 }
             });
             
             document.getElementById('anoDashboard3').addEventListener('change', async function() {
                 const selectedYear = this.value;
-                if (selectedYear !== currentYear && selectedYear !== 'all') {
+                if (selectedYear !== currentYear) {
                     await switchYearData(selectedYear);
+                    iframeUpdateHeight();
                 }
+            });
+            
+            // Listener para redimensionamento da janela
+            window.addEventListener('resize', function() {
+                setTimeout(iframeUpdateHeight, 100);
             });
         }
 
@@ -2464,7 +2755,7 @@
             const errorDiv = document.createElement('div');
             errorDiv.className = 'alert alert-danger alert-dismissible fade show';
             errorDiv.innerHTML = `
-                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span class="material-icons me-2" style="font-size: 16px; vertical-align: middle;">error</span>
                 ${message}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             `;
@@ -2474,12 +2765,13 @@
         function updateDataAtualizacao() {
             const now = new Date();
             const dataFormatada = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
-            document.getElementById('data-atualizacao-header').textContent = dataFormatada;
-            document.getElementById('footer-atualizacao').textContent = dataFormatada;
-            document.getElementById('data-atualizacao-body').textContent = `Última atualização: ${dataFormatada}`;
+            const elementoData = document.getElementById('data-atualizacao-header');
+            if (elementoData) {
+                elementoData.textContent = dataFormatada;
+            }
+            console.log('Data de atualização definida:', dataFormatada);
         }
 
-        // Função para formatar valor monetário
         function formatCurrency(value) {
             if (!value && value !== 0) return 'R$ 0,00';
             return new Intl.NumberFormat('pt-BR', {
@@ -2488,7 +2780,6 @@
             }).format(value);
         }
 
-        // Função para formatar data
         function formatDate(dateStr) {
             if (!dateStr) return 'N/A';
             try {
@@ -2499,7 +2790,6 @@
             }
         }
 
-        // Função para obter badge de situação
         function getSituacaoBadge(situacao) {
             const situacaoLower = situacao.toLowerCase();
             if (situacaoLower.includes('ativo') || situacaoLower.includes('vigente')) {
@@ -2514,7 +2804,6 @@
             return `<span class="badge-status">${situacao.toUpperCase()}</span>`;
         }
 
-        // Função para obter tag de tipo de contrato
         function getTipoTag(tipo) {
             if (!tipo) return '';
             
@@ -2553,15 +2842,13 @@
         }
 
         function updateFilterOptions() {
-            // Dashboard 1 - Ano (já configurado no HTML)
+            if (!contratosData || contratosData.length === 0) return;
             
-            // Obter todos os órgãos únicos do período atual
-            const orgaosUnicos = [...new Set(contratosData.map(c => c['Órgãos Participantes']))].sort();
+            const orgaosUnicos = [...new Set(contratosData.map(c => c['Órgãos Participantes']))].sort().filter(Boolean);
             
-            // Dashboard 1 - datalist de órgãos
             const orgaoDatalist1 = document.getElementById('orgaosListDashboard1');
             if (orgaoDatalist1) {
-                orgaoDatalist1.innerHTML = '<option value="all">Todos os Órgãos</option>';
+                orgaoDatalist1.innerHTML = '';
                 orgaosUnicos.forEach(orgao => {
                     if (orgao && orgao.trim()) {
                         const option = document.createElement('option');
@@ -2571,10 +2858,9 @@
                 });
             }
             
-            // Dashboard 2 - datalist de órgãos
             const orgaoDatalist2 = document.getElementById('orgaosListDashboard2');
             if (orgaoDatalist2) {
-                orgaoDatalist2.innerHTML = '<option value="all">Todos os Órgãos</option>';
+                orgaoDatalist2.innerHTML = '';
                 orgaosUnicos.forEach(orgao => {
                     if (orgao && orgao.trim()) {
                         const option = document.createElement('option');
@@ -2584,10 +2870,9 @@
                 });
             }
             
-            // Dashboard 3 - datalist de órgãos
             const orgaoDatalist3 = document.getElementById('orgaosListDashboard3');
             if (orgaoDatalist3) {
-                orgaoDatalist3.innerHTML = '<option value="all">Todos os Órgãos</option>';
+                orgaoDatalist3.innerHTML = '';
                 orgaosUnicos.forEach(orgao => {
                     if (orgao && orgao.trim()) {
                         const option = document.createElement('option');
@@ -2597,13 +2882,11 @@
                 });
             }
             
-            // Obter todos os tipos únicos de contrato
-            const tiposUnicos = [...new Set(contratosData.map(c => c['Tipo do Contrato']))].sort();
+            const tiposUnicos = [...new Set(contratosData.map(c => c['Tipo do Contrato']))].sort().filter(Boolean);
             
-            // Dashboard 1 - datalist de tipos
             const tipoDatalist1 = document.getElementById('tiposListDashboard1');
             if (tipoDatalist1) {
-                tipoDatalist1.innerHTML = '<option value="all">Todos os Tipos</option>';
+                tipoDatalist1.innerHTML = '';
                 tiposUnicos.forEach(tipo => {
                     if (tipo && tipo.trim()) {
                         const option = document.createElement('option');
@@ -2613,10 +2896,9 @@
                 });
             }
             
-            // Dashboard 2 - datalist de tipos
             const tipoDatalist2 = document.getElementById('tiposListDashboard2');
             if (tipoDatalist2) {
-                tipoDatalist2.innerHTML = '<option value="all">Todos os Tipos</option>';
+                tipoDatalist2.innerHTML = '';
                 tiposUnicos.forEach(tipo => {
                     if (tipo && tipo.trim()) {
                         const option = document.createElement('option');
@@ -2626,10 +2908,9 @@
                 });
             }
             
-            // Dashboard 3 - datalist de tipos
             const tipoDatalist3 = document.getElementById('tiposListDashboard3');
             if (tipoDatalist3) {
-                tipoDatalist3.innerHTML = '<option value="all">Todos os Tipos</option>';
+                tipoDatalist3.innerHTML = '';
                 tiposUnicos.forEach(tipo => {
                     if (tipo && tipo.trim()) {
                         const option = document.createElement('option');
@@ -2639,13 +2920,11 @@
                 });
             }
             
-            // Obter todos os fornecedores únicos
-            const fornecedoresUnicos = [...new Set(contratosData.map(c => c['Nome Fornecedor']))].sort();
+            const fornecedoresUnicos = [...new Set(contratosData.map(c => c['Nome Fornecedor']))].sort().filter(Boolean);
             
-            // Dashboard 2 - datalist de fornecedores
             const fornecedorDatalist2 = document.getElementById('fornecedoresListDashboard2');
             if (fornecedorDatalist2) {
-                fornecedorDatalist2.innerHTML = '<option value="all">Todos os Fornecedores</option>';
+                fornecedorDatalist2.innerHTML = '';
                 fornecedoresUnicos.forEach(fornecedor => {
                     if (fornecedor && fornecedor.trim()) {
                         const option = document.createElement('option');
@@ -2655,10 +2934,9 @@
                 });
             }
             
-            // Dashboard 3 - datalist de fornecedores
             const fornecedorDatalist3 = document.getElementById('fornecedoresListDashboard3');
             if (fornecedorDatalist3) {
-                fornecedorDatalist3.innerHTML = '<option value="all">Todos os Fornecedores</option>';
+                fornecedorDatalist3.innerHTML = '';
                 fornecedoresUnicos.forEach(fornecedor => {
                     if (fornecedor && fornecedor.trim()) {
                         const option = document.createElement('option');
@@ -2680,13 +2958,11 @@
                 const situacao = document.getElementById('situacaoDashboard1').value;
                 const tipoInput = document.getElementById('tipoDashboard1').value;
                 
-                const orgao = orgaoInput === 'all' || orgaoInput === '' ? 'all' : orgaoInput;
-                const tipo = tipoInput === 'all' || tipoInput === '' ? 'all' : tipoInput;
+                const orgao = orgaoInput === '' ? '' : orgaoInput;
+                const tipo = tipoInput === '' ? '' : tipoInput;
                 
-                // Determinar dados base
                 let baseData = [];
                 if (ano === 'all') {
-                    // Combinar dados de todos os anos
                     Object.keys(allData).forEach(year => {
                         baseData = baseData.concat(allData[year]);
                     });
@@ -2695,18 +2971,15 @@
                 }
                 
                 filtered = baseData.filter(contrato => {
-                    // Filtro por órgão
-                    if (orgao !== 'all' && contrato['Órgãos Participantes'] !== orgao) {
+                    if (orgao && contrato['Órgãos Participantes'] !== orgao) {
                         return false;
                     }
                     
-                    // Filtro por situação
-                    if (situacao !== 'all' && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
+                    if (situacao && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
                         return false;
                     }
                     
-                    // Filtro por tipo
-                    if (tipo !== 'all' && contrato['Tipo do Contrato'] !== tipo) {
+                    if (tipo && contrato['Tipo do Contrato'] !== tipo) {
                         return false;
                     }
                     
@@ -2725,14 +2998,12 @@
                 const fornecedorInput = document.getElementById('fornecedorDashboard2').value;
                 const tipoInput = document.getElementById('tipoDashboard2').value;
                 
-                const orgao = orgaoInput === 'all' || orgaoInput === '' ? 'all' : orgaoInput;
-                const fornecedor = fornecedorInput === 'all' || fornecedorInput === '' ? 'all' : fornecedorInput;
-                const tipo = tipoInput === 'all' || tipoInput === '' ? 'all' : tipoInput;
+                const orgao = orgaoInput === '' ? '' : orgaoInput;
+                const fornecedor = fornecedorInput === '' ? '' : fornecedorInput;
+                const tipo = tipoInput === '' ? '' : tipoInput;
                 
-                // Determinar dados base
                 let baseData = [];
                 if (ano === 'all') {
-                    // Combinar dados de todos os anos
                     Object.keys(allData).forEach(year => {
                         baseData = baseData.concat(allData[year]);
                     });
@@ -2741,33 +3012,27 @@
                 }
                 
                 filtered = baseData.filter(contrato => {
-                    // Filtro por nome do fiscal
                     if (nome && !contrato['Fiscais do Contrato'].toLowerCase().includes(nome)) {
                         return false;
                     }
                     
-                    // Filtro por órgão
-                    if (orgao !== 'all' && contrato['Órgãos Participantes'] !== orgao) {
+                    if (orgao && contrato['Órgãos Participantes'] !== orgao) {
                         return false;
                     }
                     
-                    // Filtro por situação
-                    if (situacao !== 'all' && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
+                    if (situacao && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
                         return false;
                     }
                     
-                    // Filtro por número do contrato
                     if (numeroContrato && !contrato['Número do contrato'].toString().includes(numeroContrato)) {
                         return false;
                     }
                     
-                    // Filtro por fornecedor
-                    if (fornecedor !== 'all' && contrato['Nome Fornecedor'] !== fornecedor) {
+                    if (fornecedor && contrato['Nome Fornecedor'] !== fornecedor) {
                         return false;
                     }
                     
-                    // Filtro por tipo
-                    if (tipo !== 'all' && contrato['Tipo do Contrato'] !== tipo) {
+                    if (tipo && contrato['Tipo do Contrato'] !== tipo) {
                         return false;
                     }
                     
@@ -2786,14 +3051,12 @@
                 const tipoInput = document.getElementById('tipoDashboard3').value;
                 const valorMinimo = parseFloat(document.getElementById('valorMinimoDashboard3').value) || 0;
                 
-                const orgao = orgaoInput === 'all' || orgaoInput === '' ? 'all' : orgaoInput;
-                const fornecedor = fornecedorInput === 'all' || fornecedorInput === '' ? 'all' : fornecedorInput;
-                const tipo = tipoInput === 'all' || tipoInput === '' ? 'all' : tipoInput;
+                const orgao = orgaoInput === '' ? '' : orgaoInput;
+                const fornecedor = fornecedorInput === '' ? '' : fornecedorInput;
+                const tipo = tipoInput === '' ? '' : tipoInput;
                 
-                // Determinar dados base
                 let baseData = [];
                 if (ano === 'all') {
-                    // Combinar dados de todos os anos
                     Object.keys(allData).forEach(year => {
                         baseData = baseData.concat(allData[year]);
                     });
@@ -2802,32 +3065,26 @@
                 }
                 
                 filtered = baseData.filter(contrato => {
-                    // Filtro por número do contrato
                     if (numeroContrato && !contrato['Número do contrato'].toString().includes(numeroContrato)) {
                         return false;
                     }
                     
-                    // Filtro por órgão
-                    if (orgao !== 'all' && contrato['Órgãos Participantes'] !== orgao) {
+                    if (orgao && contrato['Órgãos Participantes'] !== orgao) {
                         return false;
                     }
                     
-                    // Filtro por situação
-                    if (situacao !== 'all' && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
+                    if (situacao && !contrato['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) {
                         return false;
                     }
                     
-                    // Filtro por fornecedor
-                    if (fornecedor !== 'all' && contrato['Nome Fornecedor'] !== fornecedor) {
+                    if (fornecedor && contrato['Nome Fornecedor'] !== fornecedor) {
                         return false;
                     }
                     
-                    // Filtro por tipo
-                    if (tipo !== 'all' && contrato['Tipo do Contrato'] !== tipo) {
+                    if (tipo && contrato['Tipo do Contrato'] !== tipo) {
                         return false;
                     }
                     
-                    // Filtro por valor mínimo
                     if (contrato['Valor atual'] < valorMinimo) {
                         return false;
                     }
@@ -2840,19 +3097,20 @@
             }
             
             showLoading(false);
+            setTimeout(iframeUpdateHeight, 100);
         }
 
         function clearAllFilters() {
-            // Resetar filtros do Dashboard 1
             document.getElementById('anoDashboard1').value = '2025';
             document.getElementById('orgaoDashboard1').value = '';
-            document.getElementById('situacaoDashboard1').value = 'all';
+            document.getElementById('situacaoDashboard1').value = '';
             document.getElementById('tipoDashboard1').value = '';
             document.getElementById('searchResumo').value = '';
+            currentSearchTerm = '';
             
-            // Carregar dados de 2025
             switchYearData('2025').then(() => {
                 updateDashboard1();
+                setTimeout(iframeUpdateHeight, 100);
             });
         }
 
@@ -2860,16 +3118,16 @@
             document.getElementById('anoDashboard2').value = '2025';
             document.getElementById('nomeFiscal').value = '';
             document.getElementById('orgaoDashboard2').value = '';
-            document.getElementById('situacaoDashboard2').value = 'all';
+            document.getElementById('situacaoDashboard2').value = '';
             document.getElementById('numeroContratoDashboard2').value = '';
             document.getElementById('fornecedorDashboard2').value = '';
             document.getElementById('tipoDashboard2').value = '';
             document.getElementById('searchFiscais').value = '';
             currentSearchTerm = '';
             
-            // Carregar dados de 2025
             switchYearData('2025').then(() => {
                 updateDashboard2();
+                setTimeout(iframeUpdateHeight, 100);
             });
         }
 
@@ -2877,16 +3135,16 @@
             document.getElementById('anoDashboard3').value = '2025';
             document.getElementById('numeroContratoDashboard3').value = '';
             document.getElementById('orgaoDashboard3').value = '';
-            document.getElementById('situacaoDashboard3').value = 'all';
+            document.getElementById('situacaoDashboard3').value = '';
             document.getElementById('fornecedorDashboard3').value = '';
             document.getElementById('tipoDashboard3').value = '';
             document.getElementById('valorMinimoDashboard3').value = '';
             document.getElementById('searchContratos').value = '';
             currentSearchTerm = '';
             
-            // Carregar dados de 2025
             switchYearData('2025').then(() => {
                 updateDashboard3();
+                setTimeout(iframeUpdateHeight, 100);
             });
         }
 
@@ -2898,9 +3156,46 @@
                 return;
             }
             
-            // Implementação simples de filtro local
-            // Esta função será implementada quando necessário
-            console.log('Filtrando resumo por:', searchTerm);
+            const grupos = {};
+            filteredData.forEach(contrato => {
+                const orgao = contrato['Órgãos Participantes'] || 'Não Informado';
+                if (!grupos[orgao]) {
+                    grupos[orgao] = {
+                        orgao: orgao,
+                        contratos: 0,
+                        fiscaisSet: new Set(),
+                        valor_total: 0
+                    };
+                }
+                grupos[orgao].contratos++;
+                grupos[orgao].valor_total += contrato['Valor atual'] || 0;
+                
+                const fiscais = contrato['Fiscais do Contrato'];
+                if (fiscais) {
+                    const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
+                    fiscaisList.forEach(f => grupos[orgao].fiscaisSet.add(f));
+                }
+            });
+            
+            let resumoArray = Object.values(grupos).map(grupo => ({
+                ...grupo,
+                fiscais: grupo.fiscaisSet.size
+            }));
+            
+            resumoArray = resumoArray.filter(item => 
+                item.orgao.toLowerCase().includes(searchLower)
+            );
+            
+            const tempFilteredData = filteredData;
+            
+            const orgaosFiltrados = resumoArray.map(item => item.orgao);
+            filteredData = filteredData.filter(contrato => 
+                orgaosFiltrados.includes(contrato['Órgãos Participantes'])
+            );
+            
+            updateResumoTable();
+            
+            filteredData = tempFilteredData;
         }
 
         function filterFiscaisTable(searchTerm) {
@@ -2911,44 +3206,56 @@
                 return;
             }
             
-            const filtered = filteredData.filter(contrato => {
-                const fiscais = contrato['Fiscais do Contrato'] || '';
+            let fiscaisArray = [];
+            
+            filteredData.forEach(contrato => {
+                const fiscais = contrato['Fiscais do Contrato'];
+                if (fiscais) {
+                    const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
+                    
+                    fiscaisList.forEach(fiscalNome => {
+                        fiscaisArray.push({
+                            nome_fiscal: fiscalNome,
+                            orgao: contrato['Órgãos Participantes'],
+                            numero_contrato: contrato['Número do contrato'],
+                            fornecedor: contrato['Nome Fornecedor'],
+                            situacao: contrato['Situação do contrato'],
+                            valor_atual: contrato['Valor atual'] || 0,
+                            contrato_data: contrato
+                        });
+                    });
+                }
+            });
+            
+            const uniqueKey = (fiscal) => `${fiscal.nome_fiscal}|${fiscal.numero_contrato}`;
+            const seen = new Set();
+            fiscaisArray = fiscaisArray.filter(fiscal => {
+                const key = uniqueKey(fiscal);
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+            
+            const filtered = fiscaisArray.filter(fiscal => {
                 return (
-                    fiscais.toLowerCase().includes(searchLower) ||
-                    contrato['Órgãos Participantes'].toLowerCase().includes(searchLower) ||
-                    contrato['Número do contrato'].toString().toLowerCase().includes(searchLower) ||
-                    contrato['Nome Fornecedor'].toLowerCase().includes(searchLower) ||
-                    contrato['Tipo do Contrato'].toLowerCase().includes(searchLower)
+                    fiscal.nome_fiscal.toLowerCase().includes(searchLower) ||
+                    fiscal.orgao.toLowerCase().includes(searchLower) ||
+                    fiscal.numero_contrato.toString().toLowerCase().includes(searchLower) ||
+                    fiscal.fornecedor.toLowerCase().includes(searchLower) ||
+                    fiscal.situacao.toLowerCase().includes(searchLower)
                 );
             });
             
-            if (filtered.length > 0) {
-                const firstMatchIndex = filteredData.findIndex(contrato => 
-                    (contrato['Fiscais do Contrato'] || '').toLowerCase().includes(searchLower)
-                );
-                
-                if (firstMatchIndex >= 0) {
-                    const pageForFirstResult = Math.floor(firstMatchIndex / itemsPerPageDashboard2) + 1;
-                    currentPageDashboard2 = pageForFirstResult;
-                }
-                
-                const tempFilteredData = filteredData;
-                filteredData = filtered;
-                updateFiscaisTable();
-                filteredData = tempFilteredData;
-            } else {
-                const tbody = document.getElementById('fiscaisTableBody');
-                const tfoot = document.getElementById('fiscaisTableFooter');
-                const countElement = document.getElementById('resumoCountDashboard2');
-                const paginationInfo = document.getElementById('paginationInfoDashboard2');
-                
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Nenhum fiscal encontrado com o termo de busca.</td></tr>';
-                if (tfoot) tfoot.innerHTML = '';
-                if (countElement) countElement.textContent = '0 registros';
-                if (paginationInfo) paginationInfo.textContent = 'Mostrando 0-0 de 0 registros';
-                
-                updatePaginationDashboard2(1, 1);
-            }
+            const tempFilteredData = filteredData;
+            
+            const contratosEncontrados = [...new Set(filtered.map(f => f.numero_contrato))];
+            filteredData = filteredData.filter(contrato => 
+                contratosEncontrados.includes(contrato['Número do contrato'])
+            );
+            
+            updateFiscaisTable();
+            
+            filteredData = tempFilteredData;
         }
 
         function filterContratosTable(searchTerm) {
@@ -2969,33 +3276,10 @@
                 );
             });
             
-            if (filtered.length > 0) {
-                const firstMatchIndex = filteredData.findIndex(contrato => 
-                    contrato['Número do contrato'].toString().toLowerCase().includes(searchLower)
-                );
-                
-                if (firstMatchIndex >= 0) {
-                    const pageForFirstResult = Math.floor(firstMatchIndex / itemsPerPageDashboard3) + 1;
-                    currentPageDashboard3 = pageForFirstResult;
-                }
-                
-                const tempFilteredData = filteredData;
-                filteredData = filtered;
-                updateContratosTable();
-                filteredData = tempFilteredData;
-            } else {
-                const tbody = document.getElementById('contratosTableBody');
-                const tfoot = document.getElementById('contratosTableFooter');
-                const countElement = document.getElementById('resumoCountDashboard3');
-                const paginationInfo = document.getElementById('paginationInfoDashboard3');
-                
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Nenhum contrato encontrado com o termo de busca.</td></tr>';
-                if (tfoot) tfoot.innerHTML = '';
-                if (countElement) countElement.textContent = '0 registros';
-                if (paginationInfo) paginationInfo.textContent = 'Mostrando 0-0 de 0 registros';
-                
-                updatePaginationDashboard3(1, 1);
-            }
+            const tempFilteredData = filteredData;
+            filteredData = filtered;
+            updateContratosTable();
+            filteredData = tempFilteredData;
         }
 
         // ==================== DASHBOARD 1: VISÃO GERAL ====================
@@ -3008,27 +3292,23 @@
         function updateSummaryCards() {
             const container = document.getElementById('summaryCards');
             
-            if (filteredData.length === 0) {
+            if (!filteredData || filteredData.length === 0) {
                 container.innerHTML = '<div class="col-12 text-center"><p class="text-muted">Nenhum dado encontrado para os filtros atuais.</p></div>';
                 return;
             }
             
-            // Calcular métricas
             const totalContratos = filteredData.length;
             
-            // Contar fiscais únicos (extraindo de todos os contratos)
             const fiscaisSet = new Set();
             filteredData.forEach(contrato => {
                 const fiscais = contrato['Fiscais do Contrato'];
                 if (fiscais) {
-                    // Separar fiscais por vírgula, ponto e vírgula ou " e "
                     const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
                     fiscaisList.forEach(f => fiscaisSet.add(f));
                 }
             });
             const fiscaisUnicos = fiscaisSet.size;
             
-            // Contar órgãos únicos
             const orgaosSet = new Set();
             filteredData.forEach(contrato => {
                 const orgaos = contrato['Órgãos Participantes'];
@@ -3038,7 +3318,6 @@
             });
             const orgaosUnicos = orgaosSet.size;
             
-            // Calcular valor total
             const valorTotal = filteredData.reduce((sum, contrato) => sum + (contrato['Valor atual'] || 0), 0);
             
             const cardsHTML = `
@@ -3047,7 +3326,7 @@
                         <div class="metric-label">Total de Contratos</div>
                         <div class="metric-value">${totalContratos.toLocaleString('pt-BR')}</div>
                         <div class="update-info">
-                            <i class="fas fa-file-contract"></i> Vigentes e Concluídos
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">description</span> Vigentes e Concluídos
                         </div>
                     </div>
                 </div>
@@ -3056,7 +3335,7 @@
                         <div class="metric-label">Fiscais Designados</div>
                         <div class="metric-value">${fiscaisUnicos}</div>
                         <div class="metric-change positive">
-                            <i class="fas fa-user-tie me-1"></i> Fiscais únicos
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">badge</span> Fiscais únicos
                         </div>
                     </div>
                 </div>
@@ -3065,7 +3344,7 @@
                         <div class="metric-label">Órgãos Envolvidos</div>
                         <div class="metric-value">${orgaosUnicos}</div>
                         <div class="update-info">
-                            <i class="fas fa-building"></i> Com contratos ativos
+                            <span class="material-icons" style="font-size: 12px; vertical-align: middle;">business</span> Com contratos ativos
                         </div>
                     </div>
                 </div>
@@ -3089,7 +3368,7 @@
             const countElement = document.getElementById('resumoCountDashboard1');
             const paginationInfo = document.getElementById('paginationInfoDashboard1');
             
-            if (filteredData.length === 0) {
+            if (!filteredData || filteredData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">Nenhum dado encontrado para os filtros atuais.</td></tr>';
                 tfoot.innerHTML = '';
                 if (countElement) countElement.textContent = '0 registros';
@@ -3098,7 +3377,6 @@
                 return;
             }
             
-            // Agrupar por órgão
             const grupos = {};
             filteredData.forEach(contrato => {
                 const orgao = contrato['Órgãos Participantes'] || 'Não Informado';
@@ -3113,7 +3391,6 @@
                 grupos[orgao].contratos++;
                 grupos[orgao].valor_total += contrato['Valor atual'] || 0;
                 
-                // Adicionar fiscais ao conjunto
                 const fiscais = contrato['Fiscais do Contrato'];
                 if (fiscais) {
                     const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
@@ -3121,13 +3398,11 @@
                 }
             });
             
-            // Converter para array
             let resumoArray = Object.values(grupos).map(grupo => ({
                 ...grupo,
                 fiscais: grupo.fiscaisSet.size
             }));
             
-            // Ordenar de acordo com a coluna selecionada
             resumoArray.sort((a, b) => {
                 const order = currentSortDashboard1.order === 'asc' ? 1 : -1;
                 
@@ -3143,20 +3418,17 @@
                 return 0;
             });
             
-            // Calcular totais
             const totalOrgaos = resumoArray.length;
             const totalContratos = resumoArray.reduce((sum, item) => sum + item.contratos, 0);
             const totalFiscais = resumoArray.reduce((sum, item) => sum + item.fiscais, 0);
             const totalValor = resumoArray.reduce((sum, item) => sum + item.valor_total, 0);
             
-            // Paginação
             const itemsPerPage = itemsPerPageDashboard1;
             const totalPages = Math.ceil(resumoArray.length / itemsPerPage);
             const startIndex = (currentPageDashboard1 - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, resumoArray.length);
             const currentData = resumoArray.slice(startIndex, endIndex);
             
-            // Gerar HTML da tabela
             const rowsHTML = currentData.map(item => {
                 return `
                 <tr>
@@ -3171,7 +3443,6 @@
                 </tr>
             `}).join('');
             
-            // Gerar rodapé
             const footerHTML = `
                 <tr class="table-total-row">
                     <td><strong>TOTAL GERAL (${totalOrgaos.toLocaleString('pt-BR')} órgãos)</strong></td>
@@ -3184,7 +3455,7 @@
             tbody.innerHTML = rowsHTML;
             tfoot.innerHTML = footerHTML;
             if (countElement) countElement.textContent = `${totalOrgaos.toLocaleString()} órgãos`;
-            if (paginationInfo) paginationInfo.textContent = `Mostrando ${startIndex + 1}-${endIndex} de ${resumoArray.length.toLocaleString()} registros`;
+            if (paginationInfo) paginationInfo.textContent = `Mostrando ${startIndex + 1}-${endIndex} de ${resumoArray.length.toLocaleString('pt-BR')} registros`;
             
             updatePaginationDashboard1(totalPages, currentPageDashboard1);
             updateSortIconsDashboard1();
@@ -3216,7 +3487,6 @@
             
             let paginationHTML = '';
             
-            // Botão anterior
             paginationHTML += `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard1(${currentPage - 1})" aria-label="Anterior">
@@ -3225,7 +3495,6 @@
                 </li>
             `;
             
-            // Páginas
             const maxVisiblePages = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
@@ -3242,7 +3511,6 @@
                 `;
             }
             
-            // Botão próximo
             paginationHTML += `
                 <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard1(${currentPage + 1})" aria-label="Próximo">
@@ -3271,10 +3539,11 @@
             
             currentPageDashboard1 = page;
             updateResumoTable();
+            setTimeout(iframeUpdateHeight, 100);
         };
 
         function updateCharts1() {
-            if (filteredData.length === 0) return;
+            if (!filteredData || filteredData.length === 0) return;
             
             updateOrgaoChart();
             updateSituacaoChart();
@@ -3285,7 +3554,6 @@
             const ctx = document.getElementById('chartOrgao')?.getContext('2d');
             if (!ctx) return;
             
-            // Agrupar por órgão e pegar top 8
             const grupos = {};
             filteredData.forEach(contrato => {
                 const orgao = contrato['Órgãos Participantes'] || 'Não Informado';
@@ -3300,11 +3568,10 @@
                 .sort((a, b) => b.count - a.count)
                 .slice(0, 8);
             
-            // Cores para o gráfico
             const pieColors = [
-                chartColors.primary, chartColors.success, chartColors.accent,
-                chartColors.warning, chartColors.purple, chartColors.orange,
-                chartColors.info, chartColors.teal
+                chartColors.primary, chartColors.green1, chartColors.blue1,
+                chartColors.warning, chartColors.purple, chartColors.orange1,
+                chartColors.teal, chartColors.brown
             ];
             
             if (charts.orgao) {
@@ -3358,7 +3625,6 @@
             const ctx = document.getElementById('chartSituacao')?.getContext('2d');
             if (!ctx) return;
             
-            // Agrupar por situação
             const grupos = {};
             filteredData.forEach(contrato => {
                 const situacao = contrato['Situação do contrato'] || 'Não Informado';
@@ -3423,7 +3689,6 @@
             const ctx = document.getElementById('chartTipo')?.getContext('2d');
             if (!ctx) return;
             
-            // Agrupar por tipo e pegar top 8
             const grupos = {};
             filteredData.forEach(contrato => {
                 const tipo = contrato['Tipo do Contrato'] || 'Não Informado';
@@ -3451,9 +3716,9 @@
                     datasets: [{
                         data: tiposArray.map(item => item.count),
                         backgroundColor: [
-                            chartColors.primary, chartColors.accent, chartColors.success,
-                            chartColors.warning, chartColors.purple, chartColors.orange,
-                            chartColors.info, chartColors.teal
+                            chartColors.primary, chartColors.blue1, chartColors.green1,
+                            chartColors.warning, chartColors.purple, chartColors.orange1,
+                            chartColors.teal, chartColors.brown
                         ],
                         borderWidth: 2,
                         borderColor: '#fff'
@@ -3506,7 +3771,7 @@
             
             if (!tbody) return;
             
-            if (filteredData.length === 0) {
+            if (!filteredData || filteredData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Nenhum fiscal encontrado para os filtros atuais.</td></tr>';
                 if (tfoot) tfoot.innerHTML = '';
                 if (countElement) countElement.textContent = '0 registros';
@@ -3515,13 +3780,11 @@
                 return;
             }
             
-            // Preparar array de fiscais (um fiscal por linha)
             let fiscaisArray = [];
             
             filteredData.forEach(contrato => {
                 const fiscais = contrato['Fiscais do Contrato'];
                 if (fiscais) {
-                    // Separar fiscais por vírgula, ponto e vírgula ou " e "
                     const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
                     
                     fiscaisList.forEach(fiscalNome => {
@@ -3538,7 +3801,6 @@
                 }
             });
             
-            // Remover duplicados (mesmo fiscal no mesmo contrato)
             const uniqueKey = (fiscal) => `${fiscal.nome_fiscal}|${fiscal.numero_contrato}`;
             const seen = new Set();
             fiscaisArray = fiscaisArray.filter(fiscal => {
@@ -3548,7 +3810,6 @@
                 return true;
             });
             
-            // Ordenar de acordo com a coluna selecionada
             fiscaisArray.sort((a, b) => {
                 const order = currentSortDashboard2.order === 'asc' ? 1 : -1;
                 
@@ -3568,20 +3829,17 @@
                 return 0;
             });
             
-            // Calcular totais
             const totalFiscais = fiscaisArray.length;
             const orgaosUnicos = [...new Set(fiscaisArray.map(f => f.orgao))].length;
             const contratosUnicos = [...new Set(fiscaisArray.map(f => f.numero_contrato))].length;
             const valorTotal = fiscaisArray.reduce((sum, fiscal) => sum + fiscal.valor_atual, 0);
             
-            // Paginação
             const itemsPerPage = itemsPerPageDashboard2;
             const totalPages = Math.ceil(fiscaisArray.length / itemsPerPage);
             const startIndex = (currentPageDashboard2 - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, fiscaisArray.length);
             const currentData = fiscaisArray.slice(startIndex, endIndex);
             
-            // Gerar HTML da tabela
             const rowsHTML = currentData.map(fiscal => `
                 <tr>
                     <td>
@@ -3601,14 +3859,13 @@
                     <td class="actions-column">
                         <div class="action-buttons">
                             <button class="btn-action btn-details" onclick="showFiscalDetails('${fiscal.nome_fiscal.replace(/'/g, "\\'")}')" title="Ver Detalhes">
-                                <i class="fas fa-eye"></i><span>Detalhes</span>
+                                <span class="material-icons" style="font-size: 14px;">visibility</span><span>Detalhes</span>
                             </button>
                         </div>
                     </td>
                 </tr>
             `).join('');
             
-            // Gerar rodapé
             const footerHTML = `
                 <tr class="table-total-row">
                     <td colspan="2"><strong>TOTAL GERAL: ${totalFiscais.toLocaleString('pt-BR')} designações</strong></td>
@@ -3654,7 +3911,6 @@
             
             let paginationHTML = '';
             
-            // Botão anterior
             paginationHTML += `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard2(${currentPage - 1})" aria-label="Anterior">
@@ -3663,7 +3919,6 @@
                 </li>
             `;
             
-            // Páginas
             const maxVisiblePages = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
@@ -3680,7 +3935,6 @@
                 `;
             }
             
-            // Botão próximo
             paginationHTML += `
                 <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard2(${currentPage + 1})" aria-label="Próximo">
@@ -3693,12 +3947,42 @@
         }
 
         window.changePageDashboard2 = function(page) {
-            const totalPages = Math.ceil(filteredData.length / itemsPerPageDashboard2);
+            let fiscaisArray = [];
+            
+            filteredData.forEach(contrato => {
+                const fiscais = contrato['Fiscais do Contrato'];
+                if (fiscais) {
+                    const fiscaisList = fiscais.split(/[,;]| e /).map(f => f.trim()).filter(f => f);
+                    fiscaisList.forEach(fiscalNome => {
+                        fiscaisArray.push({
+                            nome_fiscal: fiscalNome,
+                            orgao: contrato['Órgãos Participantes'],
+                            numero_contrato: contrato['Número do contrato'],
+                            fornecedor: contrato['Nome Fornecedor'],
+                            situacao: contrato['Situação do contrato'],
+                            valor_atual: contrato['Valor atual'] || 0,
+                            contrato_data: contrato
+                        });
+                    });
+                }
+            });
+            
+            const uniqueKey = (fiscal) => `${fiscal.nome_fiscal}|${fiscal.numero_contrato}`;
+            const seen = new Set();
+            fiscaisArray = fiscaisArray.filter(fiscal => {
+                const key = uniqueKey(fiscal);
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+            
+            const totalPages = Math.ceil(fiscaisArray.length / itemsPerPageDashboard2);
             
             if (page < 1 || page > totalPages) return;
             
             currentPageDashboard2 = page;
             updateFiscaisTable();
+            setTimeout(iframeUpdateHeight, 100);
         };
 
         // ==================== DASHBOARD 3: CONSULTA POR CONTRATO ====================
@@ -3718,7 +4002,7 @@
             
             if (!tbody) return;
             
-            if (filteredData.length === 0) {
+            if (!filteredData || filteredData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Nenhum contrato encontrado para os filtros atuais.</td></tr>';
                 if (tfoot) tfoot.innerHTML = '';
                 if (countElement) countElement.textContent = '0 registros';
@@ -3727,7 +4011,6 @@
                 return;
             }
             
-            // Preparar array de contratos
             let contratosArray = filteredData.map(contrato => ({
                 numero_contrato: contrato['Número do contrato'],
                 orgao: contrato['Órgãos Participantes'],
@@ -3738,7 +4021,6 @@
                 contrato_data: contrato
             }));
             
-            // Ordenar de acordo com a coluna selecionada
             contratosArray.sort((a, b) => {
                 const order = currentSortDashboard3.order === 'asc' ? 1 : -1;
                 
@@ -3758,20 +4040,17 @@
                 return 0;
             });
             
-            // Calcular totais
             const totalContratos = contratosArray.length;
             const orgaosUnicos = [...new Set(contratosArray.map(c => c.orgao))].length;
             const fornecedoresUnicos = [...new Set(contratosArray.map(c => c.fornecedor))].length;
             const valorTotal = contratosArray.reduce((sum, contrato) => sum + contrato.valor_atual, 0);
             
-            // Paginação
             const itemsPerPage = itemsPerPageDashboard3;
             const totalPages = Math.ceil(contratosArray.length / itemsPerPage);
             const startIndex = (currentPageDashboard3 - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, contratosArray.length);
             const currentData = contratosArray.slice(startIndex, endIndex);
             
-            // Gerar HTML da tabela
             const rowsHTML = currentData.map(contrato => `
                 <tr>
                     <td>
@@ -3799,14 +4078,13 @@
                     <td class="actions-column">
                         <div class="action-buttons">
                             <button class="btn-action btn-details" onclick="showContratoDetails('${contrato.numero_contrato.replace(/'/g, "\\'")}')" title="Ver Detalhes">
-                                <i class="fas fa-eye"></i><span>Detalhes</span>
+                                <span class="material-icons" style="font-size: 14px;">visibility</span><span>Detalhes</span>
                             </button>
                         </div>
                     </td>
                 </tr>
             `).join('');
             
-            // Gerar rodapé
             const footerHTML = `
                 <tr class="table-total-row">
                     <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString('pt-BR')} contratos</strong></td>
@@ -3852,7 +4130,6 @@
             
             let paginationHTML = '';
             
-            // Botão anterior
             paginationHTML += `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard3(${currentPage - 1})" aria-label="Anterior">
@@ -3861,7 +4138,6 @@
                 </li>
             `;
             
-            // Páginas
             const maxVisiblePages = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
@@ -3878,7 +4154,6 @@
                 `;
             }
             
-            // Botão próximo
             paginationHTML += `
                 <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePageDashboard3(${currentPage + 1})" aria-label="Próximo">
@@ -3897,6 +4172,7 @@
             
             currentPageDashboard3 = page;
             updateContratosTable();
+            setTimeout(iframeUpdateHeight, 100);
         };
 
         // ==================== FUNÇÕES PARA MOSTRAR DETALHES ====================
@@ -3904,11 +4180,9 @@
             showLoading(true);
             
             try {
-                // Encontrar o contrato em todos os anos
                 let contratoEncontrado = null;
                 let anoContrato = '';
                 
-                // Procurar em todos os anos carregados
                 Object.keys(allData).forEach(ano => {
                     const dadosAno = allData[ano];
                     const contrato = dadosAno.find(c => c['Número do contrato'] === numeroContrato);
@@ -3924,13 +4198,10 @@
                     return;
                 }
                 
-                // Preparar informações do contrato
                 const contrato = contratoEncontrado;
                 
-                // Atualizar modal
                 const modal = new bootstrap.Modal(document.getElementById('contratoModal'));
                 
-                // Informações do contrato
                 const infoHTML = `
                     <div class="detail-info-grid">
                         <div class="info-item">
@@ -4006,12 +4277,10 @@
                 
                 document.getElementById('contratoInfo').innerHTML = infoHTML;
                 
-                // Atualizar título do modal
                 document.getElementById('contratoModalLabel').innerHTML = `
-                    <i class="fas fa-file-contract me-2"></i>Contrato ${contrato['Número do contrato']}
+                    <span class="material-icons me-2">description</span>Contrato ${contrato['Número do contrato']}
                 `;
                 
-                // Fiscais designados
                 const fiscais = contrato['Fiscais do Contrato'];
                 let fiscaisHTML = '';
                 
@@ -4031,7 +4300,6 @@
                 
                 document.getElementById('contratoFiscaisTableBody').innerHTML = fiscaisHTML;
                 
-                // Histórico de alterações (simulado - em um sistema real, isso viria de uma tabela de histórico)
                 const historicoHTML = `
                     <tr>
                         <td>${formatDate(contrato['Data de Publicação'])}</td>
@@ -4053,7 +4321,6 @@
                 
                 document.getElementById('contratoHistoricoTableBody').innerHTML = historicoHTML;
                 
-                // Configurar link para arquivo do contrato
                 const linkArquivo = document.getElementById('linkContratoArquivo');
                 if (contrato['Link Arquivo do Contrato'] && contrato['Link Arquivo do Contrato'].startsWith('http')) {
                     linkArquivo.href = contrato['Link Arquivo do Contrato'];
@@ -4062,9 +4329,9 @@
                     linkArquivo.style.display = 'none';
                 }
                 
-                // Mostrar modal
                 modal.show();
                 showLoading(false);
+                setTimeout(iframeUpdateHeight, 200);
                 
             } catch (error) {
                 console.error('Erro ao carregar detalhes do contrato:', error);
@@ -4077,10 +4344,8 @@
             showLoading(true);
             
             try {
-                // Encontrar todos os contratos do fiscal em todos os anos
                 const contratosDoFiscal = [];
                 
-                // Procurar em todos os anos carregados
                 Object.keys(allData).forEach(ano => {
                     const dadosAno = allData[ano];
                     const contratosAno = dadosAno.filter(contrato => {
@@ -4102,13 +4367,10 @@
                     return;
                 }
                 
-                // Encontrar o primeiro contrato para informações básicas
                 const primeiroContrato = contratosDoFiscal[0];
                 
-                // Atualizar modal
                 const modal = new bootstrap.Modal(document.getElementById('fiscalModal'));
                 
-                // Informações do fiscal
                 const infoHTML = `
                     <div class="detail-info-grid">
                         <div class="info-item">
@@ -4150,12 +4412,10 @@
                 
                 document.getElementById('fiscalInfo').innerHTML = infoHTML;
                 
-                // Atualizar título do modal
                 document.getElementById('fiscalModalLabel').innerHTML = `
-                    <i class="fas fa-user-tie me-2"></i>Fiscal ${nomeFiscal}
+                    <span class="material-icons me-2">badge</span>Fiscal ${nomeFiscal}
                 `;
                 
-                // Tabela de contratos
                 const contratosHTML = contratosDoFiscal.map(contrato => `
                     <tr>
                         <td>
@@ -4178,9 +4438,9 @@
                 document.getElementById('fiscalContratosTableBody').innerHTML = contratosHTML || 
                     '<tr><td colspan="6" class="text-center text-muted">Nenhum contrato encontrado</td></tr>';
                 
-                // Mostrar modal
                 modal.show();
                 showLoading(false);
+                setTimeout(iframeUpdateHeight, 200);
                 
             } catch (error) {
                 console.error('Erro ao carregar detalhes do fiscal:', error);
@@ -4194,32 +4454,28 @@
             console.log('Filtrando por órgão:', orgao);
             
             try {
-                // Mudar para a aba de Consulta por Contrato
                 const tabElement = document.getElementById('dashboard3-tab');
                 if (tabElement) {
                     const tab = new bootstrap.Tab(tabElement);
                     tab.show();
                     
                     setTimeout(() => {
-                        // Preencher o campo do órgão no Dashboard 3
                         const orgaoElement = document.getElementById('orgaoDashboard3');
                         if (orgaoElement) {
                             orgaoElement.value = orgao;
                         }
                         
-                        // Limpar outros filtros
                         document.getElementById('numeroContratoDashboard3').value = '';
-                        document.getElementById('situacaoDashboard3').value = 'all';
+                        document.getElementById('situacaoDashboard3').value = '';
                         document.getElementById('fornecedorDashboard3').value = '';
                         document.getElementById('tipoDashboard3').value = '';
                         document.getElementById('valorMinimoDashboard3').value = '';
                         document.getElementById('searchContratos').value = '';
                         
-                        // Configurar o ano atual
                         document.getElementById('anoDashboard3').value = currentYear;
                         
-                        // Aplicar o filtro
                         applyFilters('dashboard3');
+                        setTimeout(iframeUpdateHeight, 200);
                     }, 350);
                 } else {
                     console.error('Elemento da aba não encontrado');
@@ -4260,6 +4516,8 @@
                 currentPageDashboard3 = 1;
                 updateContratosTable();
             }
+            
+            setTimeout(iframeUpdateHeight, 100);
         };
 
         // ==================== DASHBOARD 4: DOWNLOADS ====================
@@ -4277,7 +4535,6 @@
             showLoading(true);
             
             try {
-                // Carregar os dados do ano selecionado se ainda não carregados
                 if (!allData[year]) {
                     await loadYearData(year);
                 }
@@ -4289,7 +4546,6 @@
                     return;
                 }
                 
-                // Preparar CSV com todas as colunas
                 const headers = [
                     'Número do Processo Formatado',
                     'Número do contrato',
@@ -4333,7 +4589,6 @@
                     ].map(cell => `"${cell}"`).join(';'))
                 ].join('\n');
                 
-                // Criar e baixar arquivo
                 const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                 const link = document.createElement('a');
                 const url = URL.createObjectURL(blob);
@@ -4371,9 +4626,8 @@
         }
 
         function exportResumoCSV() {
-            if (filteredData.length === 0) return;
+            if (!filteredData || filteredData.length === 0) return;
             
-            // Agrupar por órgão (mesma lógica da tabela)
             const grupos = {};
             filteredData.forEach(contrato => {
                 const orgao = contrato['Órgãos Participantes'] || 'Não Informado';
@@ -4428,9 +4682,8 @@
         }
 
         function exportFiscaisCSV() {
-            if (filteredData.length === 0) return;
+            if (!filteredData || filteredData.length === 0) return;
             
-            // Preparar array de fiscais (mesma lógica da tabela)
             let fiscaisArray = [];
             
             filteredData.forEach(contrato => {
@@ -4451,7 +4704,6 @@
                 }
             });
             
-            // Remover duplicados
             const uniqueKey = (fiscal) => `${fiscal.nome_fiscal}|${fiscal.numero_contrato}`;
             const seen = new Set();
             fiscaisArray = fiscaisArray.filter(fiscal => {
@@ -4489,7 +4741,7 @@
         }
 
         function exportContratosCSV() {
-            if (filteredData.length === 0) return;
+            if (!filteredData || filteredData.length === 0) return;
             
             const headers = [
                 'Número do Processo Formatado',
