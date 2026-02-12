@@ -1539,15 +1539,30 @@
             <button class="btn-export" id="printDashboard1">
                 <i class="fas fa-print me-2"></i> Imprimir
             </button>
-            <div class="share-dropdown">
-                <button class="btn-export" id="shareButton1">
-                    <i class="fas fa-share-alt me-2"></i> Compartilhar
-                </button>
-                <div class="share-options" id="shareOptions1">
-                    <!-- mesmas opções -->
-                </div>
-            </div>
-        </div>
+                        <!-- Botão de Compartilhar -->
+                        <div class="share-dropdown">
+                            <button class="btn-share" id="shareDashboard1">
+                                <i class="fas fa-share-alt me-2"></i> Compartilhar
+                            </button>
+                            <div class="share-options" id="shareOptionsDashboard1">
+                                <a href="#" class="link-share" onclick="copiarLink()">
+                                    <i class="fas fa-link"></i> Copiar Link
+                                </a>
+                                <a href="#" class="facebook-share" onclick="compartilharFacebook(event)">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+                                </a>
+                                <a href="#" class="twitter-share" onclick="compartilharTwitter(event)">
+                                    <i class="fab fa-twitter"></i> Twitter
+                                </a>
+                                <a href="#" class="linkedin-share" onclick="compartilharLinkedIn(event)">
+                                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                                </a>
+                                <a href="#" class="whatsapp-share" onclick="compartilharWhatsApp(event)">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>            
 
         <div class="right-aligned-container">
             <div class="search-box-container">
