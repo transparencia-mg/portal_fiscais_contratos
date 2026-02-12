@@ -423,9 +423,9 @@
             text-align: center !important;
         }
         
-        /* Coluna de ações na tabela */
+        /* Coluna de ações na tabela - apenas ícone */
         .actions-column {
-            width: 90px;
+            width: 50px;
             text-align: center;
         }
         
@@ -436,7 +436,7 @@
         }
         
         .btn-action {
-            padding: 4px 8px;
+            padding: 4px;
             font-size: 11px;
             border-radius: 4px;
             border: none;
@@ -444,17 +444,20 @@
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 3px;
-        }
-        
-        .btn-details {
+            justify-content: center;
             background-color: var(--primary-dark);
             color: white;
+            width: 28px;
+            height: 28px;
         }
         
-        .btn-details:hover {
+        .btn-action:hover {
             background-color: var(--primary-darker);
             transform: translateY(-1px);
+        }
+        
+        .btn-action span:not(.material-icons) {
+            display: none;
         }
         
         /* ==================== MENU DE NAVEGAÇÃO ==================== */
@@ -678,7 +681,7 @@
             z-index: 1000;
             display: none;
             margin-top: 5px;
-            border: 1px solid var(--light3);
+            border: 1px solid #dee2e6;
         }
         
         .share-options.show {
@@ -689,10 +692,10 @@
             display: flex;
             align-items: center;
             padding: 10px 15px;
-            color: var(--text);
+            color: #212529;
             text-decoration: none;
             transition: all 0.2s ease;
-            border-bottom: 1px solid var(--light4);
+            border-bottom: 1px solid #e9ecef;
             font-size: 13px;
             gap: 10px;
         }
@@ -702,7 +705,7 @@
         }
         
         .share-options a:hover {
-            background-color: var(--light1);
+            background-color: #f8f9fa;
             color: var(--primary-dark);
         }
         
@@ -753,112 +756,111 @@
             justify-content: center;
         }
         
+        /* ==================== AÇÕES ==================== */
+        .actions-container {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
 
-	/* ==================== AÇÕES ==================== */
-.actions-container {
-    background: white;
-    border-radius: 10px;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-}
+        .actions-container .d-flex {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            width: 100%;
+        }
 
-.actions-container .d-flex {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100%;
-}
+        .export-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+            background: transparent;
+            padding: 0;
+        }
 
-.export-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    background: transparent; /* Remove o fundo branco duplicado */
-    padding: 0; /* Remove o padding extra */
-}
+        .right-aligned-container {
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px;
+            margin-left: auto;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+            background: transparent;
+        }
 
-.right-aligned-container {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px;
-    margin-left: auto;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    background: transparent;
-}
+        .search-box-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            background: transparent;
+            padding: 0;
+        }
 
-.search-box-container {
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Reduzido de 8px para 4px */
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    background: transparent;
-    padding: 0;
-}
+        .search-box-container label {
+            white-space: nowrap;
+            flex-shrink: 0;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 12px;
+            margin-right: 0;
+        }
 
-.search-box-container label {
-    white-space: nowrap;
-    flex-shrink: 0;
-    color: var(--primary-dark);
-    font-weight: 600;
-    font-size: 12px;
-    margin-right: 0; /* Garante que não tem margin extra */
-}
+        .search-box-container input {
+            width: 250px !important;
+            max-width: 250px !important;
+            flex-shrink: 0;
+            border: 2px solid var(--primary-darker) !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            font-size: 13px !important;
+            background: white;
+            margin-left: 0;
+        }
 
-    width: 250px !important;
-    max-width: 250px !important;
-    flex-shrink: 0;
-    border: 2px solid var(--primary-darker) !important;
-    border-radius: 6px !important;
-    padding: 8px 12px !important;
-    font-size: 13px !important;
-    background: white;
-    margin-left: 0; /* Garante que não tem margin extra */
-}
+        .items-per-page {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: transparent;
+            padding: 0;
+        }
 
-.items-per-page {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    flex-shrink: 0;
-    background: transparent;
-    padding: 0;
-}
+        .items-per-page span {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 12px;
+        }
 
-.items-per-page span {
-    color: var(--primary-dark);
-    font-weight: 600;
-    font-size: 12px;
-}
+        .items-per-page select {
+            width: 80px;
+            flex-shrink: 0;
+            border: 2px solid var(--primary-darker);
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: white;
+            color: var(--primary-darker);
+        }
 
-.items-per-page select {
-    width: 80px;
-    flex-shrink: 0;
-    border: 2px solid var(--primary-darker);
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: white;
-    color: var(--primary-darker);
-}
-
-.table-badge {
-    white-space: nowrap;
-    flex-shrink: 0;
-    background: var(--accent-red);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
+        .table-badge {
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: var(--accent-red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
         
         /* ==================== LOADING OVERLAY ==================== */
         .loading-overlay {
@@ -1055,7 +1057,7 @@
             font-size: 13px !important;
             transition: all 0.3s ease !important;
             width: 100% !important;
-            max-width: 300px !important;
+            max-width: 200px !important;
             background: white;
         }
         
@@ -1298,12 +1300,13 @@
             }
             
             .actions-column {
-                width: 70px;
+                width: 40px;
             }
             
             .btn-action {
-                padding: 3px 6px;
-                font-size: 10px;
+                padding: 3px;
+                width: 24px;
+                height: 24px;
             }
             
             .pagination-container {
@@ -1353,16 +1356,7 @@
             }
             
             .actions-column {
-                width: 60px;
-            }
-            
-            .btn-action {
-                padding: 2px 4px;
-                font-size: 9px;
-            }
-            
-            .btn-action span {
-                display: none;
+                width: 35px;
             }
             
             .right-aligned-container {
@@ -1528,62 +1522,61 @@
                     </div>
                 </div>
 
- 		
-		<!-- Ações Dashboard 1 -->
-<div class="actions-container mb-4">
-    <div class="d-flex align-items-center gap-3 w-100">
-        <div class="export-buttons">
-            <button class="btn-export" id="exportCSVDashboard1">
-                <i class="fas fa-file-csv me-2"></i> Exportar CSV
-            </button>
-            <button class="btn-export" id="printDashboard1">
-                <i class="fas fa-print me-2"></i> Imprimir
-            </button>
-                        <!-- Botão de Compartilhar -->
-                        <div class="share-dropdown">
-                            <button class="btn-share" id="shareDashboard1">
-                                <i class="fas fa-share-alt me-2"></i> Compartilhar
+                <!-- Ações Dashboard 1 -->
+                <div class="actions-container mb-4">
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="export-buttons">
+                            <button class="btn-export" id="exportCSVDashboard1">
+                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
                             </button>
-                            <div class="share-options" id="shareOptionsDashboard1">
-                                <a href="#" class="link-share" onclick="copiarLink()">
-                                    <i class="fas fa-link"></i> Copiar Link
-                                </a>
-                                <a href="#" class="facebook-share" onclick="compartilharFacebook(event)">
-                                    <i class="fab fa-facebook-f"></i> Facebook
-                                </a>
-                                <a href="#" class="twitter-share" onclick="compartilharTwitter(event)">
-                                    <i class="fab fa-twitter"></i> Twitter
-                                </a>
-                                <a href="#" class="linkedin-share" onclick="compartilharLinkedIn(event)">
-                                    <i class="fab fa-linkedin-in"></i> LinkedIn
-                                </a>
-                                <a href="#" class="whatsapp-share" onclick="compartilharWhatsApp(event)">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </a>
+                            <button class="btn-export" id="printDashboard1">
+                                <i class="fas fa-print me-2"></i> Imprimir
+                            </button>
+                            <!-- Botão de Compartilhar -->
+                            <div class="share-dropdown">
+                                <button class="btn-share" id="shareButton1">
+                                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                                </button>
+                                <div class="share-options" id="shareOptions1">
+                                    <a href="#" class="link-share" onclick="copiarLink(event)">
+                                        <i class="fas fa-link"></i> Copiar Link
+                                    </a>
+                                    <a href="#" class="facebook-share" onclick="compartilharFacebook(event)">
+                                        <i class="fab fa-facebook-f"></i> Facebook
+                                    </a>
+                                    <a href="#" class="twitter-share" onclick="compartilharTwitter(event)">
+                                        <i class="fab fa-twitter"></i> Twitter
+                                    </a>
+                                    <a href="#" class="linkedin-share" onclick="compartilharLinkedIn(event)">
+                                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                                    </a>
+                                    <a href="#" class="whatsapp-share" onclick="compartilharWhatsApp(event)">
+                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>            
 
-        <div class="right-aligned-container">
-            <div class="search-box-container">
-                <label for="searchResumo">Buscar:</label>
-                <input type="text" id="searchResumo" placeholder="Nome do órgão...">
-            </div>
+                        <div class="right-aligned-container">
+                            <div class="search-box-container">
+                                <label for="searchResumo">Buscar:</label>
+                                <input type="text" id="searchResumo" placeholder="Nome do órgão...">
+                            </div>
 
-            <div class="items-per-page">
-                <span>Itens:</span>
-                <select id="itemsPerPageDashboard1">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50" selected>50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-            
-            <span class="table-badge" id="resumoCountDashboard1">0 órgãos</span>
-        </div>
-    </div>
-</div>
+                            <div class="items-per-page">
+                                <span>Itens:</span>
+                                <select id="itemsPerPageDashboard1">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50" selected>50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            
+                            <span class="table-badge" id="resumoCountDashboard1">0 órgãos</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Tabela Dashboard 1 - VISÃO GERAL POR ÓRGÃO -->
                 <div class="table-container">
@@ -1715,47 +1708,60 @@
                     </div>
                 </div>
 
+                <!-- Ações Dashboard 2 -->
+                <div class="actions-container mb-4">
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="export-buttons">
+                            <button class="btn-export" id="exportCSVDashboard2">
+                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+                            </button>
+                            <button class="btn-export" id="printDashboard2">
+                                <i class="fas fa-print me-2"></i> Imprimir
+                            </button>
+                            <div class="share-dropdown">
+                                <button class="btn-share" id="shareButton2">
+                                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                                </button>
+                                <div class="share-options" id="shareOptions2">
+                                    <a href="#" class="link-share" onclick="copiarLink(event)">
+                                        <i class="fas fa-link"></i> Copiar Link
+                                    </a>
+                                    <a href="#" class="facebook-share" onclick="compartilharFacebook(event)">
+                                        <i class="fab fa-facebook-f"></i> Facebook
+                                    </a>
+                                    <a href="#" class="twitter-share" onclick="compartilharTwitter(event)">
+                                        <i class="fab fa-twitter"></i> Twitter
+                                    </a>
+                                    <a href="#" class="linkedin-share" onclick="compartilharLinkedIn(event)">
+                                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                                    </a>
+                                    <a href="#" class="whatsapp-share" onclick="compartilharWhatsApp(event)">
+                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-<!-- Ações Dashboard 2 -->
-<div class="actions-container mb-4">
-    <div class="d-flex align-items-center gap-3 w-100">
-        <div class="export-buttons">
-            <button class="btn-export" id="exportCSVDashboard2">
-                <i class="fas fa-file-csv me-2"></i> Exportar CSV
-            </button>
-            <button class="btn-export" id="printDashboard2">
-                <i class="fas fa-print me-2"></i> Imprimir
-            </button>
-            <div class="share-dropdown">
-                <button class="btn-export" id="shareButton2">
-                    <i class="fas fa-share-alt me-2"></i> Compartilhar
-                </button>
-                <div class="share-options" id="shareOptions2">
-                    <!-- opções -->
+                        <div class="right-aligned-container">
+                            <div class="search-box-container">
+                                <label for="searchFiscais">Buscar:</label>
+                                <input type="text" id="searchFiscais" placeholder="Nome, órgão, contrato...">
+                            </div>
+
+                            <div class="items-per-page">
+                                <span>Itens:</span>
+                                <select id="itemsPerPageDashboard2">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50" selected>50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            
+                            <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="right-aligned-container">
-            <div class="search-box-container">
-                <label for="searchFiscais">Buscar:</label>
-                <input type="text" id="searchFiscais" placeholder="Nome, órgão, contrato...">
-            </div>
-
-            <div class="items-per-page">
-                <span>Itens:</span>
-                <select id="itemsPerPageDashboard2">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50" selected>50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-            
-            <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
-        </div>
-    </div>
-</div>
 
                 <!-- Tabela de Fiscais Dashboard 2 -->
                 <div class="table-container">
@@ -1845,18 +1851,18 @@
                     <div class="row">
                         <div class="col-md-4 col-12">
                             <div class="mb-3">
-                                <label for="fornecedorDashboard3" class="form-label filter-label">Fornecedor</label>
-                                <input type="text" class="form-control" list="fornecedoresListDashboard3" id="fornecedorDashboard3" placeholder="Digite o nome...">
-                                <datalist id="fornecedoresListDashboard3">
+                                <label for="tipoDashboard3" class="form-label filter-label">Tipo do Contrato</label>
+                                <input type="text" class="form-control" list="tiposListDashboard3" id="tipoDashboard3" placeholder="Digite ou selecione...">
+                                <datalist id="tiposListDashboard3">
                                     <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
                             <div class="mb-3">
-                                <label for="tipoDashboard3" class="form-label filter-label">Tipo do Contrato</label>
-                                <input type="text" class="form-control" list="tiposListDashboard3" id="tipoDashboard3" placeholder="Digite ou selecione...">
-                                <datalist id="tiposListDashboard3">
+                                <label for="fornecedorDashboard3" class="form-label filter-label">Fornecedor</label>
+                                <input type="text" class="form-control" list="fornecedoresListDashboard3" id="fornecedorDashboard3" placeholder="Digite o nome...">
+                                <datalist id="fornecedoresListDashboard3">
                                     <!-- Opções serão carregadas via JavaScript -->
                                 </datalist>
                             </div>
@@ -1883,46 +1889,60 @@
                     </div>
                 </div>
 
-		<!-- Ações Dashboard 3 -->
-<div class="actions-container mb-4">
-    <div class="d-flex align-items-center gap-3 w-100">
-        <div class="export-buttons">
-            <button class="btn-export" id="exportCSVDashboard3">
-                <i class="fas fa-file-csv me-2"></i> Exportar CSV
-            </button>
-            <button class="btn-export" id="printDashboard3">
-                <i class="fas fa-print me-2"></i> Imprimir
-            </button>
-            <div class="share-dropdown">
-                <button class="btn-export" id="shareButton3">
-                    <i class="fas fa-share-alt me-2"></i> Compartilhar
-                </button>
-                <div class="share-options" id="shareOptions3">
-                    <!-- mesmas opções -->
+                <!-- Ações Dashboard 3 -->
+                <div class="actions-container mb-4">
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <div class="export-buttons">
+                            <button class="btn-export" id="exportCSVDashboard3">
+                                <i class="fas fa-file-csv me-2"></i> Exportar CSV
+                            </button>
+                            <button class="btn-export" id="printDashboard3">
+                                <i class="fas fa-print me-2"></i> Imprimir
+                            </button>
+                            <div class="share-dropdown">
+                                <button class="btn-share" id="shareButton3">
+                                    <i class="fas fa-share-alt me-2"></i> Compartilhar
+                                </button>
+                                <div class="share-options" id="shareOptions3">
+                                    <a href="#" class="link-share" onclick="copiarLink(event)">
+                                        <i class="fas fa-link"></i> Copiar Link
+                                    </a>
+                                    <a href="#" class="facebook-share" onclick="compartilharFacebook(event)">
+                                        <i class="fab fa-facebook-f"></i> Facebook
+                                    </a>
+                                    <a href="#" class="twitter-share" onclick="compartilharTwitter(event)">
+                                        <i class="fab fa-twitter"></i> Twitter
+                                    </a>
+                                    <a href="#" class="linkedin-share" onclick="compartilharLinkedIn(event)">
+                                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                                    </a>
+                                    <a href="#" class="whatsapp-share" onclick="compartilharWhatsApp(event)">
+                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right-aligned-container">
+                            <div class="search-box-container">
+                                <label for="searchContratos">Buscar:</label>
+                                <input type="text" id="searchContratos" placeholder="Número, órgão, fornecedor...">
+                            </div>
+
+                            <div class="items-per-page">
+                                <span>Itens:</span>
+                                <select id="itemsPerPageDashboard3">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50" selected>50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            
+                            <span class="table-badge" id="resumoCountDashboard3">0 contratos</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="right-aligned-container">
-            <div class="search-box-container">
-                <label for="searchContratos">Buscar:</label>
-                <input type="text" id="searchContratos" placeholder="Número, órgão, fornecedor...">
-            </div>
-
-            <div class="items-per-page">
-                <span>Itens:</span>
-                <select id="itemsPerPageDashboard3">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50" selected>50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-            
-            <span class="table-badge" id="resumoCountDashboard3">0 contratos</span>
-        </div>
-    </div>
-</div>
 
                 <!-- Tabela de Contratos Dashboard 3 -->
                 <div class="table-container">
@@ -1934,6 +1954,7 @@
                                     <th data-sort="orgao" data-order="asc" onclick="sortTable('contratos', 'orgao')">Órgão <span class="sort-icon">▼</span></th>
                                     <th data-sort="fornecedor" data-order="asc" onclick="sortTable('contratos', 'fornecedor')">Fornecedor <span class="sort-icon">▼</span></th>
                                     <th data-sort="situacao" data-order="asc" onclick="sortTable('contratos', 'situacao')">Situação <span class="sort-icon">▼</span></th>
+                                    <th data-sort="tipo" data-order="asc" onclick="sortTable('contratos', 'tipo')">Tipo <span class="sort-icon">▼</span></th>
                                     <th data-sort="fiscais" data-order="asc" onclick="sortTable('contratos', 'fiscais')">Fiscais <span class="sort-icon">▼</span></th>
                                     <th data-sort="valor_atual" data-order="desc" onclick="sortTable('contratos', 'valor_atual')">Valor (R$) <span class="sort-icon">▼</span></th>
                                     <th class="actions-column">Ações</th>
@@ -2440,23 +2461,17 @@
 
         // ==================== FUNÇÕES DE COMPARTILHAMENTO ====================
         function initializeShareButtons() {
-            // Fechar dropdowns ao clicar fora
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.share-dropdown')) {
-                    document.querySelectorAll('.share-options').forEach(option => {
-                        option.classList.remove('show');
-                    });
-                }
-            });
-            
             // Botão Compartilhar 1
             const shareButton1 = document.getElementById('shareButton1');
             if (shareButton1) {
                 shareButton1.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    // Fechar outros dropdowns
                     document.querySelectorAll('.share-options').forEach(option => {
-                        option.classList.remove('show');
+                        if (option.id !== 'shareOptions1') {
+                            option.classList.remove('show');
+                        }
                     });
                     document.getElementById('shareOptions1').classList.toggle('show');
                 });
@@ -2469,7 +2484,9 @@
                     e.preventDefault();
                     e.stopPropagation();
                     document.querySelectorAll('.share-options').forEach(option => {
-                        option.classList.remove('show');
+                        if (option.id !== 'shareOptions2') {
+                            option.classList.remove('show');
+                        }
                     });
                     document.getElementById('shareOptions2').classList.toggle('show');
                 });
@@ -2482,14 +2499,37 @@
                     e.preventDefault();
                     e.stopPropagation();
                     document.querySelectorAll('.share-options').forEach(option => {
-                        option.classList.remove('show');
+                        if (option.id !== 'shareOptions3') {
+                            option.classList.remove('show');
+                        }
                     });
                     document.getElementById('shareOptions3').classList.toggle('show');
                 });
             }
+            
+            // Fechar dropdowns ao clicar fora
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.share-dropdown')) {
+                    document.querySelectorAll('.share-options').forEach(option => {
+                        option.classList.remove('show');
+                    });
+                }
+            });
+            
+            // Prevenir que o clique dentro do dropdown feche ele
+            document.querySelectorAll('.share-options').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
         }
 
-        function copiarLink() {
+        function copiarLink(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
             const currentUrl = window.location.href;
             
             navigator.clipboard.writeText(currentUrl).then(() => {
@@ -2523,8 +2563,11 @@
             document.body.removeChild(textarea);
         }
 
-        function compartilharFacebook(e) {
-            e.preventDefault();
+        function compartilharFacebook(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             const url = encodeURIComponent(window.location.href);
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
             
@@ -2534,8 +2577,11 @@
             });
         }
 
-        function compartilharTwitter(e) {
-            e.preventDefault();
+        function compartilharTwitter(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais');
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
@@ -2546,8 +2592,11 @@
             });
         }
 
-        function compartilharLinkedIn(e) {
-            e.preventDefault();
+        function compartilharLinkedIn(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             const url = encodeURIComponent(window.location.href);
             window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
             
@@ -2557,8 +2606,11 @@
             });
         }
 
-        function compartilharWhatsApp(e) {
-            e.preventDefault();
+        function compartilharWhatsApp(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('Confira os dados de fiscais de contratos do Governo de Minas Gerais');
             window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
@@ -3125,13 +3177,13 @@
                 const numeroContrato = document.getElementById('numeroContratoDashboard3').value;
                 const orgaoInput = document.getElementById('orgaoDashboard3').value;
                 const situacao = document.getElementById('situacaoDashboard3').value;
-                const fornecedorInput = document.getElementById('fornecedorDashboard3').value;
                 const tipoInput = document.getElementById('tipoDashboard3').value;
+                const fornecedorInput = document.getElementById('fornecedorDashboard3').value;
                 const valorMinimo = parseFloat(document.getElementById('valorMinimoDashboard3').value) || 0;
                 
                 const orgao = orgaoInput === '' ? '' : orgaoInput;
-                const fornecedor = fornecedorInput === '' ? '' : fornecedorInput;
                 const tipo = tipoInput === '' ? '' : tipoInput;
+                const fornecedor = fornecedorInput === '' ? '' : fornecedorInput;
                 
                 let baseData = [];
                 if (ano === 'all') {
@@ -3155,11 +3207,11 @@
                         return false;
                     }
                     
-                    if (fornecedor && contrato['Nome Fornecedor'] !== fornecedor) {
+                    if (tipo && contrato['Tipo do Contrato'] !== tipo) {
                         return false;
                     }
                     
-                    if (tipo && contrato['Tipo do Contrato'] !== tipo) {
+                    if (fornecedor && contrato['Nome Fornecedor'] !== fornecedor) {
                         return false;
                     }
                     
@@ -3214,8 +3266,8 @@
             document.getElementById('numeroContratoDashboard3').value = '';
             document.getElementById('orgaoDashboard3').value = '';
             document.getElementById('situacaoDashboard3').value = '';
-            document.getElementById('fornecedorDashboard3').value = '';
             document.getElementById('tipoDashboard3').value = '';
+            document.getElementById('fornecedorDashboard3').value = '';
             document.getElementById('valorMinimoDashboard3').value = '';
             document.getElementById('searchContratos').value = '';
             currentSearchTerm = '';
@@ -3937,7 +3989,8 @@
                     <td class="actions-column">
                         <div class="action-buttons">
                             <button class="btn-action btn-details" onclick="showFiscalDetails('${fiscal.nome_fiscal.replace(/'/g, "\\'")}')" title="Ver Detalhes">
-                                <span class="material-icons" style="font-size: 14px;">visibility</span><span>Detalhes</span>
+                                <span class="material-icons" style="font-size: 14px;">visibility</span>
+                                <span class="d-none">Detalhes</span>
                             </button>
                         </div>
                     </td>
@@ -4081,7 +4134,7 @@
             if (!tbody) return;
             
             if (!filteredData || filteredData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">Nenhum contrato encontrado para os filtros atuais.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">Nenhum contrato encontrado para os filtros atuais.</td></tr>';
                 if (tfoot) tfoot.innerHTML = '';
                 if (countElement) countElement.textContent = '0 registros';
                 if (paginationInfo) paginationInfo.textContent = 'Mostrando 0-0 de 0 registros';
@@ -4094,6 +4147,7 @@
                 orgao: contrato['Órgãos Participantes'],
                 fornecedor: contrato['Nome Fornecedor'],
                 situacao: contrato['Situação do contrato'],
+                tipo: contrato['Tipo do Contrato'] || 'Não informado',
                 fiscais: contrato['Fiscais do Contrato'] || 'Não designado',
                 valor_atual: contrato['Valor atual'] || 0,
                 contrato_data: contrato
@@ -4110,6 +4164,8 @@
                     return order * a.fornecedor.localeCompare(b.fornecedor);
                 } else if (currentSortDashboard3.column === 'situacao') {
                     return order * a.situacao.localeCompare(b.situacao);
+                } else if (currentSortDashboard3.column === 'tipo') {
+                    return order * a.tipo.localeCompare(b.tipo);
                 } else if (currentSortDashboard3.column === 'fiscais') {
                     return order * a.fiscais.localeCompare(b.fiscais);
                 } else if (currentSortDashboard3.column === 'valor_atual') {
@@ -4142,7 +4198,8 @@
                             ${contrato.fornecedor}
                         </div>
                     </td>
-                    <td>${getSituacaoBadge(contrato.situacao)} ${getTipoTag(contrato.contrato_data['Tipo do Contrato'])}</td>
+                    <td>${getSituacaoBadge(contrato.situacao)}</td>
+                    <td>${getTipoTag(contrato.tipo)}</td>
                     <td>
                         <div class="text-truncate-multiline" title="${contrato.fiscais}">
                             ${contrato.fiscais}
@@ -4156,7 +4213,8 @@
                     <td class="actions-column">
                         <div class="action-buttons">
                             <button class="btn-action btn-details" onclick="showContratoDetails('${contrato.numero_contrato.replace(/'/g, "\\'")}')" title="Ver Detalhes">
-                                <span class="material-icons" style="font-size: 14px;">visibility</span><span>Detalhes</span>
+                                <span class="material-icons" style="font-size: 14px;">visibility</span>
+                                <span class="d-none">Detalhes</span>
                             </button>
                         </div>
                     </td>
@@ -4167,7 +4225,7 @@
                 <tr class="table-total-row">
                     <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString('pt-BR')} contratos</strong></td>
                     <td><strong>${fornecedoresUnicos} fornecedores</strong></td>
-                    <td><strong>${orgaosUnicos} órgãos</strong></td>
+                    <td colspan="2"><strong>${orgaosUnicos} órgãos</strong></td>
                     <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
                     <td></td>
                 </tr>
@@ -4545,8 +4603,8 @@
                         
                         document.getElementById('numeroContratoDashboard3').value = '';
                         document.getElementById('situacaoDashboard3').value = '';
-                        document.getElementById('fornecedorDashboard3').value = '';
                         document.getElementById('tipoDashboard3').value = '';
+                        document.getElementById('fornecedorDashboard3').value = '';
                         document.getElementById('valorMinimoDashboard3').value = '';
                         document.getElementById('searchContratos').value = '';
                         
