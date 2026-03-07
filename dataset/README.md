@@ -1,4 +1,4 @@
-# 📑 Fiscais de Contrato do Governo de Minas Gerais
+# Fiscais de Contrato do Governo de Minas Gerais
 
 Conjunto de dados contendo informações cadastrais e funcionais dos fiscais de contratos administrativos vinculados aos órgãos e entidades do Governo do Estado de Minas Gerais, disponibilizado em conformidade com a política de transparência e dados abertos do Estado.
 
@@ -55,5 +55,6 @@ A atualização dos dados ocorre de forma **periódica**, conforme a disponibili
 - Inclusão de novos contratos e fiscais  
 - Atualização de designações  
 - Correções eventuais quando identificadas inconsistências  
+
 
 
