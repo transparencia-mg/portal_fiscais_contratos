@@ -1384,9 +1384,11 @@
     // ============================================
     let contratosData = [];
     let filteredData = [];
-    let allData = {};
+    let allData = {}; // Dados dos fiscais
+    let allLicitacoesData = {}; // Dados das licitações (para os links)
+    let contratoLinkMap = new Map(); // Mapa: numero_contrato -> link
     let charts = {};
-    
+
     let currentPageDashboard1 = 1;
     let currentPageDashboard2 = 1;
     let currentPageDashboard3 = 1;
@@ -1394,23 +1396,32 @@
     let itemsPerPageDashboard2 = 50;
     let itemsPerPageDashboard3 = 50;
     let currentYear = '2026';
-    
+
     let currentSortDashboard1 = { column: 'orgao', order: 'asc' };
     let currentSortDashboard2 = { column: 'nome_fiscal', order: 'asc' };
     let currentSortDashboard3 = { column: 'numero_contrato', order: 'asc' };
-    
+
     // Timeouts para busca automática
     let searchTimeout;
     let filterTimeout;
-    
+
     const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/fiscais_contratos/main/dataset/data/';
-    
+    const GITHUB_LICITACOES_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/';
+
     const CSV_FILES_BY_YEAR = {
         '2022': 'fiscais_contratos_2022.csv',
         '2023': 'fiscais_contratos_2023.csv',
         '2024': 'fiscais_contratos_2024.csv',
         '2025': 'fiscais_contratos_2025.csv',
         '2026': 'fiscais_contratos_2026.csv'
+    };
+
+    const LICITACOES_FILES_BY_YEAR = {
+        '2022': 'licitacoes2022.csv',
+        '2023': 'licitacoes2023.csv',
+        '2024': 'licitacoes2024.csv',
+        '2025': 'licitacoes2025.csv',
+        '2026': 'licitacoes2026.csv'
     };
 
     const chartColors = [
@@ -1432,7 +1443,7 @@
 
     function updateDataAtualizacao() {
         const now = new Date();
-        document.getElementById('data-atualizacao-header').textContent = 
+        document.getElementById('data-atualizacao-header').textContent =
             now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
     }
 
@@ -1470,51 +1481,96 @@
 
     // ==================== CARREGAMENTO DE DADOS ====================
     async function loadYearData(year) {
-        if (allData[year]) {
+        if (allData[year] && allLicitacoesData[year]) {
             contratosData = allData[year];
             filteredData = contratosData;
+            buildContratoLinkMap(year);
             return;
         }
 
-        const filename = CSV_FILES_BY_YEAR[year];
-        const url = `${GITHUB_BASE_URL}${filename}`;
+        showLoading(true);
+        const fiscalFile = CSV_FILES_BY_YEAR[year];
+        const licitacaoFile = LICITACOES_FILES_BY_YEAR[year];
+        const fiscalUrl = `${GITHUB_BASE_URL}${fiscalFile}`;
+        const licitacaoUrl = `${GITHUB_LICITACOES_BASE_URL}${licitacaoFile}`;
 
+        try {
+            // Carrega ambos os arquivos em paralelo
+            const [fiscalResult, licitacaoResult] = await Promise.all([
+                fetchAndParseCSV(fiscalUrl),
+                fetchAndParseCSV(licitacaoUrl)
+            ]);
+
+            // Processa dados dos fiscais
+            const fiscalData = fiscalResult.map(row => ({
+                'Número do Processo Formatado': row.numero_do_processo_formatado || row.numero_processo || '',
+                'Número do contrato': row.numero_do_contrato || row.numero_contrato || row.contrato || '',
+                'Situação do contrato': row.situacao_do_contrato || row.situacao || '',
+                'Tipo do Contrato': row.tipo_do_contrato || row.tipo || '',
+                'Data de Publicação': row.data_de_publicacao || row.data_publicacao || '',
+                'Data Início de Vigência': row.data_inicio_de_vigencia || row.data_inicio || '',
+                'Data Fim de Vigência': row.data_fim_de_vigencia || row.data_fim || '',
+                'Órgãos Participantes': row.orgaos_participantes || row.orgao || '',
+                'CNPJ/CPF': row['CNPJ/CPF'] || row.cnpj_cpf || '',
+                'Nome Fornecedor': row.nome_fornecedor || row.fornecedor || '',
+                'Unidade Gestora do Contrato': row.unidade_gestora_do_contrato || row.unidade_gestora || '',
+                'Gestores do Contrato (Portal de Compras)': row['gestores_do_contrato_portal_de_compras)'] || row.gestores || '',
+                'Fiscais do Contrato': row.fiscais_do_contrato || row.fiscais || '',
+                'Objeto': row.Objeto || row.objeto || '',
+                'Valor inicial': parseFloat(row.valor_inicial?.replace(',', '.') || 0),
+                'Valor atual': parseFloat(row.valor_atual?.replace(',', '.') || row.valor?.replace(',', '.') || 0),
+                'Link Arquivo do Contrato': row.link_arquivo_do_contrato || row.link || '',
+                'ANO': year
+            })).filter(c => c['Número do contrato']);
+
+            allData[year] = fiscalData;
+
+            // Processa dados das licitações e cria o mapa de links
+            const licitacoesData = licitacaoResult.map(row => ({
+                numero_contrato: row.numero_contrato,
+                link_contrato: row.contrato_termoaditivo_arquivos // A coluna com o link
+            })).filter(l => l.numero_contrato && l.numero_contrato !== '0'); // Filtra contratos com número válido
+
+            allLicitacoesData[year] = licitacoesData;
+            buildContratoLinkMap(year);
+
+            contratosData = allData[year];
+            filteredData = contratosData;
+            console.log(`Carregados ${fiscalData.length} registros de fiscais e ${licitacoesData.length} links de ${year}`);
+
+        } catch (error) {
+            console.error(`Erro ao carregar dados de ${year}:`, error);
+            allData[year] = [];
+            allLicitacoesData[year] = [];
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    // Função auxiliar para fazer o parse do CSV com Promise
+    function fetchAndParseCSV(url) {
         return new Promise((resolve, reject) => {
             Papa.parse(url, {
                 download: true,
                 header: true,
                 skipEmptyLines: true,
-                complete: function(results) {
-                    const data = results.data.map(row => ({
-                        'Número do Processo Formatado': row.numero_do_processo_formatado || row.numero_processo || '',
-                        'Número do contrato': row.numero_do_contrato || row.numero_contrato || row.contrato || '',
-                        'Situação do contrato': row.situacao_do_contrato || row.situacao || '',
-                        'Tipo do Contrato': row.tipo_do_contrato || row.tipo || '',
-                        'Data de Publicação': row.data_de_publicacao || row.data_publicacao || '',
-                        'Data Início de Vigência': row.data_inicio_de_vigencia || row.data_inicio || '',
-                        'Data Fim de Vigência': row.data_fim_de_vigencia || row.data_fim || '',
-                        'Órgãos Participantes': row.orgaos_participantes || row.orgao || '',
-                        'CNPJ/CPF': row['CNPJ/CPF'] || row.cnpj_cpf || '',
-                        'Nome Fornecedor': row.nome_fornecedor || row.fornecedor || '',
-                        'Unidade Gestora do Contrato': row.unidade_gestora_do_contrato || row.unidade_gestora || '',
-                        'Gestores do Contrato (Portal de Compras)': row['gestores_do_contrato_portal_de_compras)'] || row.gestores || '',
-                        'Fiscais do Contrato': row.fiscais_do_contrato || row.fiscais || '',
-                        'Objeto': row.Objeto || row.objeto || '',
-                        'Valor inicial': parseFloat(row.valor_inicial?.replace(',', '.') || 0),
-                        'Valor atual': parseFloat(row.valor_atual?.replace(',', '.') || row.valor?.replace(',', '.') || 0),
-                        'Link Arquivo do Contrato': row.link_arquivo_do_contrato || row.link || '',
-                        'ANO': year
-                    })).filter(c => c['Número do contrato']);
-
-                    allData[year] = data;
-                    contratosData = data;
-                    filteredData = contratosData;
-                    console.log(`Carregados ${data.length} registros de ${year}`);
-                    resolve();
-                },
+                complete: (results) => resolve(results.data),
                 error: reject
             });
         });
+    }
+
+    // Constrói um mapa para busca rápida do link do contrato
+    function buildContratoLinkMap(year) {
+        contratoLinkMap.clear();
+        const licitacoes = allLicitacoesData[year] || [];
+        licitacoes.forEach(item => {
+            if (item.numero_contrato) {
+                // Usa o número do contrato como string para evitar problemas de tipo
+                contratoLinkMap.set(item.numero_contrato.toString().trim(), item.link_contrato);
+            }
+        });
+        console.log(`Mapa de links criado para ${year} com ${contratoLinkMap.size} entradas.`);
     }
 
     // ==================== COMPARTILHAMENTO ====================
@@ -1551,36 +1607,36 @@
     // ==================== INICIALIZAÇÃO ====================
     document.addEventListener('DOMContentLoaded', async function() {
         showLoading(true);
-        
+
         try {
             await loadYearData('2026');
             updateDataAtualizacao();
             updateFilterOptions();
             updateDashboard1();
-	    updateDashboard2();
-	    updateDashboard3();
+            updateDashboard2();
+            updateDashboard3();
             setupEventListeners();
             initializeShareButtons();
-            
+
             // Atualizar automaticamente quando mudar de ano
             document.getElementById('anoDashboard1').addEventListener('change', async function() {
                 await handleYearChange(this.value);
                 updateDashboard1();
             });
-            
+
             document.getElementById('anoDashboard2').addEventListener('change', async function() {
                 await handleYearChange(this.value);
                 updateDashboard2();
             });
-            
+
             document.getElementById('anoDashboard3').addEventListener('change', async function() {
                 await handleYearChange(this.value);
                 updateDashboard3();
             });
-            
+
             // Filtros automáticos com debounce
             setupAutomaticFilters();
-            
+
         } catch (error) {
             console.error('Erro:', error);
         } finally {
@@ -1598,93 +1654,92 @@
         }
     }
 
-function setupAutomaticFilters() {
-    // Dashboard 2 - TODOS os filtros automáticos
-    const fiscalInputs = [
-        'nomeFiscal', 
-        'orgaoDashboard2', 
-        'numeroContratoDashboard2', 
-        'fornecedorDashboard2', 
-        'tipoDashboard2'
-    ];
-    
-    fiscalInputs.forEach(id => {
-        const elemento = document.getElementById(id);
-        if (elemento) {
-            elemento.addEventListener('input', function() {
+    function setupAutomaticFilters() {
+        // Dashboard 2 - TODOS os filtros automáticos
+        const fiscalInputs = [
+            'nomeFiscal',
+            'orgaoDashboard2',
+            'numeroContratoDashboard2',
+            'fornecedorDashboard2',
+            'tipoDashboard2'
+        ];
+
+        fiscalInputs.forEach(id => {
+            const elemento = document.getElementById(id);
+            if (elemento) {
+                elemento.addEventListener('input', function() {
+                    clearTimeout(filterTimeout);
+                    filterTimeout = setTimeout(() => {
+                        applyFilters('dashboard2');
+                    }, 500);
+                });
+            }
+        });
+
+        // Select de situação do Dashboard 2
+        const situacao2 = document.getElementById('situacaoDashboard2');
+        if (situacao2) {
+            situacao2.addEventListener('change', function() {
                 clearTimeout(filterTimeout);
                 filterTimeout = setTimeout(() => {
                     applyFilters('dashboard2');
-                }, 500);
+                }, 300);
             });
         }
-    });
 
-    // Select de situação do Dashboard 2
-    const situacao2 = document.getElementById('situacaoDashboard2');
-    if (situacao2) {
-        situacao2.addEventListener('change', function() {
-            clearTimeout(filterTimeout);
-            filterTimeout = setTimeout(() => {
+        // Select de ano do Dashboard 2
+        const ano2 = document.getElementById('anoDashboard2');
+        if (ano2) {
+            ano2.addEventListener('change', async function() {
+                showLoading(true);
+                await handleYearChange(this.value);
                 applyFilters('dashboard2');
-            }, 300);
-        });
-    }
+                showLoading(false);
+            });
+        }
 
-    // Select de ano do Dashboard 2
-    const ano2 = document.getElementById('anoDashboard2');
-    if (ano2) {
-        ano2.addEventListener('change', async function() {
-            showLoading(true);
-            await handleYearChange(this.value);
-            applyFilters('dashboard2');
-            showLoading(false);
-        });
-    }
+        // Dashboard 3 - TODOS os filtros automáticos
+        const contratoInputs = [
+            'numeroContratoDashboard3',
+            'orgaoDashboard3',
+            'fornecedorDashboard3',
+            'tipoDashboard3'
+        ];
 
-    // Dashboard 3 - TODOS os filtros automáticos
-    const contratoInputs = [
-        'numeroContratoDashboard3', 
-        'orgaoDashboard3', 
-        'fornecedorDashboard3', 
-        'tipoDashboard3', 
-        'valorMinimoDashboard3'
-    ];
-    
-    contratoInputs.forEach(id => {
-        const elemento = document.getElementById(id);
-        if (elemento) {
-            elemento.addEventListener('input', function() {
+        contratoInputs.forEach(id => {
+            const elemento = document.getElementById(id);
+            if (elemento) {
+                elemento.addEventListener('input', function() {
+                    clearTimeout(filterTimeout);
+                    filterTimeout = setTimeout(() => {
+                        applyFilters('dashboard3');
+                    }, 500);
+                });
+            }
+        });
+
+        // Select de situação do Dashboard 3
+        const situacao3 = document.getElementById('situacaoDashboard3');
+        if (situacao3) {
+            situacao3.addEventListener('change', function() {
                 clearTimeout(filterTimeout);
                 filterTimeout = setTimeout(() => {
                     applyFilters('dashboard3');
-                }, 500);
+                }, 300);
             });
         }
-    });
 
-    // Select de situação do Dashboard 3
-    const situacao3 = document.getElementById('situacaoDashboard3');
-    if (situacao3) {
-        situacao3.addEventListener('change', function() {
-            clearTimeout(filterTimeout);
-            filterTimeout = setTimeout(() => {
+        // Select de ano do Dashboard 3
+        const ano3 = document.getElementById('anoDashboard3');
+        if (ano3) {
+            ano3.addEventListener('change', async function() {
+                showLoading(true);
+                await handleYearChange(this.value);
                 applyFilters('dashboard3');
-            }, 300);
-        });
+                showLoading(false);
+            });
+        }
     }
-
-    // Select de ano do Dashboard 3
-    const ano3 = document.getElementById('anoDashboard3');
-    if (ano3) {
-        ano3.addEventListener('change', async function() {
-            showLoading(true);
-            await handleYearChange(this.value);
-            applyFilters('dashboard3');
-            showLoading(false);
-        });
-    }
-}
 
     function initializeShareButtons() {
         [1, 2, 3].forEach(id => {
@@ -1822,7 +1877,6 @@ function setupAutomaticFilters() {
             const situacao = document.getElementById('situacaoDashboard3').value;
             const tipo = document.getElementById('tipoDashboard3').value;
             const fornecedor = document.getElementById('fornecedorDashboard3').value;
-            const valorMinimo = parseFloat(document.getElementById('valorMinimoDashboard3').value) || 0;
 
             filtered = baseData.filter(c => {
                 if (numeroContrato && !c['Número do contrato'].toString().includes(numeroContrato)) return false;
@@ -1830,7 +1884,6 @@ function setupAutomaticFilters() {
                 if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
                 if (tipo && c['Tipo do Contrato'] !== tipo) return false;
                 if (fornecedor && c['Nome Fornecedor'] !== fornecedor) return false;
-                if (c['Valor atual'] < valorMinimo) return false;
                 return true;
             });
             filteredData = filtered;
@@ -1871,7 +1924,6 @@ function setupAutomaticFilters() {
         document.getElementById('situacaoDashboard3').value = '';
         document.getElementById('tipoDashboard3').value = '';
         document.getElementById('fornecedorDashboard3').value = '';
-        document.getElementById('valorMinimoDashboard3').value = '';
         document.getElementById('searchContratos').value = '';
         filteredData = allData[currentYear] || [];
         currentPageDashboard3 = 1;
@@ -1885,8 +1937,8 @@ function setupAutomaticFilters() {
             updateResumoTable();
             return;
         }
-        
-        const filtered = (allData[currentYear] || []).filter(c => 
+
+        const filtered = (allData[currentYear] || []).filter(c =>
             (c['Órgãos Participantes'] || '').toLowerCase().includes(term)
         );
         filteredData = filtered;
@@ -1901,10 +1953,10 @@ function setupAutomaticFilters() {
             updateFiscaisTable();
             return;
         }
-        
+
         const filtered = (allData[currentYear] || []).filter(c => {
             const fiscais = (c['Fiscais do Contrato'] || '').toLowerCase();
-            return fiscais.includes(term) || 
+            return fiscais.includes(term) ||
                    (c['Órgãos Participantes'] || '').toLowerCase().includes(term) ||
                    (c['Número do contrato'] || '').toString().toLowerCase().includes(term) ||
                    (c['Nome Fornecedor'] || '').toLowerCase().includes(term);
@@ -1921,8 +1973,8 @@ function setupAutomaticFilters() {
             updateContratosTable();
             return;
         }
-        
-        const filtered = (allData[currentYear] || []).filter(c => 
+
+        const filtered = (allData[currentYear] || []).filter(c =>
             (c['Número do contrato'] || '').toString().toLowerCase().includes(term) ||
             (c['Órgãos Participantes'] || '').toLowerCase().includes(term) ||
             (c['Nome Fornecedor'] || '').toLowerCase().includes(term) ||
@@ -2013,7 +2065,7 @@ function setupAutomaticFilters() {
         });
 
         let resumoArray = Object.values(grupos).map(g => ({ ...g, fiscais: g.fiscaisSet.size }));
-        
+
         // Ordenação
         resumoArray.sort((a, b) => {
             const order = currentSortDashboard1.order === 'asc' ? 1 : -1;
@@ -2055,7 +2107,7 @@ function setupAutomaticFilters() {
         `;
 
         document.getElementById('resumoCountDashboard1').textContent = `${totalOrgaos.toLocaleString()} órgãos`;
-        document.getElementById('paginationInfoDashboard1').textContent = 
+        document.getElementById('paginationInfoDashboard1').textContent =
             `Mostrando ${start + 1}-${end} de ${resumoArray.length.toLocaleString()} registros`;
 
         updatePagination('Dashboard1', Math.ceil(resumoArray.length / itemsPerPageDashboard1), currentPageDashboard1);
@@ -2225,7 +2277,7 @@ function setupAutomaticFilters() {
         });
 
         let fiscaisArray = Array.from(fiscaisMap.values());
-        
+
         // Ordenação
         fiscaisArray.sort((a, b) => {
             const order = currentSortDashboard2.order === 'asc' ? 1 : -1;
@@ -2274,7 +2326,7 @@ function setupAutomaticFilters() {
         `;
 
         document.getElementById('resumoCountDashboard2').textContent = `${totalFiscais.toLocaleString()} registros`;
-        document.getElementById('paginationInfoDashboard2').textContent = 
+        document.getElementById('paginationInfoDashboard2').textContent =
             `Mostrando ${start + 1}-${end} de ${fiscaisArray.length.toLocaleString()} registros`;
 
         updatePagination('Dashboard2', Math.ceil(fiscaisArray.length / itemsPerPageDashboard2), currentPageDashboard2);
@@ -2348,7 +2400,7 @@ function setupAutomaticFilters() {
         `;
 
         document.getElementById('resumoCountDashboard3').textContent = `${totalContratos.toLocaleString()} contratos`;
-        document.getElementById('paginationInfoDashboard3').textContent = 
+        document.getElementById('paginationInfoDashboard3').textContent =
             `Mostrando ${start + 1}-${end} de ${contratosArray.length.toLocaleString()} registros`;
 
         updatePagination('Dashboard3', Math.ceil(contratosArray.length / itemsPerPageDashboard3), currentPageDashboard3);
@@ -2357,17 +2409,34 @@ function setupAutomaticFilters() {
     // ==================== FUNÇÕES DE DETALHE ====================
     window.showContratoDetails = function(numeroContrato) {
         let contrato = null;
-        Object.keys(allData).forEach(ano => {
+        let anoDoContrato = null;
+        // Procura o contrato em todos os anos carregados
+        for (const ano in allData) {
             const found = allData[ano].find(c => c['Número do contrato'] === numeroContrato);
-            if (found) contrato = found;
-        });
+            if (found) {
+                contrato = found;
+                anoDoContrato = ano;
+                break;
+            }
+        }
 
         if (!contrato) return;
+
+        // Busca o link no mapa criado a partir dos dados de licitação
+        const linkArquivo = contratoLinkMap.get(numeroContrato.toString().trim()) || '#';
 
         const fiscaisList = (contrato['Fiscais do Contrato'] || '').split(/[,;]| e /).map(f => f.trim()).filter(f => f);
         const fiscaisHTML = fiscaisList.map(f => `
             <tr><td>${f}</td><td>${contrato['Órgãos Participantes']}</td><td>Fiscal do Contrato</td><td>${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</td></tr>
         `).join('') || '<tr><td colspan="4" class="text-center text-muted">Nenhum fiscal designado</td></tr>';
+
+        const linkButton = linkArquivo !== '#' && linkArquivo ? `
+            <div class="mt-3 text-end">
+                <a href="${linkArquivo}" target="_blank" class="btn-export text-decoration-none fw-bold d-inline-flex align-items-center justify-content-center px-4 py-2">
+                    <i class="material-icons me-2">insert_drive_file</i> Ver Arquivo do Contrato
+                </a>
+            </div>
+        ` : '';
 
         document.getElementById('contratoModalContent').innerHTML = `
             <div class="row">
@@ -2385,6 +2454,7 @@ function setupAutomaticFilters() {
             </div>
             <h6 class="mt-4 fw-bold">Fiscais Designados</h6>
             <div style="max-height:200px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Nome</th><th>Órgão</th><th>Função</th><th>Período</th></tr></thead><tbody>${fiscaisHTML}</tbody></table></div>
+            ${linkButton}
         `;
         new bootstrap.Modal(document.getElementById('contratoModal')).show();
     };
@@ -2476,15 +2546,15 @@ function setupAutomaticFilters() {
     function printDashboard(dashboard) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF({ orientation: 'landscape' });
-        
+
         let title = '';
         let data = [];
         let headers = [];
-        
+
         if (dashboard === 'Dashboard1') {
             title = 'Visão Geral - Fiscais de Contratos';
             headers = [['Órgão', 'Contratos', 'Fiscais Designados', 'Valor Total']];
-            
+
             const grupos = {};
             filteredData.forEach(c => {
                 const orgao = c['Órgãos Participantes'] || 'Não Informado';
@@ -2497,7 +2567,7 @@ function setupAutomaticFilters() {
                     if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
                 });
             });
-            
+
             data = Object.values(grupos).map(g => [
                 g.orgao,
                 g.contratos.toString(),
@@ -2507,7 +2577,7 @@ function setupAutomaticFilters() {
         } else if (dashboard === 'Dashboard2') {
             title = 'Consulta por Fiscal - Fiscais de Contratos';
             headers = [['Nome do Fiscal', 'Órgão', 'Contrato', 'Fornecedor', 'Situação', 'Valor']];
-            
+
             const fiscaisMap = new Map();
             filteredData.forEach(c => {
                 (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
@@ -2524,7 +2594,7 @@ function setupAutomaticFilters() {
         } else if (dashboard === 'Dashboard3') {
             title = 'Consulta por Contrato - Fiscais de Contratos';
             headers = [['Contrato', 'Órgão', 'Fornecedor', 'Situação', 'Tipo', 'Fiscais', 'Valor']];
-            
+
             data = filteredData.map(c => [
                 c['Número do contrato'],
                 c['Órgãos Participantes'],
@@ -2535,7 +2605,7 @@ function setupAutomaticFilters() {
                 formatCurrency(c['Valor atual'] || 0)
             ]);
         }
-        
+
         doc.autoTable({
             head: headers,
             body: data,
@@ -2547,7 +2617,7 @@ function setupAutomaticFilters() {
                 doc.text('Governo de Minas Gerais - Fiscais de Contratos', doc.internal.pageSize.width - 14, 10, { align: 'right' });
             }
         });
-        
+
         doc.save(`${title.toLowerCase().replace(/ /g, '_')}_${currentYear}.pdf`);
     }
 
