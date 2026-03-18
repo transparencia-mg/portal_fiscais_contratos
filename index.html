@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Fiscais de Contratos - Governo de Minas Gerais</title>
     
     <!-- ==================== ESTILOS E BIBLIOTECAS ==================== -->
@@ -33,74 +33,63 @@
             --info-blue: #17a2b8;
         }
 
-        /* ==================== ESTILOS GERAIS ==================== */
-        body {
-            font-family: 'Montserrat', 'Open Sans', sans-serif;
-            background-color: var(--background-light);
-            padding-bottom: 15px;
-            overflow-y: visible !important;
-            overflow-x: hidden !important;
-            min-height: auto !important;
-            height: auto !important;
+        /* ==================== RESET E CONFIGURAÇÕES GLOBAIS ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        html {
-            overflow-y: visible !important;
-            height: auto !important;
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            height: auto;
+            min-height: auto;
         }
 
-        .container {
-            overflow: visible !important;
-            height: auto !important;
-            min-height: auto !important;
+        body { 
+            font-family: 'Montserrat', Segoe UI, Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--background-light); 
+            padding-bottom: 15px; 
+            overflow-x: hidden; 
+            min-height: auto; 
+            height: auto; 
+            position: relative; 
+        } 
+
+        .main-container { 
+            height: auto; 
+            min-height: auto; 
+            overflow: visible; 
+            position: relative; 
+        } 
+
+        .container-fluid {
+            width: 100%;
+            max-width: 100% !important;
+            padding: 0 40px;
+            margin: 0;
+            height: auto;
+            min-height: auto;
         }
 
-        .tab-content {
-            overflow: visible !important;
-            height: auto !important;
+        .dashboard-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 40px;
+            margin: 0 auto;
+            height: auto;
+            min-height: auto;
         }
 
-        /* ==================== MENU DE NAVEGAÇÃO ==================== */
-        .nav-tabs-container {
-            background: white;
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            overflow-x: auto;
-        }
-        
-        .nav-tabs { 
-            border: none !important; 
-            gap: 4px; 
-            flex-wrap: nowrap; 
-        }
-        
-        .nav-tabs .nav-link {
-            border: none !important;
-            border-radius: 6px !important;
-            padding: 10px 15px !important;
-            font-weight: 600;
-            color: var(--primary-dark) !important;
-            font-size: 16px;
-            white-space: nowrap;
-            display: inline-flex !important;
-            align-items: center;
-        }
-        
-        .nav-tabs .nav-link:hover { 
-            background-color: rgba(41, 67, 90, 0.05) !important; 
-            color: var(--accent-red) !important; 
-        }
-        
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%) !important;
-            color: white !important;
-        }
-        
-        .nav-tabs .nav-link .material-icons { 
-            font-size: 18px !important; 
-            margin-right: 8px !important; 
+        .tab-content, 
+        .tab-pane {
+            width: 100%;
+            height: auto;
+            min-height: auto;
+            overflow: visible;
         }
 
         /* ==================== DATA ATUALIZAÇÃO ==================== */
@@ -108,7 +97,7 @@
             display: flex;
             justify-content: left;
             align-items: center;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .data-atualizacao-box {
@@ -119,7 +108,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 12px;
+            font-size: 14px;
             color: var(--primary-dark);
             font-weight: 600;
         }
@@ -136,33 +125,29 @@
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 5px solid var(--accent-red);
+            border-left: none;
+            width: 100%;
         }
         
         .filter-label {
+            font-size: 16px;
             font-weight: 600;
             color: var(--primary-dark);
             margin-bottom: 6px;
-            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            letter-spacing: 0.5px;
         }
         
-        .filter-label i { 
-            font-size: 18px; 
-            color: var(--accent-red); 
-        }
+        .filter-label i { font-size: 18px; color: var(--accent-red); }
         
         .form-control, .form-select {
             border: 2px solid #e9ecef;
             border-radius: 6px;
             padding: 10px 12px;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.3s ease;
             height: 42px;
+            width: 100%;
         }
         
         .form-control:focus, .form-select:focus {
@@ -173,67 +158,50 @@
         /* ==================== CARDS DE MÉTRICAS ==================== */
         .metric-card {
             background: white;
-            border-radius: 10px;
-            padding: 20px 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e9ef;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            margin-bottom: 20px;
-            border-top: 4px solid var(--primary-dark);
-            transition: all 0.3s ease;
+            overflow: hidden;
             height: 100%;
         }
-        
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        .metric-card.success {
-            border-top-color: var(--success-green);
-        }
-        
-        .metric-card.warning {
-            border-top-color: var(--warning-yellow);
-        }
-        
-        .metric-card.info {
-            border-top-color: var(--info-blue);
-        }
-        
-        .metric-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin: 8px 0;
-            line-height: 1;
-        }
-        
-        .metric-label {
-            font-size: 15px;
-            color: var(--primary-darker);
+
+        .metric-header {
+            background: var(--primary-dark);
+            color: white;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        
-        .update-info {
-            font-size: 11px;
-            color: #6c757d;
+            padding: 10px 15px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 4px;
         }
 
-        .metric-change.positive {
-            background-color: rgba(40, 167, 69, 0.1);
-            color: var(--success-green);
+        .metric-body {
+            padding: 12px 15px;
+        }
+
+        .metric-value {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .metric-change {
+            font-size: 12px;
+            font-weight: 600;
             padding: 3px 8px;
             border-radius: 15px;
-            font-size: 11px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            display: inline-block;
+        }
+        
+        .metric-change.positive {
+            background-color: rgba(40,167,69,0.1);
+            color: var(--success-green);
+        }
+        
+        .metric-change.warning {
+            background-color: rgba(255,193,7,0.1);
+            color: var(--warning-yellow);
         }
 
         /* ==================== CONTAINER DE GRÁFICOS ==================== */
@@ -244,7 +212,7 @@
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
             height: 100%;
-            min-height: 280px;
+            min-height: 320px;
         }
         
         .chart-header {
@@ -265,71 +233,11 @@
         
         .chart-wrapper {
             position: relative;
-            height: 220px;
+            height: 240px;
             width: 100%;
         }
 
-        /* ==================== CONTAINER DE AÇÕES ==================== */
-        .actions-container {
-            background: white;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .export-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .right-aligned-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .search-box-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .search-box-container label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--primary-dark);
-            white-space: nowrap;
-        }
-        
-        .search-box {
-            border: 2px solid var(--primary-dark) !important;
-            border-radius: 6px !important;
-            padding: 8px 12px !important;
-            font-size: 13px !important;
-            width: 250px !important;
-            background-color: white;
-            color: var(--primary-dark);
-        }
-        
-        .search-box:focus {
-            border-color: var(--accent-red) !important;
-            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15);
-            outline: none;
-        }
-
         /* ==================== TABELAS ==================== */
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            margin-bottom: 20px;
-            border: 1px solid #dee2e6;
-        }
-        
         .table-header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
             color: white;
@@ -348,41 +256,42 @@
         }
         
         .table-badge {
-            background: var(--accent-red);
+            background: var(--primary-dark);
             color: white;
             padding: 4px 12px;
             border-radius: 15px;
             font-size: 15px;
             font-weight: 600;
-            white-space: nowrap;
         }
         
         .table-fixed-header-container {
             position: relative;
-            max-height: 500px;
             overflow: auto;
+            width: 100%;
+            max-height: 600px;
         }
         
         .table-fixed-header-container table thead th {
-            background-color: var(--primary-dark) !important;
+            background-color: #54697b;
             color: white !important;
             position: sticky;
             top: 0;
             z-index: 10;
             font-weight: 600;
             padding: 12px 10px;
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
             white-space: nowrap;
             cursor: pointer;
-            user-select: none;
         }
         
         .table {
             width: 100%;
-            font-size: 14px;
+            font-size: 15px;
             border-collapse: separate;
             border-spacing: 0;
+            table-layout: auto;
+	    background-color: #fcfcfc;
         }
         
         .table tbody td {
@@ -406,28 +315,19 @@
             opacity: 1;
         }
 
-        .orgao-link, .contrato-link {
-            color: var(--primary-dark);
-            text-decoration: none;
+        .valor-monetario {
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .orgao-link:hover, .contrato-link:hover { 
-            color: var(--accent-red); 
-            text-decoration: underline;
+            text-align: right;
+            white-space: nowrap;
         }
 
-        .table-total-row {
-            background-color: #f8f9fa !important;
-            font-weight: 600;
-            color: var(--primary-dark);
+        .orgao-link {
+            color: #006a82;
+            text-decoration: none;
+            font-weight: 400;
+            cursor: pointer;
         }
-        
-        .table-total-row td {
-            border-top: 2px solid #dee2e6 !important;
-        }
+        .orgao-link:hover { color: var(--accent-red); text-decoration: underline; }
 
         /* ==================== BADGES ==================== */
         .badge-status {
@@ -489,35 +389,24 @@
             color: #3b82f6;
         }
 
-        /* ==================== VALORES MONETÁRIOS ==================== */
-        .valor-monetario {
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        
-        .valor-atual {
-            color: var(--accent-red);
-            font-weight: 700;
-        }
-
         /* ==================== BOTÕES ==================== */
-        .btn-primary-custom, .btn-search-custom {
-            background: linear-gradient(to right, var(--primary-darker), var(--primary-dark));
+        .btn-primary-custom, .btn-pesquisa {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-darker));
             border: none;
             padding: 10px 20px;
             font-weight: 600;
             border-radius: 6px;
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: 18px;
             color: white;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             cursor: pointer;
             height: 42px;
+            white-space: nowrap;
         }
-        
-        .btn-primary-custom:hover, .btn-search-custom:hover {
+        .btn-primary-custom:hover, .btn-pesquisa:hover {
             background: linear-gradient(to right, var(--accent-red), #a32c32);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(185, 60, 66, 0.2);
@@ -530,6 +419,7 @@
             color: var(--primary-darker);
             padding: 10px 20px;
             font-weight: 600;
+            font-size: 18px;
             border-radius: 6px;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -537,15 +427,15 @@
             gap: 6px;
             cursor: pointer;
             height: 42px;
+            white-space: nowrap;
         }
-        
         .btn-secondary-custom:hover {
-            background-color: var(--primary-darker);
-            color: white;
-            transform: translateY(-1px);
+            background-color: var(--primary-darker) !important;
+            color: white !important;
+            border-color: var(--primary-darker) !important;
         }
         
-        .btn-export, .btn-share {
+        .btn-export {
             background: white;
             border: 2px solid var(--primary-darker);
             color: var(--primary-darker);
@@ -559,9 +449,9 @@
             gap: 6px;
             cursor: pointer;
             height: 38px;
+            white-space: nowrap;
         }
-        
-        .btn-export:hover, .btn-share:hover {
+        .btn-export:hover {
             background: var(--primary-darker);
             color: white;
             transform: translateY(-1px);
@@ -581,11 +471,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
-        .btn-action:hover { 
-            background-color: var(--accent-red); 
-            transform: translateY(-1px);
-        }
+        .btn-action:hover { background-color: var(--accent-red); }
 
         /* ==================== DROPDOWN DE COMPARTILHAMENTO ==================== */
         .share-dropdown {
@@ -608,9 +494,7 @@
             margin-top: 5px;
         }
         
-        .share-options.show { 
-            display: block; 
-        }
+        .share-options.show { display: block; }
         
         .share-options a {
             display: flex;
@@ -624,17 +508,117 @@
             cursor: pointer;
             text-decoration: none;
         }
-        
-        .share-options a:hover { 
-            background-color: var(--background-light); 
-            color: var(--accent-red); 
+        .share-options a:hover { background-color: var(--background-light); color: var(--accent-red); }
+        .share-options a i { font-size: 18px; width: 20px; text-align: center; }
+
+        /* ==================== BUSCA NA TABELA ==================== */
+        .table-search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .share-options a i { 
-            font-size: 18px; 
-            width: 20px; 
-            text-align: center; 
+        .table-search-input {
+            border: 2px solid var(--primary-dark) !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            font-size: 13px !important;
+            width: 250px !important;
+            background-color: white;
+            color: var(--primary-dark);
         }
+        .table-search-input:focus {
+            border-color: var(--accent-red) !important;
+            box-shadow: 0 0 0 2px rgba(185, 60, 66, 0.15);
+            outline: none;
+        }
+
+        /* ==================== NAVEGAÇÃO ==================== */
+        .nav-tabs-container {
+            background: transparent;
+            padding: 10px 0;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        
+        .nav-tabs {
+            border: none !important;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .nav-tabs .nav-link {
+            border: none !important;
+            background: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 500;
+            font-size: 18px;
+            color: var(--primary-dark) !important;
+            display: inline-flex !important;
+            align-items: center;
+            gap: 6px;
+            transition: all .25s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            background: #e6e9ed !important;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: var(--primary-dark) !important;
+            color: #fff !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .nav-tabs .material-icons {
+            font-size: 18px !important;
+        }
+
+        .container {
+            max-width: 85% !important;
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-creative .modal-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            color: white !important;
+            padding: 20px 30px;
+            border-bottom: none;
+        }
+
+        .modal-creative .modal-header .modal-title {
+            color: white !important;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .modal-creative .modal-header .modal-title i {
+            color: white !important;
+        }
+
+        .modal-creative .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+            opacity: 1;
+        }
+
+        .modal-creative .modal-header .btn-close:hover {
+            opacity: 0.8;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-red);
+            margin-bottom: 15px;
+        }
+        .info-card.primary { border-left-color: var(--primary-dark); }
+        .info-label { font-size: 11px; text-transform: uppercase; color: #6c757d; font-weight: 600; margin-bottom: 5px; }
+        .info-value { font-size: 14px; font-weight: 600; color: var(--primary-dark); word-break: break-word; }
+        .info-value.highlight { font-size: 18px; color: var(--accent-red); }
 
         /* ==================== PAGINAÇÃO ==================== */
         .pagination-container {
@@ -644,6 +628,7 @@
             padding: 15px 20px;
             background: white;
             border-top: 1px solid #dee2e6;
+            width: 100%;
         }
         
         .pagination-info {
@@ -655,12 +640,11 @@
             color: var(--primary-dark);
             border-color: #dee2e6;
         }
-        
         .pagination .page-link:hover {
             color: var(--accent-red);
             background-color: #f8f9fa;
+            border-color: #dee2e6;
         }
-        
         .pagination .page-item.active .page-link {
             background-color: var(--primary-dark);
             border-color: var(--primary-dark);
@@ -668,7 +652,7 @@
         }
         
         .items-per-page {
-            width: 70px;
+            width: 80px;
             border: 2px solid var(--primary-dark) !important;
             border-radius: 6px;
             padding: 5px 10px;
@@ -679,183 +663,159 @@
             cursor: pointer;
         }
 
-        /* ==================== MODAL ==================== */
-        .modal-creative .modal-header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+        /* ==================== INDICADOR DE CARREGAMENTO ==================== */
+        .loading-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-dark);
             color: white;
-            padding: 20px 30px;
-            border-bottom: none;
-        }
-        
-        .modal-creative .modal-body { 
-            padding: 30px; 
-            background: #f8fafc; 
-        }
-        
-        .info-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--accent-red);
-            margin-bottom: 15px;
-        }
-        
-        .info-card.primary { 
-            border-left-color: var(--primary-dark); 
-        }
-        
-        .info-label { 
-            font-size: 11px; 
-            text-transform: uppercase; 
-            color: #6c757d; 
-            font-weight: 600; 
-            margin-bottom: 5px; 
-        }
-        
-        .info-value { 
-            font-size: 14px; 
-            font-weight: 600; 
-            color: var(--primary-dark); 
-            word-break: break-word; 
-        }
-
-        .info-item {
-            margin-bottom: 12px;
-        }
-        
-        .info-value.highlight { 
-            font-size: 18px; 
-            color: var(--accent-red); 
-        }
-
-        .detail-table thead th {
-            background-color: var(--primary-dark) !important;
-            color: white !important;
-            font-weight: 600;
-            padding: 10px;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        .detail-table tbody td {
-            padding: 8px 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
             font-size: 13px;
-        }
-
-        /* ==================== CARD DE DOWNLOAD ==================== */
-        .card-stats {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--info-blue);
-        }
-
-        .card-stats h4 {
-            font-size: 18px;
             font-weight: 600;
-            color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
         }
 
-        .card-stats p {
-            font-size: 13px;
-            color: #6c757d;
-            margin: 15px 0;
-            text-align: justify;
+        .loading-indicator.show {
+            display: flex;
+        }
+
+        .spinner-small {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== FILTROS LAYOUT ==================== */
+        .filters-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1 1 200px;
+            min-width: 0;
+        }
+        
+        .filter-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .botoes-abaixo {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .modern-select {
+            border: 1.5px solid #dfe5ec !important;
+            border-radius: 8px !important;
+            padding: 10px 12px !important;
+            font-size: 16px !important;
+            height: 48px !important;       
+            line-height: 1.5 !important;
+            background-color: #fff;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        .modern-select:focus {
+            border-color: var(--primary-dark) !important;
+            box-shadow: 0 0 0 2px rgba(26,58,92,0.1);
         }
 
         /* ==================== RESPONSIVIDADE ==================== */
-        @media (max-width: 768px) {
-            .metric-value {
-                font-size: 20px;
-            }
-            
-            .actions-container .d-flex {
-                flex-direction: column;
-                align-items: flex-start !important;
-                gap: 15px;
-            }
-            
-            .right-aligned-container {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .search-box {
-                width: 180px !important;
-            }
-            
-            .chart-wrapper {
-                height: 200px;
-            }
-            
-            .pagination-container {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            
-            .table thead th,
-            .table tbody td {
-                font-size: 12px;
-                padding: 8px 6px;
-            }
-            
-            .nav-tabs .nav-link {
-                font-size: 14px;
-                padding: 8px 12px !important;
-            }
-            
-            .nav-tabs .nav-link .material-icons {
-                font-size: 16px !important;
+        @media (max-width: 1200px) {
+            .container-fluid {
+                max-width: 95% !important;
+                padding: 0 15px;
             }
         }
-
-        @media (max-width: 576px) {
-            .filter-container .row > div {
-                margin-bottom: 10px;
+        
+        @media (max-width: 992px) {
+            .dashboard-container {
+                padding: 0 15px;
             }
-            
-            .export-buttons {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .right-aligned-container {
+        }
+        
+        @media (max-width: 768px) {
+            .filters-row {
                 flex-direction: column;
                 align-items: stretch;
             }
             
-            .search-box-container {
+            .filter-buttons-group {
+                margin-left: 0;
+                width: 100%;
+                justify-content: stretch;
+            }
+            
+            .filter-buttons-group button {
+                flex: 1;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start !important;
+            }
+            
+            .d-flex.gap-2 {
                 flex-wrap: wrap;
             }
             
-            .search-box {
+            .table-search-input {
                 width: 100% !important;
-            }
-            
-            .items-per-page {
-                width: 100%;
-            }
-            
-            .table-badge {
-                align-self: flex-start;
-            }
-            
-            .nav-tabs .nav-link {
-                font-size: 12px;
-                padding: 6px 10px !important;
-            }
-            
-            .nav-tabs .nav-link .material-icons {
-                font-size: 14px !important;
-                margin-right: 4px !important;
             }
         }
 
-        /* ==================== UTILITÁRIOS ==================== */
+        .iframe-mode {
+            overflow: visible !important;
+        }
+        
+        .card-download, .card-stats {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-download:hover, .card-stats:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            border-color: var(--primary-dark);
+        }
+
+        .card-download i.material-icons,
+        .card-stats i.material-icons {
+            font-size: 48px !important;
+            color: var(--primary-dark) !important;
+            margin-bottom: 15px !important;
+        }
+        
         .text-truncate-multiline {
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -865,23 +825,17 @@
             max-height: 3em;
             line-height: 1.5em;
         }
-
-        .valor-monetario {
-            text-align: right;
-        }
-
-        .text-right {
-            text-align: right;
-        }
         
-        .text-center {
-            text-align: center;
+        .valor-atual {
+            color: var(--primary-dark);
+            font-weight: 700;
         }
     </style>
 </head>
-<body>
+<body class="iframe-mode">
 
-    <div class="container">
+<div class="main-container">
+    <div class="container-fluid dashboard-container">
         <!-- ==================== MENU DE NAVEGAÇÃO ==================== -->
         <div class="nav-tabs-container">
             <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
@@ -922,10 +876,10 @@
             <div class="tab-pane fade show active" id="dashboard1" role="tabpanel">
                 <!-- Filtros -->
                 <div class="filter-container">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">calendar_today</i>Ano</label>
-                            <select class="form-select" id="anoDashboard1">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ANO</label>
+                            <select class="form-select modern-select" id="anoDashboard1">
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -933,14 +887,14 @@
                                 <option value="2026" selected>2026</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">business</i>Órgão</label>
-                            <input type="text" class="form-control" list="orgaosListDashboard1" id="orgaoDashboard1" placeholder="Digite ou selecione...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ÓRGÃO</label>
+                            <input type="text" class="form-control" list="orgaosListDashboard1" id="orgaoDashboard1" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="orgaosListDashboard1"></datalist>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">info</i>Situação</label>
-                            <select class="form-select" id="situacaoDashboard1">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> SITUAÇÃO</label>
+                            <select class="form-select modern-select" id="situacaoDashboard1">
                                 <option value="">Todas</option>
                                 <option value="ATIVO">Ativo</option>
                                 <option value="CONCLUÍDO">Concluído</option>
@@ -948,18 +902,16 @@
                                 <option value="RESCINDIDO">Rescindido</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">category</i>Tipo do Contrato</label>
-                            <input type="text" class="form-control" list="tiposListDashboard1" id="tipoDashboard1" placeholder="Digite ou selecione...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> TIPO DO CONTRATO</label>
+                            <input type="text" class="form-control" list="tiposListDashboard1" id="tipoDashboard1" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="tiposListDashboard1"></datalist>
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
-                        <div class="col-12 d-flex justify-content-start gap-2">
-                            <button class="btn-search-custom" id="aplicarFiltros"><i class="material-icons me-2">search</i>Pesquisar</button>
-                            <button class="btn-secondary-custom" id="limparFiltros"><i class="material-icons me-2">refresh</i>Limpar Filtros</button>
-                        </div>
+                    <div class="botoes-abaixo">
+                        <button class="btn-pesquisa" id="aplicarFiltros"><i class="material-icons me-2">search</i>Pesquisar</button>
+                        <button class="btn-secondary-custom" id="limparFiltros"><i class="material-icons me-2">refresh</i>Limpar Filtros</button>
                     </div>
                 </div>
 
@@ -989,38 +941,36 @@
                 </div>
 
                 <!-- Ações e Busca -->
-                <div class="actions-container mb-4">
-                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-                        <div class="export-buttons">
-                            <button class="btn-export" id="exportCSVDashboard1"><i class="fas fa-file-csv me-2"></i>CSV</button>
-                            <button class="btn-export" id="printDashboard1"><i class="fas fa-print me-2"></i>PDF</button>
-                            <div class="share-dropdown">
-                                <button class="btn-share" id="shareButton1"><i class="fas fa-share-alt me-2"></i>Compartilhar</button>
-                                <div class="share-options" id="shareOptions1">
-                                    <a href="#" onclick="copiarLink(event)"><i class="fas fa-link"></i> Copiar Link</a>
-                                    <a href="#" onclick="compartilharFacebook(event)"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                    <a href="#" onclick="compartilharTwitter(event)"><i class="fab fa-twitter"></i> Twitter</a>
-                                    <a href="#" onclick="compartilharLinkedIn(event)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                                    <a href="#" onclick="compartilharWhatsApp(event)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+                    <div class="d-flex gap-2">
+                        <button class="btn-export" id="exportCSVDashboard1"><i class="material-icons me-2">description</i>CSV</button>
+                        <button class="btn-export" id="printDashboard1"><i class="material-icons me-2">print</i>PDF</button>
+                        <div class="share-dropdown">
+                            <button class="btn-export" id="shareButton1"><i class="material-icons me-2">share</i>Compartilhar</button>
+                            <div class="share-options" id="shareOptions1">
+                                <a href="#" onclick="copiarLink(event, 1)"><i class="fas fa-link"></i> Copiar Link</a>
+                                <a href="#" onclick="compartilharFacebook(event, 1)"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a href="#" onclick="compartilharTwitter(event, 1)"><i class="fab fa-twitter"></i> Twitter</a>
+                                <a href="#" onclick="compartilharLinkedIn(event, 1)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                                <a href="#" onclick="compartilharWhatsApp(event, 1)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="right-aligned-container">
-                            <div class="search-box-container">
-                                <label>Buscar:</label>
-                                <input type="text" class="search-box" id="searchResumo" placeholder="Nome do órgão...">
-                            </div>
-
-                            <select class="items-per-page" id="itemsPerPageDashboard1">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50" selected>50</option>
-                                <option value="100">100</option>
-                            </select>
-                            
-                            <span class="table-badge" id="resumoCountDashboard1">0 órgãos</span>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="table-search-container">
+                            <label style="font-size: 13px; font-weight: 600; color: var(--primary-dark);">Buscar:</label>
+                            <input type="text" class="table-search-input" id="searchResumo" placeholder="Nome do órgão...">
                         </div>
+
+                        <select class="items-per-page" id="itemsPerPageDashboard1">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                        </select>
+                        
+                        <span class="table-badge" id="resumoCountDashboard1">0 órgãos</span>
                     </div>
                 </div>
 
@@ -1053,10 +1003,10 @@
             <div class="tab-pane fade" id="dashboard2" role="tabpanel">
                 <!-- Filtros -->
                 <div class="filter-container">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">calendar_today</i>Ano</label>
-                            <select class="form-select" id="anoDashboard2">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ANO</label>
+                            <select class="form-select modern-select" id="anoDashboard2">
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -1064,18 +1014,18 @@
                                 <option value="2026" selected>2026</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">person</i>Nome do Fiscal</label>
-                            <input type="text" class="form-control" id="nomeFiscal" placeholder="Digite o nome...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> NOME DO FISCAL</label>
+                            <input type="text" class="form-control" id="nomeFiscal" placeholder="Digite o nome..." autocomplete="off">
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">business</i>Órgão</label>
-                            <input type="text" class="form-control" list="orgaosListDashboard2" id="orgaoDashboard2" placeholder="Digite ou selecione...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ÓRGÃO</label>
+                            <input type="text" class="form-control" list="orgaosListDashboard2" id="orgaoDashboard2" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="orgaosListDashboard2"></datalist>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">info</i>Situação</label>
-                            <select class="form-select" id="situacaoDashboard2">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> SITUAÇÃO</label>
+                            <select class="form-select modern-select" id="situacaoDashboard2">
                                 <option value="">Todas</option>
                                 <option value="ATIVO">Ativo</option>
                                 <option value="CONCLUÍDO">Concluído</option>
@@ -1085,69 +1035,68 @@
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">tag</i>Número do Contrato</label>
-                            <input type="text" class="form-control" id="numeroContratoDashboard2" placeholder="Digite o número...">
+                    <div class="filters-row mt-3">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> NÚMERO DO CONTRATO</label>
+                            <input type="text" class="form-control" id="numeroContratoDashboard2" placeholder="Digite o número..." autocomplete="off">
                         </div>
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">store</i>Fornecedor</label>
-                            <input type="text" class="form-control" list="fornecedoresListDashboard2" id="fornecedorDashboard2" placeholder="Digite o nome...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> FORNECEDOR</label>
+                            <input type="text" class="form-control" list="fornecedoresListDashboard2" id="fornecedorDashboard2" placeholder="Digite o nome..." autocomplete="off">
                             <datalist id="fornecedoresListDashboard2"></datalist>
                         </div>
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">category</i>Tipo do Contrato</label>
-                            <input type="text" class="form-control" list="tiposListDashboard2" id="tipoDashboard2" placeholder="Digite ou selecione...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> TIPO DO CONTRATO</label>
+                            <input type="text" class="form-control" list="tiposListDashboard2" id="tipoDashboard2" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="tiposListDashboard2"></datalist>
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-12 d-flex justify-content-start gap-2">
-                            <button class="btn-search-custom" id="pesquisarFiscais"><i class="material-icons me-2">search</i>Pesquisar</button>
-                            <button class="btn-secondary-custom" id="limparFiltrosDashboard2"><i class="material-icons me-2">close</i>Limpar Filtros</button>
-                        </div>
+                    <div class="botoes-abaixo">
+                        <button class="btn-pesquisa" id="pesquisarFiscais"><i class="material-icons me-2">search</i>Pesquisar</button>
+                        <button class="btn-secondary-custom" id="limparFiltrosDashboard2"><i class="material-icons me-2">close</i>Limpar Filtros</button>
                     </div>
                 </div>
 
                 <!-- Ações -->
-                <div class="actions-container mb-4">
-                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-                        <div class="export-buttons">
-                            <button class="btn-export" id="exportCSVDashboard2"><i class="fas fa-file-csv me-2"></i>CSV</button>
-                            <button class="btn-export" id="printDashboard2"><i class="fas fa-print me-2"></i>PDF</button>
-                            <div class="share-dropdown">
-                                <button class="btn-share" id="shareButton2"><i class="fas fa-share-alt me-2"></i>Compartilhar</button>
-                                <div class="share-options" id="shareOptions2">
-                                    <a href="#" onclick="copiarLink(event)"><i class="fas fa-link"></i> Copiar Link</a>
-                                    <a href="#" onclick="compartilharFacebook(event)"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                    <a href="#" onclick="compartilharTwitter(event)"><i class="fab fa-twitter"></i> Twitter</a>
-                                    <a href="#" onclick="compartilharLinkedIn(event)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                                    <a href="#" onclick="compartilharWhatsApp(event)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+                    <div class="d-flex gap-2">
+                        <button class="btn-export" id="exportCSVDashboard2"><i class="material-icons me-2">description</i>CSV</button>
+                        <button class="btn-export" id="printDashboard2"><i class="material-icons me-2">print</i>PDF</button>
+                        <div class="share-dropdown">
+                            <button class="btn-export" id="shareButton2"><i class="material-icons me-2">share</i>Compartilhar</button>
+                            <div class="share-options" id="shareOptions2">
+                                <a href="#" onclick="copiarLink(event, 2)"><i class="fas fa-link"></i> Copiar Link</a>
+                                <a href="#" onclick="compartilharFacebook(event, 2)"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a href="#" onclick="compartilharTwitter(event, 2)"><i class="fab fa-twitter"></i> Twitter</a>
+                                <a href="#" onclick="compartilharLinkedIn(event, 2)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                                <a href="#" onclick="compartilharWhatsApp(event, 2)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="right-aligned-container">
-                            <div class="search-box-container">
-                                <label>Buscar:</label>
-                                <input type="text" class="search-box" id="searchFiscais" placeholder="Nome, órgão, contrato...">
-                            </div>
-
-                            <select class="items-per-page" id="itemsPerPageDashboard2">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50" selected>50</option>
-                                <option value="100">100</option>
-                            </select>
-                            
-                            <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="table-search-container">
+                            <label style="font-size: 13px; font-weight: 600; color: var(--primary-dark);">Buscar:</label>
+                            <input type="text" class="table-search-input" id="searchFiscais" placeholder="Nome, órgão, contrato...">
                         </div>
+
+                        <select class="items-per-page" id="itemsPerPageDashboard2">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                        </select>
+                        
+                        <span class="table-badge" id="resumoCountDashboard2">0 registros</span>
                     </div>
                 </div>
 
                 <!-- Tabela de Fiscais -->
                 <div class="table-container">
+                    <div class="table-header">
+                        <span class="table-title">FISCAIS DESIGNADOS</span>
+                    </div>
                     <div class="table-fixed-header-container">
                         <table class="table" id="fiscaisTable">
                             <thead>
@@ -1178,10 +1127,10 @@
             <div class="tab-pane fade" id="dashboard3" role="tabpanel">
                 <!-- Filtros -->
                 <div class="filter-container">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">calendar_today</i>Ano</label>
-                            <select class="form-select" id="anoDashboard3">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ANO</label>
+                            <select class="form-select modern-select" id="anoDashboard3">
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -1189,18 +1138,18 @@
                                 <option value="2026" selected>2026</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">tag</i>Número do Contrato</label>
-                            <input type="text" class="form-control" id="numeroContratoDashboard3" placeholder="Digite o número...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> NÚMERO DO CONTRATO</label>
+                            <input type="text" class="form-control" id="numeroContratoDashboard3" placeholder="Digite o número..." autocomplete="off">
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">business</i>Órgão</label>
-                            <input type="text" class="form-control" list="orgaosListDashboard3" id="orgaoDashboard3" placeholder="Digite ou selecione...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> ÓRGÃO</label>
+                            <input type="text" class="form-control" list="orgaosListDashboard3" id="orgaoDashboard3" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="orgaosListDashboard3"></datalist>
                         </div>
-                        <div class="col-md-3">
-                            <label class="filter-label"><i class="material-icons">info</i>Situação</label>
-                            <select class="form-select" id="situacaoDashboard3">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> SITUAÇÃO</label>
+                            <select class="form-select modern-select" id="situacaoDashboard3">
                                 <option value="">Todas</option>
                                 <option value="ATIVO">Ativo</option>
                                 <option value="CONCLUÍDO">Concluído</option>
@@ -1210,69 +1159,64 @@
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">category</i>Tipo do Contrato</label>
-                            <input type="text" class="form-control" list="tiposListDashboard3" id="tipoDashboard3" placeholder="Digite ou selecione...">
+                    <div class="filters-row mt-3">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> TIPO DO CONTRATO</label>
+                            <input type="text" class="form-control" list="tiposListDashboard3" id="tipoDashboard3" placeholder="Digite ou selecione..." autocomplete="off">
                             <datalist id="tiposListDashboard3"></datalist>
                         </div>
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">store</i>Fornecedor</label>
-                            <input type="text" class="form-control" list="fornecedoresListDashboard3" id="fornecedorDashboard3" placeholder="Digite o nome...">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="material-icons"></i> FORNECEDOR</label>
+                            <input type="text" class="form-control" list="fornecedoresListDashboard3" id="fornecedorDashboard3" placeholder="Digite o nome..." autocomplete="off">
                             <datalist id="fornecedoresListDashboard3"></datalist>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="filter-label"><i class="material-icons">attach_money</i>Valor Mínimo</label>
-                            <input type="number" class="form-control" id="valorMinimoDashboard3" placeholder="R$ 0,00" min="0" step="0.01">
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-12 d-flex justify-content-start gap-2">
-                            <button class="btn-search-custom" id="pesquisarContratos"><i class="material-icons me-2">search</i>Pesquisar</button>
-                            <button class="btn-secondary-custom" id="limparFiltrosDashboard3"><i class="material-icons me-2">close</i>Limpar Filtros</button>
-                        </div>
+                    <div class="botoes-abaixo">
+                        <button class="btn-pesquisa" id="pesquisarContratos"><i class="material-icons me-2">search</i>Pesquisar</button>
+                        <button class="btn-secondary-custom" id="limparFiltrosDashboard3"><i class="material-icons me-2">close</i>Limpar Filtros</button>
                     </div>
                 </div>
 
                 <!-- Ações -->
-                <div class="actions-container mb-4">
-                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-                        <div class="export-buttons">
-                            <button class="btn-export" id="exportCSVDashboard3"><i class="fas fa-file-csv me-2"></i>CSV</button>
-                            <button class="btn-export" id="printDashboard3"><i class="fas fa-print me-2"></i>PDF</button>
-                            <div class="share-dropdown">
-                                <button class="btn-share" id="shareButton3"><i class="fas fa-share-alt me-2"></i>Compartilhar</button>
-                                <div class="share-options" id="shareOptions3">
-                                    <a href="#" onclick="copiarLink(event)"><i class="fas fa-link"></i> Copiar Link</a>
-                                    <a href="#" onclick="compartilharFacebook(event)"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                    <a href="#" onclick="compartilharTwitter(event)"><i class="fab fa-twitter"></i> Twitter</a>
-                                    <a href="#" onclick="compartilharLinkedIn(event)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                                    <a href="#" onclick="compartilharWhatsApp(event)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+                    <div class="d-flex gap-2">
+                        <button class="btn-export" id="exportCSVDashboard3"><i class="material-icons me-2">description</i>CSV</button>
+                        <button class="btn-export" id="printDashboard3"><i class="material-icons me-2">print</i>PDF</button>
+                        <div class="share-dropdown">
+                            <button class="btn-export" id="shareButton3"><i class="material-icons me-2">share</i>Compartilhar</button>
+                            <div class="share-options" id="shareOptions3">
+                                <a href="#" onclick="copiarLink(event, 3)"><i class="fas fa-link"></i> Copiar Link</a>
+                                <a href="#" onclick="compartilharFacebook(event, 3)"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a href="#" onclick="compartilharTwitter(event, 3)"><i class="fab fa-twitter"></i> Twitter</a>
+                                <a href="#" onclick="compartilharLinkedIn(event, 3)"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                                <a href="#" onclick="compartilharWhatsApp(event, 3)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="right-aligned-container">
-                            <div class="search-box-container">
-                                <label>Buscar:</label>
-                                <input type="text" class="search-box" id="searchContratos" placeholder="Número, órgão, fornecedor...">
-                            </div>
-
-                            <select class="items-per-page" id="itemsPerPageDashboard3">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50" selected>50</option>
-                                <option value="100">100</option>
-                            </select>
-                            
-                            <span class="table-badge" id="resumoCountDashboard3">0 contratos</span>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="table-search-container">
+                            <label style="font-size: 13px; font-weight: 600; color: var(--primary-dark);">Buscar:</label>
+                            <input type="text" class="table-search-input" id="searchContratos" placeholder="Número, órgão, fornecedor...">
                         </div>
+
+                        <select class="items-per-page" id="itemsPerPageDashboard3">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                        </select>
+                        
+                        <span class="table-badge" id="resumoCountDashboard3">0 contratos</span>
                     </div>
                 </div>
 
                 <!-- Tabela de Contratos -->
                 <div class="table-container">
+                    <div class="table-header">
+                        <span class="table-title">CONTRATOS</span>
+                    </div>
                     <div class="table-fixed-header-container">
                         <table class="table" id="contratosTable">
                             <thead>
@@ -1303,21 +1247,19 @@
             <!-- DASHBOARD 4: DOWNLOADS -->
             <div class="tab-pane fade" id="dashboard4" role="tabpanel">
                 <div class="filter-container">
-                    <h3 class="filter-label mb-3"><i class="material-icons">download</i> Downloads</h3>
-                    
+                     
                     <div class="row g-4">
                         <div class="col-md-6">
                             <div class="card-stats h-100">
-                                <h4 class="fw-bold text-start mb-3">
-                                    <i class="material-icons me-2">cloud_download</i> Dados Completos
-                                </h4>
-                                <p>
+                                <i class="material-icons"></i>
+                                <h4 class="fw-bold text-start mb-3">Downloads dos Dados</h4>
+                                <p class="text-muted" style="font-size: 13px; text-align: justify;">
                                     Arquivo CSV completo com todos os registros de fiscais de contratos do Governo de Minas Gerais.
                                     Selecione o ano desejado para download.
                                 </p>
                                 <div class="row g-2 mt-3">
                                     <div class="col-md-8">
-                                        <select class="form-select" id="anoDownload">
+                                        <select class="form-select modern-select" id="anoDownload">
                                             <option value="">Selecione um ano...</option>
                                             <option value="2022">2022</option>
                                             <option value="2023">2023</option>
@@ -1328,7 +1270,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <button class="btn-primary-custom w-100" id="downloadAnoCSV">
-                                            <i class="material-icons me-2">download</i>Baixar
+                                            <i class="material-icons me-2"></i>Baixar CSV
                                         </button>
                                     </div>
                                 </div>
@@ -1337,18 +1279,17 @@
 
                         <div class="col-md-6">
                             <div class="card-stats h-100">
-                                <h4 class="fw-bold text-start mb-3">
-                                    <i class="material-icons me-2">open_in_new</i> Portal de Dados Abertos
-                                </h4>
-                                <p>
+                                <i class="material-icons"></i>
+                                <h4 class="fw-bold text-start mb-3">Portal de Dados Abertos</h4>
+                                <p class="text-muted" style="font-size: 13px; text-align: justify;">
                                     Acesse o conjunto de dados de fiscais de contratos, documentado conforme especificações Frictionless Data, 
                                     possibilitando a validação automática dos dados e acesso às informações completas.
                                 </p>
                                 <div class="mt-4 text-end">
                                     <a href="https://dados.mg.gov.br/dataset/fiscais_contratos" 
                                        target="_blank" 
-                                       class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2">
-                                        <i class="material-icons me-2" style="font-size: 16px; vertical-align: middle;">launch</i>
+                                       class="btn-export text-decoration-none fw-bold d-inline-flex align-items-center justify-content-center px-4 py-2">
+                                        <i class="material-icons me-2"></i>
                                         Acessar Portal de Dados MG
                                     </a>
                                 </div>
@@ -1357,543 +1298,1193 @@
                     </div>
 
                     <!-- Metadados -->
-                    <div class="card-stats mt-4" style="border-left-color: var(--primary-dark);">
-                        <h5 class="fw-bold mb-3"><i class="material-icons me-2">info</i> Metadados da Tabela</h5>
-                        <div class="row g-2">
-                            <div class="col-md-6">
-                                <div class="info-item"><span class="info-label">Número do Processo Formatado:</span> Número do processo administrativo formatado</div>
-                                <div class="info-item"><span class="info-label">Número do contrato:</span> Número único de identificação do contrato</div>
-                                <div class="info-item"><span class="info-label">Situação do contrato:</span> Estado atual do contrato</div>
-                                <div class="info-item"><span class="info-label">Tipo do Contrato:</span> Categoria do contrato</div>
-                                <div class="info-item"><span class="info-label">Data de Publicação:</span> Data de publicação do contrato</div>
-                                <div class="info-item"><span class="info-label">Data Início de Vigência:</span> Data de início da vigência</div>
-                                <div class="info-item"><span class="info-label">Data Fim de Vigência:</span> Data de término da vigência</div>
-                                <div class="info-item"><span class="info-label">Órgãos Participantes:</span> Órgãos envolvidos</div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-item"><span class="info-label">CNPJ/CPF:</span> Documento do fornecedor</div>
-                                <div class="info-item"><span class="info-label">Nome Fornecedor:</span> Nome da empresa ou pessoa fornecedora</div>
-                                <div class="info-item"><span class="info-label">Unidade Gestora do Contrato:</span> Unidade responsável pela gestão</div>
-                                <div class="info-item"><span class="info-label">Gestores do Contrato:</span> Gestores designados</div>
-                                <div class="info-item"><span class="info-label">Fiscais do Contrato:</span> Fiscais designados</div>
-                                <div class="info-item"><span class="info-label">Objeto:</span> Descrição do objeto do contrato</div>
-                                <div class="info-item"><span class="info-label">Valor inicial / atual:</span> Valores do contrato</div>
-                                <div class="info-item"><span class="info-label">Link Arquivo do Contrato:</span> Link para o arquivo do contrato</div>
-                            </div>
+                    <div class="table-container mt-4">
+                        <div class="table-header">
+                            <span class="table-title">METADADOS - Estrutura de Dados</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Campo</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Número do Processo Formatado</td><td>Número do processo administrativo formatado</td></tr>
+                                    <tr><td>Número do contrato</td><td>Número único de identificação do contrato</td></tr>
+                                    <tr><td>Situação do contrato</td><td>Estado atual do contrato</td></tr>
+                                    <tr><td>Tipo do Contrato</td><td>Categoria do contrato</td></tr>
+                                    <tr><td>Data de Publicação</td><td>Data de publicação do contrato</td></tr>
+                                    <tr><td>Data Início de Vigência</td><td>Data de início da vigência</td></tr>
+                                    <tr><td>Data Fim de Vigência</td><td>Data de término da vigência</td></tr>
+                                    <tr><td>Órgãos Participantes</td><td>Órgãos envolvidos</td></tr>
+                                    <tr><td>CNPJ/CPF</td><td>Documento do fornecedor</td></tr>
+                                    <tr><td>Nome Fornecedor</td><td>Nome da empresa ou pessoa fornecedora</td></tr>
+                                    <tr><td>Unidade Gestora do Contrato</td><td>Unidade responsável pela gestão</td></tr>
+                                    <tr><td>Gestores do Contrato</td><td>Gestores designados</td></tr>
+                                    <tr><td>Fiscais do Contrato</td><td>Fiscais designados</td></tr>
+                                    <tr><td>Objeto</td><td>Descrição do objeto do contrato</td></tr>
+                                    <tr><td>Valor inicial / atual</td><td>Valores do contrato</td></tr>
+                                    <tr><td>Link Arquivo do Contrato</td><td>Link para o arquivo do contrato</td></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- MODAL DE DETALHES DO CONTRATO -->
-    <div class="modal fade" id="contratoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content modal-creative">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="material-icons me-2">description</i> Detalhes do Contrato</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="contratoModalContent"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal"><i class="material-icons me-2">close</i>Fechar</button>
-                </div>
+<!-- ==================== MODAL DE DETALHES DO CONTRATO ==================== -->
+<div class="modal fade" id="contratoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-creative">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="material-icons me-2">description</i> Detalhes do Contrato</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="contratoModalContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal"><i class="material-icons me-2">close</i>Fechar</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- MODAL DE DETALHES DO FISCAL -->
-    <div class="modal fade" id="fiscalModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content modal-creative">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="material-icons me-2">badge</i> Detalhes do Fiscal</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="fiscalModalContent"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal"><i class="material-icons me-2">close</i>Fechar</button>
-                </div>
+<!-- ==================== MODAL DE DETALHES DO FISCAL ==================== -->
+<div class="modal fade" id="fiscalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-creative">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="material-icons me-2">badge</i> Detalhes do Fiscal</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="fiscalModalContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal"><i class="material-icons me-2">close</i>Fechar</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- LOADING OVERLAY -->
-    <div class="loading-overlay" id="loadingOverlay" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; justify-content:center; align-items:center;">
-        <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Carregando...</span></div>
-    </div>
+<!-- ==================== INDICADOR DE CARREGAMENTO ==================== -->
+<div class="loading-indicator" id="loadingIndicator">
+    <div class="spinner-small"></div>
+    <span>Carregando dados...</span>
+</div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // ============================================
-        // VARIÁVEIS GLOBAIS
-        // ============================================
-        let contratosData = [];
-        let filteredData = [];
-        let allData = {};
-        let charts = {};
-        
-        let currentPageDashboard1 = 1;
-        let currentPageDashboard2 = 1;
-        let currentPageDashboard3 = 1;
-        let itemsPerPageDashboard1 = 50;
-        let itemsPerPageDashboard2 = 50;
-        let itemsPerPageDashboard3 = 50;
-        let currentYear = '2026';
-        
-        let currentSortDashboard1 = { column: 'orgao', order: 'asc' };
-        let currentSortDashboard2 = { column: 'nome_fiscal', order: 'asc' };
-        let currentSortDashboard3 = { column: 'numero_contrato', order: 'asc' };
-        
-        const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/fiscais_contratos/main/dataset/data/';
-        
-        const CSV_FILES_BY_YEAR = {
-            '2022': 'fiscais_contratos_2022.csv',
-            '2023': 'fiscais_contratos_2023.csv',
-            '2024': 'fiscais_contratos_2024.csv',
-            '2025': 'fiscais_contratos_2025.csv',
-            '2026': 'fiscais_contratos_2026.csv'
-        };
+<script>
+    // ============================================
+    // VARIÁVEIS GLOBAIS
+    // ============================================
+    let contratosData = [];
+    let filteredData = [];
+    let allData = {};
+    let charts = {};
+    
+    let currentPageDashboard1 = 1;
+    let currentPageDashboard2 = 1;
+    let currentPageDashboard3 = 1;
+    let itemsPerPageDashboard1 = 50;
+    let itemsPerPageDashboard2 = 50;
+    let itemsPerPageDashboard3 = 50;
+    let currentYear = '2026';
+    
+    let currentSortDashboard1 = { column: 'orgao', order: 'asc' };
+    let currentSortDashboard2 = { column: 'nome_fiscal', order: 'asc' };
+    let currentSortDashboard3 = { column: 'numero_contrato', order: 'asc' };
+    
+    // Timeouts para busca automática
+    let searchTimeout;
+    let filterTimeout;
+    
+    const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/fiscais_contratos/main/dataset/data/';
+    
+    const CSV_FILES_BY_YEAR = {
+        '2022': 'fiscais_contratos_2022.csv',
+        '2023': 'fiscais_contratos_2023.csv',
+        '2024': 'fiscais_contratos_2024.csv',
+        '2025': 'fiscais_contratos_2025.csv',
+        '2026': 'fiscais_contratos_2026.csv'
+    };
 
-        const chartColors = [
-            '#29435A', '#2F5D8A', '#4A7DAA', '#2F7A5C', '#5A8F6E',
-            '#D97A30', '#C65A2C', '#A8323A', '#6B5B95', '#20B2AA'
-        ];
+    const chartColors = [
+        '#29435A', '#2F5D8A', '#4A7DAA', '#2F7A5C', '#5A8F6E',
+        '#D97A30', '#C65A2C', '#A8323A', '#6B5B95', '#20B2AA'
+    ];
 
-        // ==================== FUNÇÕES AUXILIARES ====================
-        function showLoading(show) {
-            document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
-        }
-
-        function updateDataAtualizacao() {
-            const now = new Date();
-            document.getElementById('data-atualizacao-header').textContent = 
-                now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
-        }
-
-        function formatCurrency(value) {
-            return value?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || 'R$ 0,00';
-        }
-
-        function formatDate(dateStr) {
-            if (!dateStr) return 'N/A';
-            try {
-                return new Date(dateStr).toLocaleDateString('pt-BR');
-            } catch {
-                return dateStr;
+    // ==================== FUNÇÕES AUXILIARES ====================
+    function showLoading(show) {
+        const indicator = document.getElementById('loadingIndicator');
+        if (indicator) {
+            if (show) {
+                indicator.classList.add('show');
+            } else {
+                indicator.classList.remove('show');
             }
         }
+    }
 
-        function getSituacaoBadge(situacao) {
-            const s = situacao?.toLowerCase() || '';
-            if (s.includes('ativo')) return '<span class="badge-status badge-ativo">ATIVO</span>';
-            if (s.includes('concluído') || s.includes('concluido')) return '<span class="badge-status badge-concluido">CONCLUÍDO</span>';
-            if (s.includes('suspenso')) return '<span class="badge-status badge-suspenso">SUSPENSO</span>';
-            if (s.includes('rescindido')) return '<span class="badge-status badge-rescindido">RESCINDIDO</span>';
-            return `<span class="badge-status">${situacao?.toUpperCase() || 'N/A'}</span>`;
+    function updateDataAtualizacao() {
+        const now = new Date();
+        document.getElementById('data-atualizacao-header').textContent = 
+            now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+    }
+
+    function formatCurrency(value) {
+        if (isNaN(value) || value === null || value === undefined) return 'R$ 0,00';
+        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return 'N/A';
+        try {
+            return new Date(dateStr).toLocaleDateString('pt-BR');
+        } catch {
+            return dateStr;
+        }
+    }
+
+    function getSituacaoBadge(situacao) {
+        const s = situacao?.toLowerCase() || '';
+        if (s.includes('ativo')) return '<span class="badge-status badge-ativo">ATIVO</span>';
+        if (s.includes('concluído') || s.includes('concluido')) return '<span class="badge-status badge-concluido">CONCLUÍDO</span>';
+        if (s.includes('suspenso')) return '<span class="badge-status badge-suspenso">SUSPENSO</span>';
+        if (s.includes('rescindido')) return '<span class="badge-status badge-rescindido">RESCINDIDO</span>';
+        return `<span class="badge-status">${situacao?.toUpperCase() || 'N/A'}</span>`;
+    }
+
+    function getTipoTag(tipo) {
+        if (!tipo) return '';
+        const t = tipo.toLowerCase();
+        if (t.includes('obra')) return '<span class="tag-tipo tag-obras">OBRAS</span>';
+        if (t.includes('serviço') || t.includes('servico')) return '<span class="tag-tipo tag-servicos">SERVIÇOS</span>';
+        if (t.includes('compra')) return '<span class="tag-tipo tag-compra">COMPRA</span>';
+        return '<span class="tag-tipo tag-administrativo">ADMINISTRATIVO</span>';
+    }
+
+    // ==================== CARREGAMENTO DE DADOS ====================
+    async function loadYearData(year) {
+        if (allData[year]) {
+            contratosData = allData[year];
+            filteredData = contratosData;
+            return;
         }
 
-        function getTipoTag(tipo) {
-            if (!tipo) return '';
-            const t = tipo.toLowerCase();
-            if (t.includes('obra')) return '<span class="tag-tipo tag-obras">OBRAS</span>';
-            if (t.includes('serviço') || t.includes('servico')) return '<span class="tag-tipo tag-servicos">SERVIÇOS</span>';
-            if (t.includes('compra')) return '<span class="tag-tipo tag-compra">COMPRA</span>';
-            return '<span class="tag-tipo tag-administrativo">ADMINISTRATIVO</span>';
+        const filename = CSV_FILES_BY_YEAR[year];
+        const url = `${GITHUB_BASE_URL}${filename}`;
+
+        return new Promise((resolve, reject) => {
+            Papa.parse(url, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    const data = results.data.map(row => ({
+                        'Número do Processo Formatado': row.numero_do_processo_formatado || row.numero_processo || '',
+                        'Número do contrato': row.numero_do_contrato || row.numero_contrato || row.contrato || '',
+                        'Situação do contrato': row.situacao_do_contrato || row.situacao || '',
+                        'Tipo do Contrato': row.tipo_do_contrato || row.tipo || '',
+                        'Data de Publicação': row.data_de_publicacao || row.data_publicacao || '',
+                        'Data Início de Vigência': row.data_inicio_de_vigencia || row.data_inicio || '',
+                        'Data Fim de Vigência': row.data_fim_de_vigencia || row.data_fim || '',
+                        'Órgãos Participantes': row.orgaos_participantes || row.orgao || '',
+                        'CNPJ/CPF': row['CNPJ/CPF'] || row.cnpj_cpf || '',
+                        'Nome Fornecedor': row.nome_fornecedor || row.fornecedor || '',
+                        'Unidade Gestora do Contrato': row.unidade_gestora_do_contrato || row.unidade_gestora || '',
+                        'Gestores do Contrato (Portal de Compras)': row['gestores_do_contrato_portal_de_compras)'] || row.gestores || '',
+                        'Fiscais do Contrato': row.fiscais_do_contrato || row.fiscais || '',
+                        'Objeto': row.Objeto || row.objeto || '',
+                        'Valor inicial': parseFloat(row.valor_inicial?.replace(',', '.') || 0),
+                        'Valor atual': parseFloat(row.valor_atual?.replace(',', '.') || row.valor?.replace(',', '.') || 0),
+                        'Link Arquivo do Contrato': row.link_arquivo_do_contrato || row.link || '',
+                        'ANO': year
+                    })).filter(c => c['Número do contrato']);
+
+                    allData[year] = data;
+                    contratosData = data;
+                    filteredData = contratosData;
+                    console.log(`Carregados ${data.length} registros de ${year}`);
+                    resolve();
+                },
+                error: reject
+            });
+        });
+    }
+
+    // ==================== COMPARTILHAMENTO ====================
+    window.copiarLink = function(e, id) {
+        e?.preventDefault();
+        navigator.clipboard.writeText(window.location.href).then(() => alert('Link copiado!'));
+        document.getElementById(`shareOptions${id}`)?.classList.remove('show');
+    };
+
+    window.compartilharFacebook = function(e, id) {
+        e?.preventDefault();
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+        document.getElementById(`shareOptions${id}`)?.classList.remove('show');
+    };
+
+    window.compartilharTwitter = function(e, id) {
+        e?.preventDefault();
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais')}`, '_blank');
+        document.getElementById(`shareOptions${id}`)?.classList.remove('show');
+    };
+
+    window.compartilharLinkedIn = function(e, id) {
+        e?.preventDefault();
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+        document.getElementById(`shareOptions${id}`)?.classList.remove('show');
+    };
+
+    window.compartilharWhatsApp = function(e, id) {
+        e?.preventDefault();
+        window.open(`https://wa.me/?text=${encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais ' + window.location.href)}`, '_blank');
+        document.getElementById(`shareOptions${id}`)?.classList.remove('show');
+    };
+
+    // ==================== INICIALIZAÇÃO ====================
+    document.addEventListener('DOMContentLoaded', async function() {
+        showLoading(true);
+        
+        try {
+            await loadYearData('2026');
+            updateDataAtualizacao();
+            updateFilterOptions();
+            updateDashboard1();
+	    updateDashboard2();
+	    updateDashboard3();
+            setupEventListeners();
+            initializeShareButtons();
+            
+            // Atualizar automaticamente quando mudar de ano
+            document.getElementById('anoDashboard1').addEventListener('change', async function() {
+                await handleYearChange(this.value);
+                updateDashboard1();
+            });
+            
+            document.getElementById('anoDashboard2').addEventListener('change', async function() {
+                await handleYearChange(this.value);
+                updateDashboard2();
+            });
+            
+            document.getElementById('anoDashboard3').addEventListener('change', async function() {
+                await handleYearChange(this.value);
+                updateDashboard3();
+            });
+            
+            // Filtros automáticos com debounce
+            setupAutomaticFilters();
+            
+        } catch (error) {
+            console.error('Erro:', error);
+        } finally {
+            showLoading(false);
         }
+    });
 
-        // ==================== CARREGAMENTO DE DADOS ====================
-        async function loadYearData(year) {
-            if (allData[year]) {
-                contratosData = allData[year];
-                filteredData = contratosData;
-                return;
-            }
+    async function handleYearChange(year) {
+        if (year !== currentYear) {
+            showLoading(true);
+            await loadYearData(year);
+            currentYear = year;
+            updateFilterOptions();
+            showLoading(false);
+        }
+    }
 
-            const filename = CSV_FILES_BY_YEAR[year];
-            const url = `${GITHUB_BASE_URL}${filename}`;
-
-            return new Promise((resolve, reject) => {
-                Papa.parse(url, {
-                    download: true,
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function(results) {
-                        const data = results.data.map(row => ({
-                            'Número do Processo Formatado': row.numero_do_processo_formatado || row.numero_processo || '',
-                            'Número do contrato': row.numero_do_contrato || row.numero_contrato || row.contrato || '',
-                            'Situação do contrato': row.situacao_do_contrato || row.situacao || '',
-                            'Tipo do Contrato': row.tipo_do_contrato || row.tipo || '',
-                            'Data de Publicação': row.data_de_publicacao || row.data_publicacao || '',
-                            'Data Início de Vigência': row.data_inicio_de_vigencia || row.data_inicio || '',
-                            'Data Fim de Vigência': row.data_fim_de_vigencia || row.data_fim || '',
-                            'Órgãos Participantes': row.orgaos_participantes || row.orgao || '',
-                            'CNPJ/CPF': row['CNPJ/CPF'] || row.cnpj_cpf || '',
-                            'Nome Fornecedor': row.nome_fornecedor || row.fornecedor || '',
-                            'Unidade Gestora do Contrato': row.unidade_gestora_do_contrato || row.unidade_gestora || '',
-                            'Gestores do Contrato (Portal de Compras)': row['gestores_do_contrato_portal_de_compras)'] || row.gestores || '',
-                            'Fiscais do Contrato': row.fiscais_do_contrato || row.fiscais || '',
-                            'Objeto': row.Objeto || row.objeto || '',
-                            'Valor inicial': parseFloat(row.valor_inicial?.replace(',', '.') || 0),
-                            'Valor atual': parseFloat(row.valor_atual?.replace(',', '.') || row.valor?.replace(',', '.') || 0),
-                            'Link Arquivo do Contrato': row.link_arquivo_do_contrato || row.link || '',
-                            'ANO': year
-                        })).filter(c => c['Número do contrato']);
-
-                        allData[year] = data;
-                        contratosData = data;
-                        filteredData = contratosData;
-                        console.log(`Carregados ${data.length} registros de ${year}`);
-                        resolve();
-                    },
-                    error: reject
-                });
+function setupAutomaticFilters() {
+    // Dashboard 2 - TODOS os filtros automáticos
+    const fiscalInputs = [
+        'nomeFiscal', 
+        'orgaoDashboard2', 
+        'numeroContratoDashboard2', 
+        'fornecedorDashboard2', 
+        'tipoDashboard2'
+    ];
+    
+    fiscalInputs.forEach(id => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.addEventListener('input', function() {
+                clearTimeout(filterTimeout);
+                filterTimeout = setTimeout(() => {
+                    applyFilters('dashboard2');
+                }, 500);
             });
         }
+    });
 
-        // ==================== COMPARTILHAMENTO ====================
-        window.copiarLink = function(e) {
-            e?.preventDefault();
-            navigator.clipboard.writeText(window.location.href).then(() => alert('Link copiado!'));
-            document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-        };
+    // Select de situação do Dashboard 2
+    const situacao2 = document.getElementById('situacaoDashboard2');
+    if (situacao2) {
+        situacao2.addEventListener('change', function() {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(() => {
+                applyFilters('dashboard2');
+            }, 300);
+        });
+    }
 
-        window.compartilharFacebook = function(e) {
-            e?.preventDefault();
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-            document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-        };
-
-        window.compartilharTwitter = function(e) {
-            e?.preventDefault();
-            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais')}`, '_blank');
-            document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-        };
-
-        window.compartilharLinkedIn = function(e) {
-            e?.preventDefault();
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
-            document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-        };
-
-        window.compartilharWhatsApp = function(e) {
-            e?.preventDefault();
-            window.open(`https://wa.me/?text=${encodeURIComponent('Fiscais de Contratos - Governo de Minas Gerais ' + window.location.href)}`, '_blank');
-            document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-        };
-
-        // ==================== INICIALIZAÇÃO ====================
-        document.addEventListener('DOMContentLoaded', async function() {
+    // Select de ano do Dashboard 2
+    const ano2 = document.getElementById('anoDashboard2');
+    if (ano2) {
+        ano2.addEventListener('change', async function() {
             showLoading(true);
-            
-            try {
-                await loadYearData('2026');
-                updateDataAtualizacao();
-                updateFilterOptions();
-                updateDashboard1();
-                setupEventListeners();
-                initializeShareButtons();
-            } catch (error) {
-                console.error('Erro:', error);
-            } finally {
-                showLoading(false);
+            await handleYearChange(this.value);
+            applyFilters('dashboard2');
+            showLoading(false);
+        });
+    }
+
+    // Dashboard 3 - TODOS os filtros automáticos
+    const contratoInputs = [
+        'numeroContratoDashboard3', 
+        'orgaoDashboard3', 
+        'fornecedorDashboard3', 
+        'tipoDashboard3', 
+        'valorMinimoDashboard3'
+    ];
+    
+    contratoInputs.forEach(id => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.addEventListener('input', function() {
+                clearTimeout(filterTimeout);
+                filterTimeout = setTimeout(() => {
+                    applyFilters('dashboard3');
+                }, 500);
+            });
+        }
+    });
+
+    // Select de situação do Dashboard 3
+    const situacao3 = document.getElementById('situacaoDashboard3');
+    if (situacao3) {
+        situacao3.addEventListener('change', function() {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(() => {
+                applyFilters('dashboard3');
+            }, 300);
+        });
+    }
+
+    // Select de ano do Dashboard 3
+    const ano3 = document.getElementById('anoDashboard3');
+    if (ano3) {
+        ano3.addEventListener('change', async function() {
+            showLoading(true);
+            await handleYearChange(this.value);
+            applyFilters('dashboard3');
+            showLoading(false);
+        });
+    }
+}
+
+    function initializeShareButtons() {
+        [1, 2, 3].forEach(id => {
+            const btn = document.getElementById(`shareButton${id}`);
+            if (btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
+                    document.getElementById(`shareOptions${id}`).classList.toggle('show');
+                });
             }
         });
 
-        function initializeShareButtons() {
-            ['shareButton1', 'shareButton2', 'shareButton3'].forEach((id, index) => {
-                const btn = document.getElementById(id);
-                if (btn) {
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-                        document.getElementById(`shareOptions${index + 1}`).classList.toggle('show');
-                    });
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.share-dropdown')) {
+                document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
+            }
+        });
+    }
+
+    function updateFilterOptions() {
+        const orgaos = [...new Set(contratosData.map(c => c['Órgãos Participantes']))].filter(Boolean).sort();
+        const tipos = [...new Set(contratosData.map(c => c['Tipo do Contrato']))].filter(Boolean).sort();
+        const fornecedores = [...new Set(contratosData.map(c => c['Nome Fornecedor']))].filter(Boolean).sort();
+
+        ['Dashboard1', 'Dashboard2', 'Dashboard3'].forEach(suffix => {
+            const orgaoList = document.getElementById(`orgaosList${suffix}`);
+            const tipoList = document.getElementById(`tiposList${suffix}`);
+            if (orgaoList) orgaoList.innerHTML = orgaos.map(o => `<option value="${o}">`).join('');
+            if (tipoList) tipoList.innerHTML = tipos.map(t => `<option value="${t}">`).join('');
+        });
+
+        const fornecedorList2 = document.getElementById('fornecedoresListDashboard2');
+        const fornecedorList3 = document.getElementById('fornecedoresListDashboard3');
+        if (fornecedorList2) fornecedorList2.innerHTML = fornecedores.map(f => `<option value="${f}">`).join('');
+        if (fornecedorList3) fornecedorList3.innerHTML = fornecedores.map(f => `<option value="${f}">`).join('');
+    }
+
+    function setupEventListeners() {
+        document.getElementById('aplicarFiltros').addEventListener('click', () => applyFilters('dashboard1'));
+        document.getElementById('limparFiltros').addEventListener('click', clearAllFilters);
+        document.getElementById('pesquisarFiscais').addEventListener('click', () => applyFilters('dashboard2'));
+        document.getElementById('limparFiltrosDashboard2').addEventListener('click', clearDashboard2Filters);
+        document.getElementById('pesquisarContratos').addEventListener('click', () => applyFilters('dashboard3'));
+        document.getElementById('limparFiltrosDashboard3').addEventListener('click', clearDashboard3Filters);
+        document.getElementById('downloadAnoCSV').addEventListener('click', downloadYearCSV);
+
+        ['Dashboard1', 'Dashboard2', 'Dashboard3'].forEach(dash => {
+            document.getElementById(`exportCSV${dash}`).addEventListener('click', () => exportToCSV(dash));
+            document.getElementById(`print${dash}`).addEventListener('click', () => printDashboard(dash));
+            document.getElementById(`itemsPerPage${dash}`).addEventListener('change', function() {
+                if (dash === 'Dashboard1') {
+                    itemsPerPageDashboard1 = parseInt(this.value);
+                    currentPageDashboard1 = 1;
+                    updateResumoTable();
+                }
+                if (dash === 'Dashboard2') {
+                    itemsPerPageDashboard2 = parseInt(this.value);
+                    currentPageDashboard2 = 1;
+                    updateFiscaisTable();
+                }
+                if (dash === 'Dashboard3') {
+                    itemsPerPageDashboard3 = parseInt(this.value);
+                    currentPageDashboard3 = 1;
+                    updateContratosTable();
                 }
             });
+        });
 
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.share-dropdown')) {
-                    document.querySelectorAll('.share-options').forEach(opt => opt.classList.remove('show'));
-                }
-            });
-        }
-
-        function updateFilterOptions() {
-            const orgaos = [...new Set(contratosData.map(c => c['Órgãos Participantes']))].filter(Boolean).sort();
-            const tipos = [...new Set(contratosData.map(c => c['Tipo do Contrato']))].filter(Boolean).sort();
-            const fornecedores = [...new Set(contratosData.map(c => c['Nome Fornecedor']))].filter(Boolean).sort();
-
-            ['Dashboard1', 'Dashboard2', 'Dashboard3'].forEach(suffix => {
-                const orgaoList = document.getElementById(`orgaosList${suffix}`);
-                const tipoList = document.getElementById(`tiposList${suffix}`);
-                if (orgaoList) orgaoList.innerHTML = orgaos.map(o => `<option value="${o}">`).join('');
-                if (tipoList) tipoList.innerHTML = tipos.map(t => `<option value="${t}">`).join('');
-            });
-
-            const fornecedorList2 = document.getElementById('fornecedoresListDashboard2');
-            const fornecedorList3 = document.getElementById('fornecedoresListDashboard3');
-            if (fornecedorList2) fornecedorList2.innerHTML = fornecedores.map(f => `<option value="${f}">`).join('');
-            if (fornecedorList3) fornecedorList3.innerHTML = fornecedores.map(f => `<option value="${f}">`).join('');
-        }
-
-        function setupEventListeners() {
-            document.getElementById('aplicarFiltros').addEventListener('click', () => applyFilters('dashboard1'));
-            document.getElementById('limparFiltros').addEventListener('click', clearAllFilters);
-            document.getElementById('pesquisarFiscais').addEventListener('click', () => applyFilters('dashboard2'));
-            document.getElementById('limparFiltrosDashboard2').addEventListener('click', clearDashboard2Filters);
-            document.getElementById('pesquisarContratos').addEventListener('click', () => applyFilters('dashboard3'));
-            document.getElementById('limparFiltrosDashboard3').addEventListener('click', clearDashboard3Filters);
-            document.getElementById('downloadAnoCSV').addEventListener('click', downloadYearCSV);
-
-            ['Dashboard1', 'Dashboard2', 'Dashboard3'].forEach(dash => {
-                document.getElementById(`exportCSV${dash}`).addEventListener('click', () => exportToCSV(dash));
-                document.getElementById(`print${dash}`).addEventListener('click', () => printDashboard(dash));
-                document.getElementById(`itemsPerPage${dash}`).addEventListener('change', function() {
-                    if (dash === 'Dashboard1') itemsPerPageDashboard1 = parseInt(this.value);
-                    if (dash === 'Dashboard2') itemsPerPageDashboard2 = parseInt(this.value);
-                    if (dash === 'Dashboard3') itemsPerPageDashboard3 = parseInt(this.value);
-                    if (dash === 'Dashboard1') updateResumoTable();
-                    if (dash === 'Dashboard2') updateFiscaisTable();
-                    if (dash === 'Dashboard3') updateContratosTable();
-                });
-            });
-
-            document.getElementById('searchResumo').addEventListener('input', function(e) {
+        document.getElementById('searchResumo').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
                 filterResumoTable(e.target.value.toLowerCase());
-            });
+            }, 300);
+        });
 
-            document.getElementById('searchFiscais').addEventListener('input', function(e) {
+        document.getElementById('searchFiscais').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
                 filterFiscaisTable(e.target.value.toLowerCase());
-            });
+            }, 300);
+        });
 
-            document.getElementById('searchContratos').addEventListener('input', function(e) {
+        document.getElementById('searchContratos').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
                 filterContratosTable(e.target.value.toLowerCase());
+            }, 300);
+        });
+    }
+
+    // ==================== FILTROS ====================
+    function applyFilters(dashboard) {
+        let baseData = allData[currentYear] || [];
+        let filtered = baseData;
+
+        if (dashboard === 'dashboard1') {
+            const orgao = document.getElementById('orgaoDashboard1').value;
+            const situacao = document.getElementById('situacaoDashboard1').value;
+            const tipo = document.getElementById('tipoDashboard1').value;
+
+            filtered = baseData.filter(c => {
+                if (orgao && c['Órgãos Participantes'] !== orgao) return false;
+                if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
+                if (tipo && c['Tipo do Contrato'] !== tipo) return false;
+                return true;
             });
-
-            ['anoDashboard1', 'anoDashboard2', 'anoDashboard3'].forEach(id => {
-                document.getElementById(id).addEventListener('change', async function() {
-                    if (this.value !== currentYear) {
-                        showLoading(true);
-                        await loadYearData(this.value);
-                        currentYear = this.value;
-                        updateFilterOptions();
-                        updateDashboard1();
-                        updateDashboard2();
-                        updateDashboard3();
-                        showLoading(false);
-                    }
-                });
-            });
-        }
-
-        // ==================== FILTROS ====================
-        function applyFilters(dashboard) {
-            let baseData = allData[currentYear] || [];
-            let filtered = baseData;
-
-            if (dashboard === 'dashboard1') {
-                const orgao = document.getElementById('orgaoDashboard1').value;
-                const situacao = document.getElementById('situacaoDashboard1').value;
-                const tipo = document.getElementById('tipoDashboard1').value;
-
-                filtered = baseData.filter(c => {
-                    if (orgao && c['Órgãos Participantes'] !== orgao) return false;
-                    if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
-                    if (tipo && c['Tipo do Contrato'] !== tipo) return false;
-                    return true;
-                });
-                filteredData = filtered;
-                updateDashboard1();
-            } else if (dashboard === 'dashboard2') {
-                const nome = document.getElementById('nomeFiscal').value.toLowerCase();
-                const orgao = document.getElementById('orgaoDashboard2').value;
-                const situacao = document.getElementById('situacaoDashboard2').value;
-                const numeroContrato = document.getElementById('numeroContratoDashboard2').value;
-                const fornecedor = document.getElementById('fornecedorDashboard2').value;
-                const tipo = document.getElementById('tipoDashboard2').value;
-
-                filtered = baseData.filter(c => {
-                    const fiscais = (c['Fiscais do Contrato'] || '').toLowerCase();
-                    if (nome && !fiscais.includes(nome)) return false;
-                    if (orgao && c['Órgãos Participantes'] !== orgao) return false;
-                    if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
-                    if (numeroContrato && !c['Número do contrato'].toString().includes(numeroContrato)) return false;
-                    if (fornecedor && c['Nome Fornecedor'] !== fornecedor) return false;
-                    if (tipo && c['Tipo do Contrato'] !== tipo) return false;
-                    return true;
-                });
-                filteredData = filtered;
-                updateDashboard2();
-            } else if (dashboard === 'dashboard3') {
-                const numeroContrato = document.getElementById('numeroContratoDashboard3').value;
-                const orgao = document.getElementById('orgaoDashboard3').value;
-                const situacao = document.getElementById('situacaoDashboard3').value;
-                const tipo = document.getElementById('tipoDashboard3').value;
-                const fornecedor = document.getElementById('fornecedorDashboard3').value;
-                const valorMinimo = parseFloat(document.getElementById('valorMinimoDashboard3').value) || 0;
-
-                filtered = baseData.filter(c => {
-                    if (numeroContrato && !c['Número do contrato'].toString().includes(numeroContrato)) return false;
-                    if (orgao && c['Órgãos Participantes'] !== orgao) return false;
-                    if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
-                    if (tipo && c['Tipo do Contrato'] !== tipo) return false;
-                    if (fornecedor && c['Nome Fornecedor'] !== fornecedor) return false;
-                    if (c['Valor atual'] < valorMinimo) return false;
-                    return true;
-                });
-                filteredData = filtered;
-                updateDashboard3();
-            }
-        }
-
-        function clearAllFilters() {
-            document.getElementById('anoDashboard1').value = '2026';
-            document.getElementById('orgaoDashboard1').value = '';
-            document.getElementById('situacaoDashboard1').value = '';
-            document.getElementById('tipoDashboard1').value = '';
-            document.getElementById('searchResumo').value = '';
-            filteredData = allData['2026'] || [];
+            filteredData = filtered;
             updateDashboard1();
-        }
+        } else if (dashboard === 'dashboard2') {
+            const nome = document.getElementById('nomeFiscal').value.toLowerCase();
+            const orgao = document.getElementById('orgaoDashboard2').value;
+            const situacao = document.getElementById('situacaoDashboard2').value;
+            const numeroContrato = document.getElementById('numeroContratoDashboard2').value;
+            const fornecedor = document.getElementById('fornecedorDashboard2').value;
+            const tipo = document.getElementById('tipoDashboard2').value;
 
-        function clearDashboard2Filters() {
-            document.getElementById('anoDashboard2').value = '2026';
-            document.getElementById('nomeFiscal').value = '';
-            document.getElementById('orgaoDashboard2').value = '';
-            document.getElementById('situacaoDashboard2').value = '';
-            document.getElementById('numeroContratoDashboard2').value = '';
-            document.getElementById('fornecedorDashboard2').value = '';
-            document.getElementById('tipoDashboard2').value = '';
-            document.getElementById('searchFiscais').value = '';
-            filteredData = allData['2026'] || [];
-            updateDashboard2();
-        }
-
-        function clearDashboard3Filters() {
-            document.getElementById('anoDashboard3').value = '2026';
-            document.getElementById('numeroContratoDashboard3').value = '';
-            document.getElementById('orgaoDashboard3').value = '';
-            document.getElementById('situacaoDashboard3').value = '';
-            document.getElementById('tipoDashboard3').value = '';
-            document.getElementById('fornecedorDashboard3').value = '';
-            document.getElementById('valorMinimoDashboard3').value = '';
-            document.getElementById('searchContratos').value = '';
-            filteredData = allData['2026'] || [];
-            updateDashboard3();
-        }
-
-        function filterResumoTable(term) {
-            if (!term) {
-                updateResumoTable();
-                return;
-            }
-            const grupos = {};
-            filteredData.forEach(c => {
-                const orgao = c['Órgãos Participantes'] || 'Não Informado';
-                if (orgao.toLowerCase().includes(term)) {
-                    if (!grupos[orgao]) {
-                        grupos[orgao] = { orgao, contratos: 0, fiscaisSet: new Set(), valor_total: 0 };
-                    }
-                    grupos[orgao].contratos++;
-                    grupos[orgao].valor_total += c['Valor atual'] || 0;
-                    (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
-                        if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
-                    });
-                }
+            filtered = baseData.filter(c => {
+                const fiscais = (c['Fiscais do Contrato'] || '').toLowerCase();
+                if (nome && !fiscais.includes(nome)) return false;
+                if (orgao && c['Órgãos Participantes'] !== orgao) return false;
+                if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
+                if (numeroContrato && !c['Número do contrato'].toString().includes(numeroContrato)) return false;
+                if (fornecedor && c['Nome Fornecedor'] !== fornecedor) return false;
+                if (tipo && c['Tipo do Contrato'] !== tipo) return false;
+                return true;
             });
-            filteredData = allData[currentYear]?.filter(c => 
-                Object.keys(grupos).includes(c['Órgãos Participantes'])
-            ) || [];
-            updateResumoTable();
-            filteredData = allData[currentYear] || [];
-        }
-
-        function filterFiscaisTable(term) {
-            if (!term) {
-                updateFiscaisTable();
-                return;
-            }
-            const fiscaisMap = new Map();
-            filteredData.forEach(c => {
-                (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
-                    f = f.trim();
-                    if (f && (f.toLowerCase().includes(term) || 
-                        c['Órgãos Participantes'].toLowerCase().includes(term) ||
-                        c['Número do contrato'].toString().includes(term))) {
-                        const key = `${f}|${c['Número do contrato']}`;
-                        if (!fiscaisMap.has(key)) {
-                            fiscaisMap.set(key, {
-                                nome_fiscal: f,
-                                orgao: c['Órgãos Participantes'],
-                                numero_contrato: c['Número do contrato'],
-                                fornecedor: c['Nome Fornecedor'],
-                                situacao: c['Situação do contrato'],
-                                valor_atual: c['Valor atual'] || 0
-                            });
-                        }
-                    }
-                });
-            });
-            filteredData = allData[currentYear]?.filter(c => 
-                [...fiscaisMap.values()].some(f => f.numero_contrato === c['Número do contrato'])
-            ) || [];
+            filteredData = filtered;
+            currentPageDashboard2 = 1;
             updateFiscaisTable();
-            filteredData = allData[currentYear] || [];
-        }
+        } else if (dashboard === 'dashboard3') {
+            const numeroContrato = document.getElementById('numeroContratoDashboard3').value;
+            const orgao = document.getElementById('orgaoDashboard3').value;
+            const situacao = document.getElementById('situacaoDashboard3').value;
+            const tipo = document.getElementById('tipoDashboard3').value;
+            const fornecedor = document.getElementById('fornecedorDashboard3').value;
+            const valorMinimo = parseFloat(document.getElementById('valorMinimoDashboard3').value) || 0;
 
-        function filterContratosTable(term) {
-            if (!term) {
-                updateContratosTable();
-                return;
-            }
-            filteredData = (allData[currentYear] || []).filter(c => 
-                c['Número do contrato'].toString().toLowerCase().includes(term) ||
-                c['Órgãos Participantes'].toLowerCase().includes(term) ||
-                c['Nome Fornecedor'].toLowerCase().includes(term) ||
-                (c['Objeto'] || '').toLowerCase().includes(term)
-            );
+            filtered = baseData.filter(c => {
+                if (numeroContrato && !c['Número do contrato'].toString().includes(numeroContrato)) return false;
+                if (orgao && c['Órgãos Participantes'] !== orgao) return false;
+                if (situacao && !c['Situação do contrato'].toLowerCase().includes(situacao.toLowerCase())) return false;
+                if (tipo && c['Tipo do Contrato'] !== tipo) return false;
+                if (fornecedor && c['Nome Fornecedor'] !== fornecedor) return false;
+                if (c['Valor atual'] < valorMinimo) return false;
+                return true;
+            });
+            filteredData = filtered;
+            currentPageDashboard3 = 1;
             updateContratosTable();
         }
+    }
 
-        // ==================== DASHBOARD 1 ====================
-        function updateDashboard1() {
-            updateSummaryCards();
+    function clearAllFilters() {
+        document.getElementById('anoDashboard1').value = currentYear;
+        document.getElementById('orgaoDashboard1').value = '';
+        document.getElementById('situacaoDashboard1').value = '';
+        document.getElementById('tipoDashboard1').value = '';
+        document.getElementById('searchResumo').value = '';
+        filteredData = allData[currentYear] || [];
+        currentPageDashboard1 = 1;
+        updateDashboard1();
+    }
+
+    function clearDashboard2Filters() {
+        document.getElementById('anoDashboard2').value = currentYear;
+        document.getElementById('nomeFiscal').value = '';
+        document.getElementById('orgaoDashboard2').value = '';
+        document.getElementById('situacaoDashboard2').value = '';
+        document.getElementById('numeroContratoDashboard2').value = '';
+        document.getElementById('fornecedorDashboard2').value = '';
+        document.getElementById('tipoDashboard2').value = '';
+        document.getElementById('searchFiscais').value = '';
+        filteredData = allData[currentYear] || [];
+        currentPageDashboard2 = 1;
+        updateFiscaisTable();
+    }
+
+    function clearDashboard3Filters() {
+        document.getElementById('anoDashboard3').value = currentYear;
+        document.getElementById('numeroContratoDashboard3').value = '';
+        document.getElementById('orgaoDashboard3').value = '';
+        document.getElementById('situacaoDashboard3').value = '';
+        document.getElementById('tipoDashboard3').value = '';
+        document.getElementById('fornecedorDashboard3').value = '';
+        document.getElementById('valorMinimoDashboard3').value = '';
+        document.getElementById('searchContratos').value = '';
+        filteredData = allData[currentYear] || [];
+        currentPageDashboard3 = 1;
+        updateContratosTable();
+    }
+
+    function filterResumoTable(term) {
+        if (!term) {
+            filteredData = allData[currentYear] || [];
+            currentPageDashboard1 = 1;
             updateResumoTable();
-            updateCharts1();
+            return;
+        }
+        
+        const filtered = (allData[currentYear] || []).filter(c => 
+            (c['Órgãos Participantes'] || '').toLowerCase().includes(term)
+        );
+        filteredData = filtered;
+        currentPageDashboard1 = 1;
+        updateResumoTable();
+    }
+
+    function filterFiscaisTable(term) {
+        if (!term) {
+            filteredData = allData[currentYear] || [];
+            currentPageDashboard2 = 1;
+            updateFiscaisTable();
+            return;
+        }
+        
+        const filtered = (allData[currentYear] || []).filter(c => {
+            const fiscais = (c['Fiscais do Contrato'] || '').toLowerCase();
+            return fiscais.includes(term) || 
+                   (c['Órgãos Participantes'] || '').toLowerCase().includes(term) ||
+                   (c['Número do contrato'] || '').toString().toLowerCase().includes(term) ||
+                   (c['Nome Fornecedor'] || '').toLowerCase().includes(term);
+        });
+        filteredData = filtered;
+        currentPageDashboard2 = 1;
+        updateFiscaisTable();
+    }
+
+    function filterContratosTable(term) {
+        if (!term) {
+            filteredData = allData[currentYear] || [];
+            currentPageDashboard3 = 1;
+            updateContratosTable();
+            return;
+        }
+        
+        const filtered = (allData[currentYear] || []).filter(c => 
+            (c['Número do contrato'] || '').toString().toLowerCase().includes(term) ||
+            (c['Órgãos Participantes'] || '').toLowerCase().includes(term) ||
+            (c['Nome Fornecedor'] || '').toLowerCase().includes(term) ||
+            (c['Objeto'] || '').toLowerCase().includes(term)
+        );
+        filteredData = filtered;
+        currentPageDashboard3 = 1;
+        updateContratosTable();
+    }
+
+    // ==================== DASHBOARD 1 ====================
+    function updateDashboard1() {
+        updateSummaryCards();
+        currentPageDashboard1 = 1;
+        updateResumoTable();
+        updateCharts1();
+    }
+
+    function updateSummaryCards() {
+        const container = document.getElementById('summaryCards');
+        if (!filteredData?.length) {
+            container.innerHTML = '<div class="col-12 text-center"><p class="text-muted">Nenhum dado encontrado</p></div>';
+            return;
         }
 
-        function updateSummaryCards() {
-            const container = document.getElementById('summaryCards');
-            if (!filteredData?.length) {
-                container.innerHTML = '<div class="col-12 text-center"><p class="text-muted">Nenhum dado encontrado</p></div>';
-                return;
-            }
-
-            const totalContratos = filteredData.length;
-            const fiscaisSet = new Set();
-            filteredData.forEach(c => {
-                (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
-                    if (f.trim()) fiscaisSet.add(f.trim());
-                });
+        const totalContratos = filteredData.length;
+        const fiscaisSet = new Set();
+        filteredData.forEach(c => {
+            (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
+                if (f.trim()) fiscaisSet.add(f.trim());
             });
-            const orgaosSet = new Set(filteredData.map(c => c['Órgãos Participantes']));
-            const valorTotal = filteredData.reduce((sum, c) => sum + (c['Valor atual'] || 0), 0);
+        });
+        const orgaosSet = new Set(filteredData.map(c => c['Órgãos Participantes']));
+        const valorTotal = filteredData.reduce((sum, c) => sum + (c['Valor atual'] || 0), 0);
 
-            container.innerHTML = `
-                <div class="col-md-3"><div class="metric-card"><div class="metric-label">Total de Contratos</div><div class="metric-value">${totalContratos.toLocaleString('pt-BR')}</div><div class="update-info"><i class="material-icons">description</i> Vigentes e Concluídos</div></div></div>
-                <div class="col-md-3"><div class="metric-card success"><div class="metric-label">Fiscais Designados</div><div class="metric-value">${fiscaisSet.size}</div><div class="metric-change positive"><i class="material-icons">badge</i> Fiscais únicos</div></div></div>
-                <div class="col-md-3"><div class="metric-card"><div class="metric-label">Órgãos Envolvidos</div><div class="metric-value">${orgaosSet.size}</div><div class="update-info"><i class="material-icons">business</i> Com contratos ativos</div></div></div>
-                <div class="col-md-3"><div class="metric-card info"><div class="metric-label">Valor Total</div><div class="metric-value">${formatCurrency(valorTotal)}</div><div class="update-info"><span class="badge bg-secondary">${(valorTotal / 1000000).toFixed(1)} milhões</span></div></div></div>
-            `;
+        container.innerHTML = `
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-header">Total de Contratos</div>
+                    <div class="metric-body">
+                        <div class="metric-value">${totalContratos.toLocaleString('pt-BR')}</div>
+                        <div class="metric-change positive">Vigentes e Concluídos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-header">Fiscais Designados</div>
+                    <div class="metric-body">
+                        <div class="metric-value">${fiscaisSet.size}</div>
+                        <div class="metric-change positive">Fiscais únicos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-header">Órgãos Envolvidos</div>
+                    <div class="metric-body">
+                        <div class="metric-value">${orgaosSet.size}</div>
+                        <div class="metric-change positive">Com contratos ativos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-header">Valor Total</div>
+                    <div class="metric-body">
+                        <div class="metric-value">${formatCurrency(valorTotal)}</div>
+                        <div class="metric-change positive">${(valorTotal / 1000000).toFixed(1)} milhões</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function updateResumoTable() {
+        const grupos = {};
+        filteredData.forEach(c => {
+            const orgao = c['Órgãos Participantes'] || 'Não Informado';
+            if (!grupos[orgao]) {
+                grupos[orgao] = { orgao, contratos: 0, fiscaisSet: new Set(), valor_total: 0 };
+            }
+            grupos[orgao].contratos++;
+            grupos[orgao].valor_total += c['Valor atual'] || 0;
+            (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
+                if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
+            });
+        });
+
+        let resumoArray = Object.values(grupos).map(g => ({ ...g, fiscais: g.fiscaisSet.size }));
+        
+        // Ordenação
+        resumoArray.sort((a, b) => {
+            const order = currentSortDashboard1.order === 'asc' ? 1 : -1;
+            if (currentSortDashboard1.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
+            if (currentSortDashboard1.column === 'contratos') return order * (a.contratos - b.contratos);
+            if (currentSortDashboard1.column === 'fiscais') return order * (a.fiscais - b.fiscais);
+            if (currentSortDashboard1.column === 'valor_total') return order * (a.valor_total - b.valor_total);
+            return 0;
+        });
+
+        // Paginação
+        const start = (currentPageDashboard1 - 1) * itemsPerPageDashboard1;
+        const end = Math.min(start + itemsPerPageDashboard1, resumoArray.length);
+        const currentData = resumoArray.slice(start, end);
+
+        // Totais
+        const totalOrgaos = resumoArray.length;
+        const totalContratos = resumoArray.reduce((s, i) => s + i.contratos, 0);
+        const totalFiscais = resumoArray.reduce((s, i) => s + i.fiscais, 0);
+        const totalValor = resumoArray.reduce((s, i) => s + i.valor_total, 0);
+
+        // Renderizar
+        document.getElementById('resumoTableBody').innerHTML = currentData.map(i => `
+            <tr>
+                <td><a href="#" onclick="filtrarPorOrgao('${i.orgao.replace(/'/g, "\\'")}')" class="orgao-link">${i.orgao}</a></td>
+                <td class="text-center">${i.contratos.toLocaleString()}</td>
+                <td class="text-center">${i.fiscais.toLocaleString()}</td>
+                <td class="text-end valor-monetario">${formatCurrency(i.valor_total)}</td>
+            </tr>
+        `).join('');
+
+        document.getElementById('resumoTableFooter').innerHTML = `
+            <tr class="table-total-row fw-bold">
+                <td><strong>TOTAL GERAL (${totalOrgaos.toLocaleString()} órgãos)</strong></td>
+                <td class="text-center"><strong>${totalContratos.toLocaleString()}</strong></td>
+                <td class="text-center"><strong>${totalFiscais.toLocaleString()}</strong></td>
+                <td class="text-end valor-monetario"><strong>${formatCurrency(totalValor)}</strong></td>
+            </tr>
+        `;
+
+        document.getElementById('resumoCountDashboard1').textContent = `${totalOrgaos.toLocaleString()} órgãos`;
+        document.getElementById('paginationInfoDashboard1').textContent = 
+            `Mostrando ${start + 1}-${end} de ${resumoArray.length.toLocaleString()} registros`;
+
+        updatePagination('Dashboard1', Math.ceil(resumoArray.length / itemsPerPageDashboard1), currentPageDashboard1);
+    }
+
+    function updatePagination(dashboard, totalPages, currentPage) {
+        const pagination = document.getElementById(`pagination${dashboard}`);
+        if (!pagination) return;
+
+        let html = `
+            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#" onclick="changePage('${dashboard}', ${currentPage - 1})">&laquo;</a>
+            </li>
+        `;
+
+        let start = Math.max(1, currentPage - 2);
+        let end = Math.min(totalPages, start + 4);
+        if (end - start < 4) start = Math.max(1, end - 4);
+
+        for (let i = start; i <= end; i++) {
+            html += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" onclick="changePage('${dashboard}', ${i})">${i}</a>
+            </li>`;
         }
 
-        function updateResumoTable() {
+        html += `
+            <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="#" onclick="changePage('${dashboard}', ${currentPage + 1})">&raquo;</a>
+            </li>
+        `;
+
+        pagination.innerHTML = html;
+    }
+
+    window.changePage = function(dashboard, page) {
+        if (dashboard === 'Dashboard1') {
+            currentPageDashboard1 = page;
+            updateResumoTable();
+        } else if (dashboard === 'Dashboard2') {
+            currentPageDashboard2 = page;
+            updateFiscaisTable();
+        } else if (dashboard === 'Dashboard3') {
+            currentPageDashboard3 = page;
+            updateContratosTable();
+        }
+    };
+
+    function updateCharts1() {
+        if (!filteredData?.length) return;
+
+        // Gráfico de Órgãos
+        const orgaos = {};
+        filteredData.forEach(c => {
+            const o = c['Órgãos Participantes'] || 'Não Informado';
+            orgaos[o] = (orgaos[o] || 0) + 1;
+        });
+        const orgaosArray = Object.entries(orgaos)
+            .map(([k, v]) => ({ k, v }))
+            .sort((a, b) => b.v - a.v)
+            .slice(0, 8);
+
+        if (charts.orgao) charts.orgao.destroy();
+        charts.orgao = new Chart(document.getElementById('chartOrgao'), {
+            type: 'pie',
+            data: {
+                labels: orgaosArray.map(o => o.k.length > 15 ? o.k.substring(0, 15) + '...' : o.k),
+                datasets: [{
+                    data: orgaosArray.map(o => o.v),
+                    backgroundColor: chartColors,
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Gráfico de Situação
+        const situacoes = {};
+        filteredData.forEach(c => {
+            const s = c['Situação do contrato'] || 'Não Informado';
+            situacoes[s] = (situacoes[s] || 0) + 1;
+        });
+
+        if (charts.situacao) charts.situacao.destroy();
+        charts.situacao = new Chart(document.getElementById('chartSituacao'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(situacoes),
+                datasets: [{
+                    label: 'Quantidade',
+                    data: Object.values(situacoes),
+                    backgroundColor: chartColors[0]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Gráfico de Tipo
+        const tipos = {};
+        filteredData.forEach(c => {
+            const t = c['Tipo do Contrato'] || 'Não Informado';
+            tipos[t] = (tipos[t] || 0) + 1;
+        });
+        const tiposArray = Object.entries(tipos)
+            .map(([k, v]) => ({ k, v }))
+            .sort((a, b) => b.v - a.v)
+            .slice(0, 8);
+
+        if (charts.tipo) charts.tipo.destroy();
+        charts.tipo = new Chart(document.getElementById('chartTipo'), {
+            type: 'doughnut',
+            data: {
+                labels: tiposArray.map(t => t.k.length > 15 ? t.k.substring(0, 15) + '...' : t.k),
+                datasets: [{
+                    data: tiposArray.map(t => t.v),
+                    backgroundColor: chartColors,
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 10 } } }
+                }
+            }
+        });
+    }
+
+    // ==================== DASHBOARD 2 ====================
+    function updateDashboard2() {
+        currentPageDashboard2 = 1;
+        updateFiscaisTable();
+    }
+
+    function updateFiscaisTable() {
+        const fiscaisMap = new Map();
+        filteredData.forEach(c => {
+            (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
+                f = f.trim();
+                if (f) {
+                    const key = `${f}|${c['Número do contrato']}`;
+                    if (!fiscaisMap.has(key)) {
+                        fiscaisMap.set(key, {
+                            nome_fiscal: f,
+                            orgao: c['Órgãos Participantes'],
+                            numero_contrato: c['Número do contrato'],
+                            fornecedor: c['Nome Fornecedor'],
+                            situacao: c['Situação do contrato'],
+                            valor_atual: c['Valor atual'] || 0
+                        });
+                    }
+                }
+            });
+        });
+
+        let fiscaisArray = Array.from(fiscaisMap.values());
+        
+        // Ordenação
+        fiscaisArray.sort((a, b) => {
+            const order = currentSortDashboard2.order === 'asc' ? 1 : -1;
+            if (currentSortDashboard2.column === 'nome_fiscal') return order * a.nome_fiscal.localeCompare(b.nome_fiscal);
+            if (currentSortDashboard2.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
+            if (currentSortDashboard2.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
+            if (currentSortDashboard2.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
+            if (currentSortDashboard2.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
+            if (currentSortDashboard2.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
+            return 0;
+        });
+
+        // Paginação
+        const start = (currentPageDashboard2 - 1) * itemsPerPageDashboard2;
+        const end = Math.min(start + itemsPerPageDashboard2, fiscaisArray.length);
+        const currentData = fiscaisArray.slice(start, end);
+
+        // Totais
+        const totalFiscais = fiscaisArray.length;
+        const orgaosUnicos = new Set(fiscaisArray.map(f => f.orgao)).size;
+        const contratosUnicos = new Set(fiscaisArray.map(f => f.numero_contrato)).size;
+        const valorTotal = fiscaisArray.reduce((s, f) => s + f.valor_atual, 0);
+
+        document.getElementById('fiscaisTableBody').innerHTML = currentData.map(f => `
+            <tr>
+                <td><a href="#" onclick="showFiscalDetails('${f.nome_fiscal.replace(/'/g, "\\'")}')" class="orgao-link"><strong>${f.nome_fiscal}</strong></a></td>
+                <td>${f.orgao}</td>
+                <td><a href="#" onclick="showContratoDetails('${f.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link">${f.numero_contrato}</a></td>
+                <td><div class="text-truncate-multiline" title="${f.fornecedor}">${f.fornecedor}</div></td>
+                <td>${getSituacaoBadge(f.situacao)}</td>
+                <td class="text-end valor-monetario">${formatCurrency(f.valor_atual)}</td>
+                <td class="text-center">
+                    <button class="btn-action" onclick="showFiscalDetails('${f.nome_fiscal.replace(/'/g, "\\'")}')"><i class="material-icons">visibility</i></button>
+                </td>
+            </tr>
+        `).join('');
+
+        document.getElementById('fiscaisTableFooter').innerHTML = `
+            <tr class="table-total-row fw-bold">
+                <td colspan="2"><strong>TOTAL GERAL: ${totalFiscais.toLocaleString()} designações</strong></td>
+                <td><strong>${contratosUnicos.toLocaleString()} contratos</strong></td>
+                <td><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
+                <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
+                <td></td>
+            </tr>
+        `;
+
+        document.getElementById('resumoCountDashboard2').textContent = `${totalFiscais.toLocaleString()} registros`;
+        document.getElementById('paginationInfoDashboard2').textContent = 
+            `Mostrando ${start + 1}-${end} de ${fiscaisArray.length.toLocaleString()} registros`;
+
+        updatePagination('Dashboard2', Math.ceil(fiscaisArray.length / itemsPerPageDashboard2), currentPageDashboard2);
+    }
+
+    // ==================== DASHBOARD 3 ====================
+    function updateDashboard3() {
+        currentPageDashboard3 = 1;
+        updateContratosTable();
+    }
+
+    function updateContratosTable() {
+        let contratosArray = filteredData.map(c => ({
+            numero_contrato: c['Número do contrato'],
+            orgao: c['Órgãos Participantes'],
+            fornecedor: c['Nome Fornecedor'],
+            situacao: c['Situação do contrato'],
+            tipo: c['Tipo do Contrato'] || 'Não informado',
+            fiscais: c['Fiscais do Contrato'] || 'Não designado',
+            valor_atual: c['Valor atual'] || 0,
+            contrato_data: c
+        }));
+
+        // Ordenação
+        contratosArray.sort((a, b) => {
+            const order = currentSortDashboard3.order === 'asc' ? 1 : -1;
+            if (currentSortDashboard3.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
+            if (currentSortDashboard3.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
+            if (currentSortDashboard3.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
+            if (currentSortDashboard3.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
+            if (currentSortDashboard3.column === 'tipo') return order * a.tipo.localeCompare(b.tipo);
+            if (currentSortDashboard3.column === 'fiscais') return order * a.fiscais.localeCompare(b.fiscais);
+            if (currentSortDashboard3.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
+            return 0;
+        });
+
+        // Paginação
+        const start = (currentPageDashboard3 - 1) * itemsPerPageDashboard3;
+        const end = Math.min(start + itemsPerPageDashboard3, contratosArray.length);
+        const currentData = contratosArray.slice(start, end);
+
+        // Totais
+        const totalContratos = contratosArray.length;
+        const orgaosUnicos = new Set(contratosArray.map(c => c.orgao)).size;
+        const fornecedoresUnicos = new Set(contratosArray.map(c => c.fornecedor)).size;
+        const valorTotal = contratosArray.reduce((s, c) => s + c.valor_atual, 0);
+
+        document.getElementById('contratosTableBody').innerHTML = currentData.map(c => `
+            <tr>
+                <td><a href="#" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link"><strong>${c.numero_contrato}</strong></a></td>
+                <td>${c.orgao}</td>
+                <td><div class="text-truncate-multiline" title="${c.fornecedor}">${c.fornecedor}</div></td>
+                <td>${getSituacaoBadge(c.situacao)}</td>
+                <td>${getTipoTag(c.tipo)}</td>
+                <td><div class="text-truncate-multiline" title="${c.fiscais}">${c.fiscais}</div></td>
+                <td class="text-end valor-monetario"><span class="valor-atual">${formatCurrency(c.valor_atual)}</span></td>
+                <td class="text-center">
+                    <button class="btn-action" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')"><i class="material-icons">visibility</i></button>
+                </td>
+            </tr>
+        `).join('');
+
+        document.getElementById('contratosTableFooter').innerHTML = `
+            <tr class="table-total-row fw-bold">
+                <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString()} contratos</strong></td>
+                <td><strong>${fornecedoresUnicos.toLocaleString()} fornecedores</strong></td>
+                <td colspan="2"><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
+                <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
+                <td></td>
+            </tr>
+        `;
+
+        document.getElementById('resumoCountDashboard3').textContent = `${totalContratos.toLocaleString()} contratos`;
+        document.getElementById('paginationInfoDashboard3').textContent = 
+            `Mostrando ${start + 1}-${end} de ${contratosArray.length.toLocaleString()} registros`;
+
+        updatePagination('Dashboard3', Math.ceil(contratosArray.length / itemsPerPageDashboard3), currentPageDashboard3);
+    }
+
+    // ==================== FUNÇÕES DE DETALHE ====================
+    window.showContratoDetails = function(numeroContrato) {
+        let contrato = null;
+        Object.keys(allData).forEach(ano => {
+            const found = allData[ano].find(c => c['Número do contrato'] === numeroContrato);
+            if (found) contrato = found;
+        });
+
+        if (!contrato) return;
+
+        const fiscaisList = (contrato['Fiscais do Contrato'] || '').split(/[,;]| e /).map(f => f.trim()).filter(f => f);
+        const fiscaisHTML = fiscaisList.map(f => `
+            <tr><td>${f}</td><td>${contrato['Órgãos Participantes']}</td><td>Fiscal do Contrato</td><td>${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</td></tr>
+        `).join('') || '<tr><td colspan="4" class="text-center text-muted">Nenhum fiscal designado</td></tr>';
+
+        document.getElementById('contratoModalContent').innerHTML = `
+            <div class="row">
+                <div class="col-md-6"><div class="info-card primary"><div class="info-label">Contrato</div><div class="info-value highlight">${contrato['Número do contrato']}</div><div class="info-label mt-3">Processo</div><div class="info-value">${contrato['Número do Processo Formatado'] || 'N/A'}</div></div></div>
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Fornecedor</div><div class="info-value">${contrato['Nome Fornecedor']}</div><div class="info-label mt-3">CNPJ/CPF</div><div class="info-value">${contrato['CNPJ/CPF'] || 'N/A'}</div></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Situação</div><div class="info-value">${getSituacaoBadge(contrato['Situação do contrato'])}</div></div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Tipo</div><div class="info-value">${contrato['Tipo do Contrato'] || 'N/A'}</div></div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Valor</div><div class="info-value highlight">${formatCurrency(contrato['Valor atual'])}</div></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Vigência</div><div class="info-value">${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</div></div></div>
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Objeto</div><div class="info-value">${contrato['Objeto'] || 'N/A'}</div></div></div>
+            </div>
+            <h6 class="mt-4 fw-bold">Fiscais Designados</h6>
+            <div style="max-height:200px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Nome</th><th>Órgão</th><th>Função</th><th>Período</th></tr></thead><tbody>${fiscaisHTML}</tbody></table></div>
+        `;
+        new bootstrap.Modal(document.getElementById('contratoModal')).show();
+    };
+
+    window.showFiscalDetails = function(nomeFiscal) {
+        const contratos = [];
+        Object.keys(allData).forEach(ano => {
+            allData[ano].forEach(c => {
+                if ((c['Fiscais do Contrato'] || '').includes(nomeFiscal)) {
+                    contratos.push(c);
+                }
+            });
+        });
+
+        if (!contratos.length) return;
+
+        const valorTotal = contratos.reduce((s, c) => s + (c['Valor atual'] || 0), 0);
+        const ativos = contratos.filter(c => c['Situação do contrato'].toLowerCase().includes('ativo')).length;
+
+        const contratosHTML = contratos.map(c => `
+            <tr>
+                <td><a href="#" onclick="showContratoDetails('${c['Número do contrato'].replace(/'/g, "\\'")}')" class="orgao-link">${c['Número do contrato']}</a></td>
+                <td>${c['Órgãos Participantes']}</td>
+                <td><div class="text-truncate-multiline" title="${c['Nome Fornecedor']}">${c['Nome Fornecedor']}</div></td>
+                <td>${getSituacaoBadge(c['Situação do contrato'])}</td>
+                <td class="text-end valor-monetario">${formatCurrency(c['Valor atual'])}</td>
+                <td>${formatDate(c['Data Início de Vigência'])}<br>${formatDate(c['Data Fim de Vigência'])}</td>
+            </tr>
+        `).join('');
+
+        document.getElementById('fiscalModalContent').innerHTML = `
+            <div class="row">
+                <div class="col-md-6"><div class="info-card primary"><div class="info-label">Fiscal</div><div class="info-value highlight">${nomeFiscal}</div><div class="info-label mt-3">Total de Contratos</div><div class="info-value">${contratos.length}</div></div></div>
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Valor Total</div><div class="info-value highlight">${formatCurrency(valorTotal)}</div><div class="info-label mt-3">Contratos Ativos</div><div class="info-value">${ativos}</div></div></div>
+            </div>
+            <h6 class="mt-4 fw-bold">Contratos Designados</h6>
+            <div style="max-height:300px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Contrato</th><th>Órgão</th><th>Fornecedor</th><th>Situação</th><th>Valor</th><th>Período</th></tr></thead><tbody>${contratosHTML}</tbody></table></div>
+        `;
+        new bootstrap.Modal(document.getElementById('fiscalModal')).show();
+    };
+
+    window.filtrarPorOrgao = function(orgao) {
+        document.getElementById('dashboard3-tab').click();
+        setTimeout(() => {
+            document.getElementById('orgaoDashboard3').value = orgao;
+            applyFilters('dashboard3');
+        }, 300);
+    };
+
+    // ==================== ORDENAÇÃO ====================
+    window.sortTable = function(tableType, column) {
+        if (tableType === 'visaoGeral') {
+            if (currentSortDashboard1.column === column) {
+                currentSortDashboard1.order = currentSortDashboard1.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSortDashboard1.column = column;
+                currentSortDashboard1.order = 'asc';
+            }
+            currentPageDashboard1 = 1;
+            updateResumoTable();
+        } else if (tableType === 'fiscais') {
+            if (currentSortDashboard2.column === column) {
+                currentSortDashboard2.order = currentSortDashboard2.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSortDashboard2.column = column;
+                currentSortDashboard2.order = 'asc';
+            }
+            currentPageDashboard2 = 1;
+            updateFiscaisTable();
+        } else if (tableType === 'contratos') {
+            if (currentSortDashboard3.column === column) {
+                currentSortDashboard3.order = currentSortDashboard3.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSortDashboard3.column = column;
+                currentSortDashboard3.order = 'asc';
+            }
+            currentPageDashboard3 = 1;
+            updateContratosTable();
+        }
+    };
+
+    // ==================== EXPORTAÇÃO ====================
+    function exportToCSV(dashboard) {
+        if (dashboard === 'Dashboard1') exportResumoCSV();
+        else if (dashboard === 'Dashboard2') exportFiscaisCSV();
+        else if (dashboard === 'Dashboard3') exportContratosCSV();
+    }
+
+    function printDashboard(dashboard) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'landscape' });
+        
+        let title = '';
+        let data = [];
+        let headers = [];
+        
+        if (dashboard === 'Dashboard1') {
+            title = 'Visão Geral - Fiscais de Contratos';
+            headers = [['Órgão', 'Contratos', 'Fiscais Designados', 'Valor Total']];
+            
             const grupos = {};
             filteredData.forEach(c => {
                 const orgao = c['Órgãos Participantes'] || 'Não Informado';
@@ -1906,198 +2497,17 @@
                     if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
                 });
             });
-
-            let resumoArray = Object.values(grupos).map(g => ({ ...g, fiscais: g.fiscaisSet.size }));
             
-            // Ordenação
-            resumoArray.sort((a, b) => {
-                const order = currentSortDashboard1.order === 'asc' ? 1 : -1;
-                if (currentSortDashboard1.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
-                if (currentSortDashboard1.column === 'contratos') return order * (a.contratos - b.contratos);
-                if (currentSortDashboard1.column === 'fiscais') return order * (a.fiscais - b.fiscais);
-                if (currentSortDashboard1.column === 'valor_total') return order * (a.valor_total - b.valor_total);
-                return 0;
-            });
-
-            // Paginação
-            const start = (currentPageDashboard1 - 1) * itemsPerPageDashboard1;
-            const end = Math.min(start + itemsPerPageDashboard1, resumoArray.length);
-            const currentData = resumoArray.slice(start, end);
-
-            // Totais
-            const totalOrgaos = resumoArray.length;
-            const totalContratos = resumoArray.reduce((s, i) => s + i.contratos, 0);
-            const totalFiscais = resumoArray.reduce((s, i) => s + i.fiscais, 0);
-            const totalValor = resumoArray.reduce((s, i) => s + i.valor_total, 0);
-
-            // Renderizar
-            document.getElementById('resumoTableBody').innerHTML = currentData.map(i => `
-                <tr>
-                    <td><a href="#" onclick="filtrarPorOrgao('${i.orgao.replace(/'/g, "\\'")}')" class="orgao-link">${i.orgao}</a></td>
-                    <td class="text-center">${i.contratos.toLocaleString()}</td>
-                    <td class="text-center">${i.fiscais.toLocaleString()}</td>
-                    <td class="text-right">${formatCurrency(i.valor_total)}</td>
-                </tr>
-            `).join('');
-
-            document.getElementById('resumoTableFooter').innerHTML = `
-                <tr class="table-total-row">
-                    <td><strong>TOTAL GERAL (${totalOrgaos.toLocaleString()} órgãos)</strong></td>
-                    <td class="text-center"><strong>${totalContratos.toLocaleString()}</strong></td>
-                    <td class="text-center"><strong>${totalFiscais.toLocaleString()}</strong></td>
-                    <td class="text-right"><strong>${formatCurrency(totalValor)}</strong></td>
-                </tr>
-            `;
-
-            document.getElementById('resumoCountDashboard1').textContent = `${totalOrgaos.toLocaleString()} órgãos`;
-            document.getElementById('paginationInfoDashboard1').textContent = 
-                `Mostrando ${start + 1}-${end} de ${resumoArray.length.toLocaleString()} registros`;
-
-            updatePagination('Dashboard1', Math.ceil(resumoArray.length / itemsPerPageDashboard1), currentPageDashboard1);
-        }
-
-        function updatePagination(dashboard, totalPages, currentPage) {
-            const pagination = document.getElementById(`pagination${dashboard}`);
-            if (!pagination) return;
-
-            let html = `
-                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                    <a class="page-link" href="#" onclick="changePage('${dashboard}', ${currentPage - 1})">&laquo;</a>
-                </li>
-            `;
-
-            let start = Math.max(1, currentPage - 2);
-            let end = Math.min(totalPages, start + 4);
-            if (end - start < 4) start = Math.max(1, end - 4);
-
-            for (let i = start; i <= end; i++) {
-                html += `<li class="page-item ${i === currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#" onclick="changePage('${dashboard}', ${i})">${i}</a>
-                </li>`;
-            }
-
-            html += `
-                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                    <a class="page-link" href="#" onclick="changePage('${dashboard}', ${currentPage + 1})">&raquo;</a>
-                </li>
-            `;
-
-            pagination.innerHTML = html;
-        }
-
-        window.changePage = function(dashboard, page) {
-            if (dashboard === 'Dashboard1') {
-                currentPageDashboard1 = page;
-                updateResumoTable();
-            } else if (dashboard === 'Dashboard2') {
-                currentPageDashboard2 = page;
-                updateFiscaisTable();
-            } else if (dashboard === 'Dashboard3') {
-                currentPageDashboard3 = page;
-                updateContratosTable();
-            }
-        };
-
-        function updateCharts1() {
-            if (!filteredData?.length) return;
-
-            // Gráfico de Órgãos
-            const orgaos = {};
-            filteredData.forEach(c => {
-                const o = c['Órgãos Participantes'] || 'Não Informado';
-                orgaos[o] = (orgaos[o] || 0) + 1;
-            });
-            const orgaosArray = Object.entries(orgaos)
-                .map(([k, v]) => ({ k, v }))
-                .sort((a, b) => b.v - a.v)
-                .slice(0, 8);
-
-            if (charts.orgao) charts.orgao.destroy();
-            charts.orgao = new Chart(document.getElementById('chartOrgao'), {
-                type: 'pie',
-                data: {
-                    labels: orgaosArray.map(o => o.k.length > 15 ? o.k.substring(0, 15) + '...' : o.k),
-                    datasets: [{
-                        data: orgaosArray.map(o => o.v),
-                        backgroundColor: chartColors,
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom', labels: { font: { size: 10 } } }
-                    }
-                }
-            });
-
-            // Gráfico de Situação
-            const situacoes = {};
-            filteredData.forEach(c => {
-                const s = c['Situação do contrato'] || 'Não Informado';
-                situacoes[s] = (situacoes[s] || 0) + 1;
-            });
-
-            if (charts.situacao) charts.situacao.destroy();
-            charts.situacao = new Chart(document.getElementById('chartSituacao'), {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(situacoes),
-                    datasets: [{
-                        label: 'Quantidade',
-                        data: Object.values(situacoes),
-                        backgroundColor: chartColors[0]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true } },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Gráfico de Tipo
-            const tipos = {};
-            filteredData.forEach(c => {
-                const t = c['Tipo do Contrato'] || 'Não Informado';
-                tipos[t] = (tipos[t] || 0) + 1;
-            });
-            const tiposArray = Object.entries(tipos)
-                .map(([k, v]) => ({ k, v }))
-                .sort((a, b) => b.v - a.v)
-                .slice(0, 8);
-
-            if (charts.tipo) charts.tipo.destroy();
-            charts.tipo = new Chart(document.getElementById('chartTipo'), {
-                type: 'doughnut',
-                data: {
-                    labels: tiposArray.map(t => t.k.length > 15 ? t.k.substring(0, 15) + '...' : t.k),
-                    datasets: [{
-                        data: tiposArray.map(t => t.v),
-                        backgroundColor: chartColors,
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom', labels: { font: { size: 10 } } }
-                    }
-                }
-            });
-        }
-
-        // ==================== DASHBOARD 2 ====================
-        function updateDashboard2() {
-            updateFiscaisTable();
-        }
-
-        function updateFiscaisTable() {
+            data = Object.values(grupos).map(g => [
+                g.orgao,
+                g.contratos.toString(),
+                g.fiscaisSet.size.toString(),
+                formatCurrency(g.valor_total)
+            ]);
+        } else if (dashboard === 'Dashboard2') {
+            title = 'Consulta por Fiscal - Fiscais de Contratos';
+            headers = [['Nome do Fiscal', 'Órgão', 'Contrato', 'Fornecedor', 'Situação', 'Valor']];
+            
             const fiscaisMap = new Map();
             filteredData.forEach(c => {
                 (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
@@ -2105,341 +2515,112 @@
                     if (f) {
                         const key = `${f}|${c['Número do contrato']}`;
                         if (!fiscaisMap.has(key)) {
-                            fiscaisMap.set(key, {
-                                nome_fiscal: f,
-                                orgao: c['Órgãos Participantes'],
-                                numero_contrato: c['Número do contrato'],
-                                fornecedor: c['Nome Fornecedor'],
-                                situacao: c['Situação do contrato'],
-                                valor_atual: c['Valor atual'] || 0
-                            });
+                            fiscaisMap.set(key, [f, c['Órgãos Participantes'], c['Número do contrato'], c['Nome Fornecedor'], c['Situação do contrato'], formatCurrency(c['Valor atual'] || 0)]);
                         }
                     }
                 });
             });
-
-            let fiscaisArray = Array.from(fiscaisMap.values());
+            data = Array.from(fiscaisMap.values());
+        } else if (dashboard === 'Dashboard3') {
+            title = 'Consulta por Contrato - Fiscais de Contratos';
+            headers = [['Contrato', 'Órgão', 'Fornecedor', 'Situação', 'Tipo', 'Fiscais', 'Valor']];
             
-            // Ordenação
-            fiscaisArray.sort((a, b) => {
-                const order = currentSortDashboard2.order === 'asc' ? 1 : -1;
-                if (currentSortDashboard2.column === 'nome_fiscal') return order * a.nome_fiscal.localeCompare(b.nome_fiscal);
-                if (currentSortDashboard2.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
-                if (currentSortDashboard2.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
-                if (currentSortDashboard2.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
-                if (currentSortDashboard2.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
-                if (currentSortDashboard2.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
-                return 0;
-            });
-
-            // Paginação
-            const start = (currentPageDashboard2 - 1) * itemsPerPageDashboard2;
-            const end = Math.min(start + itemsPerPageDashboard2, fiscaisArray.length);
-            const currentData = fiscaisArray.slice(start, end);
-
-            // Totais
-            const totalFiscais = fiscaisArray.length;
-            const orgaosUnicos = new Set(fiscaisArray.map(f => f.orgao)).size;
-            const contratosUnicos = new Set(fiscaisArray.map(f => f.numero_contrato)).size;
-            const valorTotal = fiscaisArray.reduce((s, f) => s + f.valor_atual, 0);
-
-            document.getElementById('fiscaisTableBody').innerHTML = currentData.map(f => `
-                <tr>
-                    <td><a href="#" onclick="showFiscalDetails('${f.nome_fiscal.replace(/'/g, "\\'")}')" class="orgao-link"><strong>${f.nome_fiscal}</strong></a></td>
-                    <td>${f.orgao}</td>
-                    <td><a href="#" onclick="showContratoDetails('${f.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link">${f.numero_contrato}</a></td>
-                    <td>${f.fornecedor}</td>
-                    <td>${getSituacaoBadge(f.situacao)}</td>
-                    <td class="text-right">${formatCurrency(f.valor_atual)}</td>
-                    <td class="text-center">
-                        <button class="btn-action" onclick="showFiscalDetails('${f.nome_fiscal.replace(/'/g, "\\'")}')"><i class="material-icons">visibility</i></button>
-                    </td>
-                </tr>
-            `).join('');
-
-            document.getElementById('fiscaisTableFooter').innerHTML = `
-                <tr class="table-total-row">
-                    <td colspan="2"><strong>TOTAL GERAL: ${totalFiscais.toLocaleString()} designações</strong></td>
-                    <td><strong>${contratosUnicos.toLocaleString()} contratos</strong></td>
-                    <td><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
-                    <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
-                    <td></td>
-                </tr>
-            `;
-
-            document.getElementById('resumoCountDashboard2').textContent = `${totalFiscais.toLocaleString()} registros`;
-            document.getElementById('paginationInfoDashboard2').textContent = 
-                `Mostrando ${start + 1}-${end} de ${fiscaisArray.length.toLocaleString()} registros`;
-
-            updatePagination('Dashboard2', Math.ceil(fiscaisArray.length / itemsPerPageDashboard2), currentPageDashboard2);
-        }
-
-        // ==================== DASHBOARD 3 ====================
-        function updateDashboard3() {
-            updateContratosTable();
-        }
-
-        function updateContratosTable() {
-            let contratosArray = filteredData.map(c => ({
-                numero_contrato: c['Número do contrato'],
-                orgao: c['Órgãos Participantes'],
-                fornecedor: c['Nome Fornecedor'],
-                situacao: c['Situação do contrato'],
-                tipo: c['Tipo do Contrato'] || 'Não informado',
-                fiscais: c['Fiscais do Contrato'] || 'Não designado',
-                valor_atual: c['Valor atual'] || 0,
-                contrato_data: c
-            }));
-
-            // Ordenação
-            contratosArray.sort((a, b) => {
-                const order = currentSortDashboard3.order === 'asc' ? 1 : -1;
-                if (currentSortDashboard3.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
-                if (currentSortDashboard3.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
-                if (currentSortDashboard3.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
-                if (currentSortDashboard3.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
-                if (currentSortDashboard3.column === 'tipo') return order * a.tipo.localeCompare(b.tipo);
-                if (currentSortDashboard3.column === 'fiscais') return order * a.fiscais.localeCompare(b.fiscais);
-                if (currentSortDashboard3.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
-                return 0;
-            });
-
-            // Paginação
-            const start = (currentPageDashboard3 - 1) * itemsPerPageDashboard3;
-            const end = Math.min(start + itemsPerPageDashboard3, contratosArray.length);
-            const currentData = contratosArray.slice(start, end);
-
-            // Totais
-            const totalContratos = contratosArray.length;
-            const orgaosUnicos = new Set(contratosArray.map(c => c.orgao)).size;
-            const fornecedoresUnicos = new Set(contratosArray.map(c => c.fornecedor)).size;
-            const valorTotal = contratosArray.reduce((s, c) => s + c.valor_atual, 0);
-
-            document.getElementById('contratosTableBody').innerHTML = currentData.map(c => `
-                <tr>
-                    <td><a href="#" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link"><strong>${c.numero_contrato}</strong></a></td>
-                    <td>${c.orgao}</td>
-                    <td><div class="text-truncate-multiline" title="${c.fornecedor}">${c.fornecedor}</div></td>
-                    <td>${getSituacaoBadge(c.situacao)}</td>
-                    <td>${getTipoTag(c.tipo)}</td>
-                    <td><div class="text-truncate-multiline" title="${c.fiscais}">${c.fiscais}</div></td>
-                    <td class="text-right"><span class="valor-atual">${formatCurrency(c.valor_atual)}</span></td>
-                    <td class="text-center">
-                        <button class="btn-action" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')"><i class="material-icons">visibility</i></button>
-                    </td>
-                </tr>
-            `).join('');
-
-            document.getElementById('contratosTableFooter').innerHTML = `
-                <tr class="table-total-row">
-                    <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString()} contratos</strong></td>
-                    <td><strong>${fornecedoresUnicos.toLocaleString()} fornecedores</strong></td>
-                    <td colspan="2"><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
-                    <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
-                    <td></td>
-                </tr>
-            `;
-
-            document.getElementById('resumoCountDashboard3').textContent = `${totalContratos.toLocaleString()} contratos`;
-            document.getElementById('paginationInfoDashboard3').textContent = 
-                `Mostrando ${start + 1}-${end} de ${contratosArray.length.toLocaleString()} registros`;
-
-            updatePagination('Dashboard3', Math.ceil(contratosArray.length / itemsPerPageDashboard3), currentPageDashboard3);
-        }
-
-        // ==================== FUNÇÕES DE DETALHE ====================
-        window.showContratoDetails = function(numeroContrato) {
-            let contrato = null;
-            Object.keys(allData).forEach(ano => {
-                const found = allData[ano].find(c => c['Número do contrato'] === numeroContrato);
-                if (found) contrato = found;
-            });
-
-            if (!contrato) return;
-
-            const fiscaisList = (contrato['Fiscais do Contrato'] || '').split(/[,;]| e /).map(f => f.trim()).filter(f => f);
-            const fiscaisHTML = fiscaisList.map(f => `
-                <tr><td>${f}</td><td>${contrato['Órgãos Participantes']}</td><td>Fiscal do Contrato</td><td>${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</td></tr>
-            `).join('') || '<tr><td colspan="4" class="text-center text-muted">Nenhum fiscal designado</td></tr>';
-
-            document.getElementById('contratoModalContent').innerHTML = `
-                <div class="row">
-                    <div class="col-md-6"><div class="info-card primary"><div class="info-label">Contrato</div><div class="info-value highlight">${contrato['Número do contrato']}</div><div class="info-label mt-3">Processo</div><div class="info-value">${contrato['Número do Processo Formatado'] || 'N/A'}</div></div></div>
-                    <div class="col-md-6"><div class="info-card"><div class="info-label">Fornecedor</div><div class="info-value">${contrato['Nome Fornecedor']}</div><div class="info-label mt-3">CNPJ/CPF</div><div class="info-value">${contrato['CNPJ/CPF'] || 'N/A'}</div></div></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"><div class="info-card"><div class="info-label">Situação</div><div class="info-value">${getSituacaoBadge(contrato['Situação do contrato'])}</div></div></div>
-                    <div class="col-md-4"><div class="info-card"><div class="info-label">Tipo</div><div class="info-value">${contrato['Tipo do Contrato'] || 'N/A'}</div></div></div>
-                    <div class="col-md-4"><div class="info-card"><div class="info-label">Valor</div><div class="info-value highlight">${formatCurrency(contrato['Valor atual'])}</div></div></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6"><div class="info-card"><div class="info-label">Vigência</div><div class="info-value">${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</div></div></div>
-                    <div class="col-md-6"><div class="info-card"><div class="info-label">Objeto</div><div class="info-value">${contrato['Objeto'] || 'N/A'}</div></div></div>
-                </div>
-                <h6 class="mt-4 fw-bold">Fiscais Designados</h6>
-                <div style="max-height:200px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Nome</th><th>Órgão</th><th>Função</th><th>Período</th></tr></thead><tbody>${fiscaisHTML}</tbody></table></div>
-            `;
-            new bootstrap.Modal(document.getElementById('contratoModal')).show();
-        };
-
-        window.showFiscalDetails = function(nomeFiscal) {
-            const contratos = [];
-            Object.keys(allData).forEach(ano => {
-                allData[ano].forEach(c => {
-                    if ((c['Fiscais do Contrato'] || '').includes(nomeFiscal)) {
-                        contratos.push(c);
-                    }
-                });
-            });
-
-            if (!contratos.length) return;
-
-            const valorTotal = contratos.reduce((s, c) => s + (c['Valor atual'] || 0), 0);
-            const ativos = contratos.filter(c => c['Situação do contrato'].toLowerCase().includes('ativo')).length;
-
-            const contratosHTML = contratos.map(c => `
-                <tr>
-                    <td><a href="#" onclick="showContratoDetails('${c['Número do contrato'].replace(/'/g, "\\'")}')" class="orgao-link">${c['Número do contrato']}</a></td>
-                    <td>${c['Órgãos Participantes']}</td>
-                    <td><div class="text-truncate-multiline" title="${c['Nome Fornecedor']}">${c['Nome Fornecedor']}</div></td>
-                    <td>${getSituacaoBadge(c['Situação do contrato'])}</td>
-                    <td class="text-right">${formatCurrency(c['Valor atual'])}</td>
-                    <td>${formatDate(c['Data Início de Vigência'])}<br>${formatDate(c['Data Fim de Vigência'])}</td>
-                </tr>
-            `).join('');
-
-            document.getElementById('fiscalModalContent').innerHTML = `
-                <div class="row">
-                    <div class="col-md-6"><div class="info-card primary"><div class="info-label">Fiscal</div><div class="info-value highlight">${nomeFiscal}</div><div class="info-label mt-3">Total de Contratos</div><div class="info-value">${contratos.length}</div></div></div>
-                    <div class="col-md-6"><div class="info-card"><div class="info-label">Valor Total</div><div class="info-value highlight">${formatCurrency(valorTotal)}</div><div class="info-label mt-3">Contratos Ativos</div><div class="info-value">${ativos}</div></div></div>
-                </div>
-                <h6 class="mt-4 fw-bold">Contratos Designados</h6>
-                <div style="max-height:300px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Contrato</th><th>Órgão</th><th>Fornecedor</th><th>Situação</th><th>Valor</th><th>Período</th></tr></thead><tbody>${contratosHTML}</tbody></table></div>
-            `;
-            new bootstrap.Modal(document.getElementById('fiscalModal')).show();
-        };
-
-        window.filtrarPorOrgao = function(orgao) {
-            document.getElementById('dashboard3-tab').click();
-            setTimeout(() => {
-                document.getElementById('orgaoDashboard3').value = orgao;
-                applyFilters('dashboard3');
-            }, 300);
-        };
-
-        // ==================== ORDENAÇÃO ====================
-        window.sortTable = function(tableType, column) {
-            if (tableType === 'visaoGeral') {
-                if (currentSortDashboard1.column === column) {
-                    currentSortDashboard1.order = currentSortDashboard1.order === 'asc' ? 'desc' : 'asc';
-                } else {
-                    currentSortDashboard1.column = column;
-                    currentSortDashboard1.order = 'asc';
-                }
-                currentPageDashboard1 = 1;
-                updateResumoTable();
-            } else if (tableType === 'fiscais') {
-                if (currentSortDashboard2.column === column) {
-                    currentSortDashboard2.order = currentSortDashboard2.order === 'asc' ? 'desc' : 'asc';
-                } else {
-                    currentSortDashboard2.column = column;
-                    currentSortDashboard2.order = 'asc';
-                }
-                currentPageDashboard2 = 1;
-                updateFiscaisTable();
-            } else if (tableType === 'contratos') {
-                if (currentSortDashboard3.column === column) {
-                    currentSortDashboard3.order = currentSortDashboard3.order === 'asc' ? 'desc' : 'asc';
-                } else {
-                    currentSortDashboard3.column = column;
-                    currentSortDashboard3.order = 'asc';
-                }
-                currentPageDashboard3 = 1;
-                updateContratosTable();
-            }
-        };
-
-        // ==================== EXPORTAÇÃO ====================
-        function exportToCSV(dashboard) {
-            if (dashboard === 'Dashboard1') exportResumoCSV();
-            else if (dashboard === 'Dashboard2') exportFiscaisCSV();
-            else if (dashboard === 'Dashboard3') exportContratosCSV();
-        }
-
-        function printDashboard(dashboard) {
-            window.print();
-        }
-
-        function exportResumoCSV() {
-            const grupos = {};
-            filteredData.forEach(c => {
-                const orgao = c['Órgãos Participantes'] || 'Não Informado';
-                if (!grupos[orgao]) grupos[orgao] = { orgao, contratos: 0, fiscaisSet: new Set(), valor_total: 0 };
-                grupos[orgao].contratos++;
-                grupos[orgao].valor_total += c['Valor atual'] || 0;
-                (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
-                    if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
-                });
-            });
-
-            const data = Object.values(grupos).map(g => [g.orgao, g.contratos, g.fiscaisSet.size, g.valor_total]);
-            const csv = ['Órgão;Contratos;Fiscais;Valor Total', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
-            downloadCSV(csv, `visao_geral_fiscais_${currentYear}.csv`);
-        }
-
-        function exportFiscaisCSV() {
-            const fiscaisMap = new Map();
-            filteredData.forEach(c => {
-                (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
-                    f = f.trim();
-                    if (f) {
-                        const key = `${f}|${c['Número do contrato']}`;
-                        if (!fiscaisMap.has(key)) {
-                            fiscaisMap.set(key, [f, c['Órgãos Participantes'], c['Número do contrato'], c['Nome Fornecedor'], c['Situação do contrato'], c['Valor atual'] || 0]);
-                        }
-                    }
-                });
-            });
-
-            const data = Array.from(fiscaisMap.values());
-            const csv = ['Nome do Fiscal;Órgão;Contrato;Fornecedor;Situação;Valor', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
-            downloadCSV(csv, `fiscais_designados_${currentYear}.csv`);
-        }
-
-        function exportContratosCSV() {
-            const data = filteredData.map(c => [
+            data = filteredData.map(c => [
                 c['Número do contrato'],
                 c['Órgãos Participantes'],
                 c['Nome Fornecedor'],
                 c['Situação do contrato'],
                 c['Tipo do Contrato'] || '',
                 c['Fiscais do Contrato'] || '',
-                c['Valor atual'] || 0
+                formatCurrency(c['Valor atual'] || 0)
             ]);
-            const csv = ['Contrato;Órgão;Fornecedor;Situação;Tipo;Fiscais;Valor', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
-            downloadCSV(csv, `contratos_${currentYear}.csv`);
         }
+        
+        doc.autoTable({
+            head: headers,
+            body: data,
+            didDrawPage: (data) => {
+                doc.setFontSize(10);
+                doc.text(title, 14, 10);
+                doc.text(`Ano: ${currentYear}`, 14, 18);
+                doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`, 14, doc.internal.pageSize.height - 5);
+                doc.text('Governo de Minas Gerais - Fiscais de Contratos', doc.internal.pageSize.width - 14, 10, { align: 'right' });
+            }
+        });
+        
+        doc.save(`${title.toLowerCase().replace(/ /g, '_')}_${currentYear}.pdf`);
+    }
 
-        function downloadYearCSV() {
-            const ano = document.getElementById('anoDownload').value;
-            if (!ano) return alert('Selecione um ano');
+    function exportResumoCSV() {
+        const grupos = {};
+        filteredData.forEach(c => {
+            const orgao = c['Órgãos Participantes'] || 'Não Informado';
+            if (!grupos[orgao]) grupos[orgao] = { orgao, contratos: 0, fiscaisSet: new Set(), valor_total: 0 };
+            grupos[orgao].contratos++;
+            grupos[orgao].valor_total += c['Valor atual'] || 0;
+            (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
+                if (f.trim()) grupos[orgao].fiscaisSet.add(f.trim());
+            });
+        });
 
-            const data = allData[ano];
-            if (!data?.length) return alert('Nenhum dado encontrado');
+        const data = Object.values(grupos).map(g => [g.orgao, g.contratos, g.fiscaisSet.size, g.valor_total]);
+        const csv = ['Órgão;Contratos;Fiscais;Valor Total', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
+        downloadCSV(csv, `visao_geral_fiscais_${currentYear}.csv`);
+    }
 
-            const headers = ['Número do Processo', 'Contrato', 'Situação', 'Tipo', 'Publicação', 'Início Vigência', 'Fim Vigência', 'Órgão', 'CNPJ/CPF', 'Fornecedor', 'Unidade Gestora', 'Gestores', 'Fiscais', 'Objeto', 'Valor Inicial', 'Valor Atual', 'Link'];
-            const csvData = data.map(c => headers.map(h => c[h] || ''));
-            const csv = [headers.join(';'), ...csvData.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
-            downloadCSV(csv, `fiscais_contratos_${ano}.csv`);
-        }
+    function exportFiscaisCSV() {
+        const fiscaisMap = new Map();
+        filteredData.forEach(c => {
+            (c['Fiscais do Contrato'] || '').split(/[,;]| e /).forEach(f => {
+                f = f.trim();
+                if (f) {
+                    const key = `${f}|${c['Número do contrato']}`;
+                    if (!fiscaisMap.has(key)) {
+                        fiscaisMap.set(key, [f, c['Órgãos Participantes'], c['Número do contrato'], c['Nome Fornecedor'], c['Situação do contrato'], c['Valor atual'] || 0]);
+                    }
+                }
+            });
+        });
 
-        function downloadCSV(content, filename) {
-            const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            link.click();
-        }
-    </script>
+        const data = Array.from(fiscaisMap.values());
+        const csv = ['Nome do Fiscal;Órgão;Contrato;Fornecedor;Situação;Valor', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
+        downloadCSV(csv, `fiscais_designados_${currentYear}.csv`);
+    }
+
+    function exportContratosCSV() {
+        const data = filteredData.map(c => [
+            c['Número do contrato'],
+            c['Órgãos Participantes'],
+            c['Nome Fornecedor'],
+            c['Situação do contrato'],
+            c['Tipo do Contrato'] || '',
+            c['Fiscais do Contrato'] || '',
+            c['Valor atual'] || 0
+        ]);
+        const csv = ['Contrato;Órgão;Fornecedor;Situação;Tipo;Fiscais;Valor', ...data.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
+        downloadCSV(csv, `contratos_${currentYear}.csv`);
+    }
+
+    function downloadYearCSV() {
+        const ano = document.getElementById('anoDownload').value;
+        if (!ano) return alert('Selecione um ano');
+
+        const data = allData[ano];
+        if (!data?.length) return alert('Nenhum dado encontrado');
+
+        const headers = ['Número do Processo', 'Contrato', 'Situação', 'Tipo', 'Publicação', 'Início Vigência', 'Fim Vigência', 'Órgão', 'CNPJ/CPF', 'Fornecedor', 'Unidade Gestora', 'Gestores', 'Fiscais', 'Objeto', 'Valor Inicial', 'Valor Atual', 'Link'];
+        const csvData = data.map(c => headers.map(h => c[h] || ''));
+        const csv = [headers.join(';'), ...csvData.map(r => r.map(c => `"${c}"`).join(';'))].join('\n');
+        downloadCSV(csv, `fiscais_contratos_${ano}.csv`);
+    }
+
+    function downloadCSV(content, filename) {
+        const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+    }
+</script>
 </body>
 </html>
