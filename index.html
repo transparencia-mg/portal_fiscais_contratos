@@ -1406,7 +1406,7 @@
     let filterTimeout;
 
     const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/fiscais_contratos/main/dataset/data/';
-    const GITHUB_LICITACOES_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/';
+    const GITHUB_LICITACOES_BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/portal_contratos/main/dataset/data/';
 
     const CSV_FILES_BY_YEAR = {
         '2022': 'fiscais_contratos_2022.csv',
@@ -1416,13 +1416,6 @@
         '2026': 'fiscais_contratos_2026.csv'
     };
 
-    const LICITACOES_FILES_BY_YEAR = {
-        '2022': 'licitacoes2022.csv',
-        '2023': 'licitacoes2023.csv',
-        '2024': 'licitacoes2024.csv',
-        '2025': 'licitacoes2025.csv',
-        '2026': 'licitacoes2026.csv'
-    };
 
     const chartColors = [
         '#29435A', '#2F5D8A', '#4A7DAA', '#2F7A5C', '#5A8F6E',
@@ -1490,7 +1483,7 @@
 
         showLoading(true);
         const fiscalFile = CSV_FILES_BY_YEAR[year];
-        const licitacaoFile = LICITACOES_FILES_BY_YEAR[year];
+        const licitacaoFile = `contratos${year}.csv`; 
         const fiscalUrl = `${GITHUB_BASE_URL}${fiscalFile}`;
         const licitacaoUrl = `${GITHUB_LICITACOES_BASE_URL}${licitacaoFile}`;
 
@@ -1527,7 +1520,7 @@
 
             // Processa dados das licitações e cria o mapa de links
             const licitacoesData = licitacaoResult.map(row => ({
-                numero_contrato: row.numero_contrato,
+                numero_contrato: row.numero_contrato || row.contrato_numero || '',
                 link_contrato: row.contrato_termoaditivo_arquivos // A coluna com o link
             })).filter(l => l.numero_contrato && l.numero_contrato !== '0'); // Filtra contratos com número válido
 
@@ -2338,45 +2331,57 @@
         updateContratosTable();
     }
 
-    function updateContratosTable() {
-        let contratosArray = filteredData.map(c => ({
-            numero_contrato: c['Número do contrato'],
-            orgao: c['Órgãos Participantes'],
-            fornecedor: c['Nome Fornecedor'],
-            situacao: c['Situação do contrato'],
-            tipo: c['Tipo do Contrato'] || 'Não informado',
-            fiscais: c['Fiscais do Contrato'] || 'Não designado',
-            valor_atual: c['Valor atual'] || 0,
-            contrato_data: c
-        }));
+function updateContratosTable() {
+    let contratosArray = filteredData.map(c => ({
+        numero_contrato: c['Número do contrato'],
+        orgao: c['Órgãos Participantes'],
+        fornecedor: c['Nome Fornecedor'],
+        situacao: c['Situação do contrato'],
+        tipo: c['Tipo do Contrato'] || 'Não informado',
+        fiscais: c['Fiscais do Contrato'] || 'Não designado',
+        valor_atual: c['Valor atual'] || 0,
+        contrato_data: c
+    }));
 
-        // Ordenação
-        contratosArray.sort((a, b) => {
-            const order = currentSortDashboard3.order === 'asc' ? 1 : -1;
-            if (currentSortDashboard3.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
-            if (currentSortDashboard3.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
-            if (currentSortDashboard3.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
-            if (currentSortDashboard3.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
-            if (currentSortDashboard3.column === 'tipo') return order * a.tipo.localeCompare(b.tipo);
-            if (currentSortDashboard3.column === 'fiscais') return order * a.fiscais.localeCompare(b.fiscais);
-            if (currentSortDashboard3.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
-            return 0;
-        });
+    // Ordenação
+    contratosArray.sort((a, b) => {
+        const order = currentSortDashboard3.order === 'asc' ? 1 : -1;
+        if (currentSortDashboard3.column === 'numero_contrato') return order * a.numero_contrato.localeCompare(b.numero_contrato);
+        if (currentSortDashboard3.column === 'orgao') return order * a.orgao.localeCompare(b.orgao);
+        if (currentSortDashboard3.column === 'fornecedor') return order * a.fornecedor.localeCompare(b.fornecedor);
+        if (currentSortDashboard3.column === 'situacao') return order * a.situacao.localeCompare(b.situacao);
+        if (currentSortDashboard3.column === 'tipo') return order * a.tipo.localeCompare(b.tipo);
+        if (currentSortDashboard3.column === 'fiscais') return order * a.fiscais.localeCompare(b.fiscais);
+        if (currentSortDashboard3.column === 'valor_atual') return order * (a.valor_atual - b.valor_atual);
+        return 0;
+    });
 
-        // Paginação
-        const start = (currentPageDashboard3 - 1) * itemsPerPageDashboard3;
-        const end = Math.min(start + itemsPerPageDashboard3, contratosArray.length);
-        const currentData = contratosArray.slice(start, end);
+    // Paginação
+    const start = (currentPageDashboard3 - 1) * itemsPerPageDashboard3;
+    const end = Math.min(start + itemsPerPageDashboard3, contratosArray.length);
+    const currentData = contratosArray.slice(start, end);
 
-        // Totais
-        const totalContratos = contratosArray.length;
-        const orgaosUnicos = new Set(contratosArray.map(c => c.orgao)).size;
-        const fornecedoresUnicos = new Set(contratosArray.map(c => c.fornecedor)).size;
-        const valorTotal = contratosArray.reduce((s, c) => s + c.valor_atual, 0);
+    // Totais
+    const totalContratos = contratosArray.length;
+    const orgaosUnicos = new Set(contratosArray.map(c => c.orgao)).size;
+    const fornecedoresUnicos = new Set(contratosArray.map(c => c.fornecedor)).size;
+    const valorTotal = contratosArray.reduce((s, c) => s + c.valor_atual, 0);
 
-        document.getElementById('contratosTableBody').innerHTML = currentData.map(c => `
+    // Renderizar tabela
+    document.getElementById('contratosTableBody').innerHTML = currentData.map(c => {
+        const linkArquivo = contratoLinkMap.get(c.numero_contrato.toString().trim());
+        
+        return `
             <tr>
-                <td><a href="#" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')" class="orgao-link"><strong>${c.numero_contrato}</strong></a></td>
+                <td>
+                    ${linkArquivo ? 
+                        `<a href="${linkArquivo}" target="_blank" class="orgao-link" title="Abrir arquivo do contrato">
+                            <strong>${c.numero_contrato}</strong> 
+                            <i class="material-icons" style="font-size: 14px; vertical-align: middle; margin-left: 4px;">insert_drive_file</i>
+                         </a>` : 
+                        `<span class="text-muted" title="Arquivo não disponível">${c.numero_contrato}</span>`
+                    }
+                </td>
                 <td>${c.orgao}</td>
                 <td><div class="text-truncate-multiline" title="${c.fornecedor}">${c.fornecedor}</div></td>
                 <td>${getSituacaoBadge(c.situacao)}</td>
@@ -2384,125 +2389,171 @@
                 <td><div class="text-truncate-multiline" title="${c.fiscais}">${c.fiscais}</div></td>
                 <td class="text-end valor-monetario"><span class="valor-atual">${formatCurrency(c.valor_atual)}</span></td>
                 <td class="text-center">
-                    <button class="btn-action" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')"><i class="material-icons">visibility</i></button>
+                    <button class="btn-action" onclick="showContratoDetails('${c.numero_contrato.replace(/'/g, "\\'")}')" title="Ver detalhes do contrato">
+                        <i class="material-icons">visibility</i>
+                    </button>
                 </td>
             </tr>
-        `).join('');
-
-        document.getElementById('contratosTableFooter').innerHTML = `
-            <tr class="table-total-row fw-bold">
-                <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString()} contratos</strong></td>
-                <td><strong>${fornecedoresUnicos.toLocaleString()} fornecedores</strong></td>
-                <td colspan="2"><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
-                <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
-                <td></td>
-            </tr>
         `;
+    }).join('');
 
-        document.getElementById('resumoCountDashboard3').textContent = `${totalContratos.toLocaleString()} contratos`;
-        document.getElementById('paginationInfoDashboard3').textContent =
-            `Mostrando ${start + 1}-${end} de ${contratosArray.length.toLocaleString()} registros`;
+    document.getElementById('contratosTableFooter').innerHTML = `
+        <tr class="table-total-row fw-bold">
+            <td colspan="2"><strong>TOTAL GERAL: ${totalContratos.toLocaleString()} contratos</strong></td>
+            <td><strong>${fornecedoresUnicos.toLocaleString()} fornecedores</strong></td>
+            <td colspan="2"><strong>${orgaosUnicos.toLocaleString()} órgãos</strong></td>
+            <td colspan="2"><strong>${formatCurrency(valorTotal)}</strong></td>
+            <td></td>
+        </tr>
+    `;
 
-        updatePagination('Dashboard3', Math.ceil(contratosArray.length / itemsPerPageDashboard3), currentPageDashboard3);
-    }
+    document.getElementById('resumoCountDashboard3').textContent = `${totalContratos.toLocaleString()} contratos`;
+    document.getElementById('paginationInfoDashboard3').textContent =
+        `Mostrando ${start + 1}-${end} de ${contratosArray.length.toLocaleString()} registros`;
+
+    updatePagination('Dashboard3', Math.ceil(contratosArray.length / itemsPerPageDashboard3), currentPageDashboard3);
+}
 
     // ==================== FUNÇÕES DE DETALHE ====================
-    window.showContratoDetails = function(numeroContrato) {
-        let contrato = null;
-        let anoDoContrato = null;
-        // Procura o contrato em todos os anos carregados
-        for (const ano in allData) {
-            const found = allData[ano].find(c => c['Número do contrato'] === numeroContrato);
-            if (found) {
-                contrato = found;
-                anoDoContrato = ano;
-                break;
-            }
+
+window.showContratoDetails = function(numeroContrato) {
+    let contrato = null;
+    let anoDoContrato = null;
+    // Procura o contrato em todos os anos carregados
+    for (const ano in allData) {
+        const found = allData[ano].find(c => c['Número do contrato'] === numeroContrato);
+        if (found) {
+            contrato = found;
+            anoDoContrato = ano;
+            break;
         }
+    }
 
-        if (!contrato) return;
+    if (!contrato) return;
 
-        // Busca o link no mapa criado a partir dos dados de licitação
-        const linkArquivo = contratoLinkMap.get(numeroContrato.toString().trim()) || '#';
+    // Busca o link no mapa criado a partir dos dados de licitação
+    const linkArquivo = contratoLinkMap.get(numeroContrato.toString().trim()) || '#';
 
-        const fiscaisList = (contrato['Fiscais do Contrato'] || '').split(/[,;]| e /).map(f => f.trim()).filter(f => f);
-        const fiscaisHTML = fiscaisList.map(f => `
-            <tr><td>${f}</td><td>${contrato['Órgãos Participantes']}</td><td>Fiscal do Contrato</td><td>${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</td></tr>
-        `).join('') || '<tr><td colspan="4" class="text-center text-muted">Nenhum fiscal designado</td></tr>';
+    const fiscaisList = (contrato['Fiscais do Contrato'] || '').split(/[,;]| e /).map(f => f.trim()).filter(f => f);
+    const fiscaisHTML = fiscaisList.map(f => `
+        <tr><td>${f}</td><td>${contrato['Órgãos Participantes']}</td><td>Fiscal do Contrato</td><td>${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</td></tr>
+    `).join('') || '<tr><td colspan="4" class="text-center text-muted">Nenhum fiscal designado</td></tr>';
 
-        const linkButton = linkArquivo !== '#' && linkArquivo ? `
-            <div class="mt-3 text-end">
-                <a href="${linkArquivo}" target="_blank" class="btn-export text-decoration-none fw-bold d-inline-flex align-items-center justify-content-center px-4 py-2">
-                    <i class="material-icons me-2">insert_drive_file</i> Ver Arquivo do Contrato
-                </a>
-            </div>
-        ` : '';
+    // Link para o arquivo (agora mais destacado)
+    const linkButton = linkArquivo !== '#' && linkArquivo ? `
+        <div class="mt-3 text-end">
+            <a href="${linkArquivo}" target="_blank" class="btn-primary-custom text-decoration-none fw-bold d-inline-flex align-items-center justify-content-center px-4 py-2">
+                <i class="material-icons me-2">insert_drive_file</i> Abrir Arquivo do Contrato
+            </a>
+        </div>
+    ` : '';
 
-        document.getElementById('contratoModalContent').innerHTML = `
-            <div class="row">
-                <div class="col-md-6"><div class="info-card primary"><div class="info-label">Contrato</div><div class="info-value highlight">${contrato['Número do contrato']}</div><div class="info-label mt-3">Processo</div><div class="info-value">${contrato['Número do Processo Formatado'] || 'N/A'}</div></div></div>
-                <div class="col-md-6"><div class="info-card"><div class="info-label">Fornecedor</div><div class="info-value">${contrato['Nome Fornecedor']}</div><div class="info-label mt-3">CNPJ/CPF</div><div class="info-value">${contrato['CNPJ/CPF'] || 'N/A'}</div></div></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Situação</div><div class="info-value">${getSituacaoBadge(contrato['Situação do contrato'])}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Tipo</div><div class="info-value">${contrato['Tipo do Contrato'] || 'N/A'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Valor</div><div class="info-value highlight">${formatCurrency(contrato['Valor atual'])}</div></div></div>
-            </div>
-            <div class="row">
-                <div class="col-md-6"><div class="info-card"><div class="info-label">Vigência</div><div class="info-value">${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</div></div></div>
-                <div class="col-md-6"><div class="info-card"><div class="info-label">Objeto</div><div class="info-value">${contrato['Objeto'] || 'N/A'}</div></div></div>
-            </div>
-            <h6 class="mt-4 fw-bold">Fiscais Designados</h6>
-            <div style="max-height:200px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Nome</th><th>Órgão</th><th>Função</th><th>Período</th></tr></thead><tbody>${fiscaisHTML}</tbody></table></div>
-            ${linkButton}
-        `;
-        new bootstrap.Modal(document.getElementById('contratoModal')).show();
-    };
+    document.getElementById('contratoModalContent').innerHTML = `
+        <div class="row">
+            <div class="col-md-6"><div class="info-card primary"><div class="info-label">Contrato</div><div class="info-value highlight">${contrato['Número do contrato']}</div><div class="info-label mt-3">Processo</div><div class="info-value">${contrato['Número do Processo Formatado'] || 'N/A'}</div></div></div>
+            <div class="col-md-6"><div class="info-card"><div class="info-label">Fornecedor</div><div class="info-value">${contrato['Nome Fornecedor']}</div><div class="info-label mt-3">CNPJ/CPF</div><div class="info-value">${contrato['CNPJ/CPF'] || 'N/A'}</div></div></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><div class="info-card"><div class="info-label">Situação</div><div class="info-value">${getSituacaoBadge(contrato['Situação do contrato'])}</div></div></div>
+            <div class="col-md-4"><div class="info-card"><div class="info-label">Tipo</div><div class="info-value">${contrato['Tipo do Contrato'] || 'N/A'}</div></div></div>
+            <div class="col-md-4"><div class="info-card"><div class="info-label">Valor</div><div class="info-value highlight">${formatCurrency(contrato['Valor atual'])}</div></div></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><div class="info-card"><div class="info-label">Vigência</div><div class="info-value">${formatDate(contrato['Data Início de Vigência'])} a ${formatDate(contrato['Data Fim de Vigência'])}</div></div></div>
+            <div class="col-md-6"><div class="info-card"><div class="info-label">Objeto</div><div class="info-value">${contrato['Objeto'] || 'N/A'}</div></div></div>
+        </div>
+        <h6 class="mt-4 fw-bold">Fiscais Designados</h6>
+        <div style="max-height:200px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Nome</th><th>Órgão</th><th>Função</th><th>Período</th></tr></thead><tbody>${fiscaisHTML}</tbody></table></div>
+        ${linkButton}
+    `;
+    new bootstrap.Modal(document.getElementById('contratoModal')).show();
+};
 
-    window.showFiscalDetails = function(nomeFiscal) {
-        const contratos = [];
-        Object.keys(allData).forEach(ano => {
-            allData[ano].forEach(c => {
-                if ((c['Fiscais do Contrato'] || '').includes(nomeFiscal)) {
-                    contratos.push(c);
-                }
-            });
+window.showFiscalDetails = function(nomeFiscal) {
+    const contratos = [];
+    Object.keys(allData).forEach(ano => {
+        allData[ano].forEach(c => {
+            if ((c['Fiscais do Contrato'] || '').includes(nomeFiscal)) {
+                contratos.push(c);
+            }
         });
+    });
 
-        if (!contratos.length) return;
+    if (!contratos.length) return;
 
-        const valorTotal = contratos.reduce((s, c) => s + (c['Valor atual'] || 0), 0);
-        const ativos = contratos.filter(c => c['Situação do contrato'].toLowerCase().includes('ativo')).length;
+    const valorTotal = contratos.reduce((s, c) => s + (c['Valor atual'] || 0), 0);
+    const ativos = contratos.filter(c => c['Situação do contrato'].toLowerCase().includes('ativo')).length;
 
-        const contratosHTML = contratos.map(c => `
-            <tr>
-                <td><a href="#" onclick="showContratoDetails('${c['Número do contrato'].replace(/'/g, "\\'")}')" class="orgao-link">${c['Número do contrato']}</a></td>
-                <td>${c['Órgãos Participantes']}</td>
-                <td><div class="text-truncate-multiline" title="${c['Nome Fornecedor']}">${c['Nome Fornecedor']}</div></td>
-                <td>${getSituacaoBadge(c['Situação do contrato'])}</td>
-                <td class="text-end valor-monetario">${formatCurrency(c['Valor atual'])}</td>
-                <td>${formatDate(c['Data Início de Vigência'])}<br>${formatDate(c['Data Fim de Vigência'])}</td>
-            </tr>
-        `).join('');
+    // MODIFICADO: Removeu o link clicável do contrato, agora é apenas texto
+    const contratosHTML = contratos.map(c => `
+        <tr>
+            <td><strong>${c['Número do contrato']}</strong></td>
+            <td>${c['Órgãos Participantes']}</td>
+            <td><div class="text-truncate-multiline" title="${c['Nome Fornecedor']}">${c['Nome Fornecedor']}</div></td>
+            <td>${getSituacaoBadge(c['Situação do contrato'])}</td>
+            <td class="text-end valor-monetario">${formatCurrency(c['Valor atual'])}</td>
+            <td>${formatDate(c['Data Início de Vigência'])}<br>${formatDate(c['Data Fim de Vigência'])}</td>
+        </tr>
+    `).join('');
 
-        document.getElementById('fiscalModalContent').innerHTML = `
-            <div class="row">
-                <div class="col-md-6"><div class="info-card primary"><div class="info-label">Fiscal</div><div class="info-value highlight">${nomeFiscal}</div><div class="info-label mt-3">Total de Contratos</div><div class="info-value">${contratos.length}</div></div></div>
-                <div class="col-md-6"><div class="info-card"><div class="info-label">Valor Total</div><div class="info-value highlight">${formatCurrency(valorTotal)}</div><div class="info-label mt-3">Contratos Ativos</div><div class="info-value">${ativos}</div></div></div>
-            </div>
-            <h6 class="mt-4 fw-bold">Contratos Designados</h6>
-            <div style="max-height:300px; overflow-y:auto;"><table class="table table-sm"><thead><tr><th>Contrato</th><th>Órgão</th><th>Fornecedor</th><th>Situação</th><th>Valor</th><th>Período</th></tr></thead><tbody>${contratosHTML}</tbody></table></div>
-        `;
-        new bootstrap.Modal(document.getElementById('fiscalModal')).show();
-    };
+    document.getElementById('fiscalModalContent').innerHTML = `
+        <div class="row">
+            <div class="col-md-6"><div class="info-card primary"><div class="info-label">Fiscal</div><div class="info-value highlight">${nomeFiscal}</div><div class="info-label mt-3">Total de Contratos</div><div class="info-value">${contratos.length}</div></div></div>
+            <div class="col-md-6"><div class="info-card"><div class="info-label">Valor Total</div><div class="info-value highlight">${formatCurrency(valorTotal)}</div><div class="info-label mt-3">Contratos Ativos</div><div class="info-value">${ativos}</div></div></div>
+        </div>
+        <h6 class="mt-4 fw-bold">Contratos Designados</h6>
+        <div style="max-height:300px; overflow-y:auto;">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Contrato</th>
+                        <th>Órgão</th>
+                        <th>Fornecedor</th>
+                        <th>Situação</th>
+                        <th>Valor</th>
+                        <th>Período</th>
+                    </tr>
+                </thead>
+                <tbody>${contratosHTML}</tbody>
+            </table>
+        </div>
+        <div class="mt-3 text-muted small">
+            <i class="material-icons" style="font-size: 14px; vertical-align: middle;">info</i> 
+            Para acessar o arquivo do contrato, clique no número do contrato na tabela principal.
+        </div>
+    `;
+    new bootstrap.Modal(document.getElementById('fiscalModal')).show();
+};
 
-    window.filtrarPorOrgao = function(orgao) {
-        document.getElementById('dashboard3-tab').click();
-        setTimeout(() => {
-            document.getElementById('orgaoDashboard3').value = orgao;
-            applyFilters('dashboard3');
-        }, 300);
-    };
+// ==================== FUNÇÃO CORRIGIDA - filtrarPorOrgao ====================
+window.filtrarPorOrgao = function(orgao) {
+    // Muda para a aba de Consulta por Contrato
+    document.getElementById('dashboard3-tab').click();
+    
+    // Aguarda um pouco para a aba carregar e então aplica o filtro
+    setTimeout(() => {
+        // Limpa outros filtros primeiro
+        document.getElementById('numeroContratoDashboard3').value = '';
+        document.getElementById('fornecedorDashboard3').value = '';
+        document.getElementById('tipoDashboard3').value = '';
+        document.getElementById('situacaoDashboard3').value = '';
+        
+        // Define o órgão no filtro
+        document.getElementById('orgaoDashboard3').value = orgao;
+        
+        // Força a atualização dos dados filtrados
+        const baseData = allData[currentYear] || [];
+        const filtered = baseData.filter(c => c['Órgãos Participantes'] === orgao);
+        filteredData = filtered;
+        
+        // Atualiza a tabela de contratos
+        currentPageDashboard3 = 1;
+        updateContratosTable();
+        
+        // Opcional: mostra uma mensagem de feedback
+        console.log(`Filtrando contratos do órgão: ${orgao}`);
+    }, 300);
+};
 
     // ==================== ORDENAÇÃO ====================
     window.sortTable = function(tableType, column) {
