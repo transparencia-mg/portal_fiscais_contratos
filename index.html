@@ -1434,11 +1434,34 @@
         }
     }
 
-    function updateDataAtualizacao() {
-        const now = new Date();
-        document.getElementById('data-atualizacao-header').textContent =
-            now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+async function updateDataAtualizacao() {
+    const el = document.getElementById('data-atualizacao-header');
+
+    try {
+        const resp = await fetch(
+            'https://api.github.com/repos/transparencia-mg/portal_fiscais_contratos/commits?path=dataset/data/fiscais_contratos_2026.csv&per_page=1'
+        );
+
+        if (!resp.ok) throw new Error('Erro ao buscar commit');
+
+        const commits = await resp.json();
+
+        if (commits && commits.length > 0) {
+            const data = commits[0].commit.committer.date;
+
+            el.textContent = new Date(data).toLocaleDateString('pt-BR') + 
+                             ' ' + 
+                             new Date(data).toLocaleTimeString('pt-BR');
+            return;
+        }
+
+        el.textContent = 'Não disponível';
+
+    } catch (e) {
+        console.error('Erro ao buscar data:', e);
+        el.textContent = 'Não disponível';
     }
+}
 
     function formatCurrency(value) {
         if (isNaN(value) || value === null || value === undefined) return 'R$ 0,00';
