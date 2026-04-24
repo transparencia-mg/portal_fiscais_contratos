@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.856,
+  "time": 0.974,
   "errors": [],
   "tasks": [
     {
@@ -100,7 +100,7 @@
           "rows": 4105
         }
       },
-      "time": 0.294,
+      "time": 0.297,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -460,7 +460,7 @@
           "rows": 0
         }
       },
-      "time": 0.131,
+      "time": 0.134,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -37592,7 +37592,7 @@
           "rows": 0
         }
       },
-      "time": 0.122,
+      "time": 0.126,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -74720,7 +74720,128 @@
           "rows": 3838
         }
       },
-      "time": 0.252,
+      "time": 0.257,
+      "scope": [
+        "hash-count-error",
+        "byte-count-error",
+        "field-count-error",
+        "row-count-error",
+        "blank-header",
+        "extra-label",
+        "missing-label",
+        "blank-label",
+        "duplicate-label",
+        "incorrect-label",
+        "blank-row",
+        "primary-key-error",
+        "foreign-key-error",
+        "extra-cell",
+        "missing-cell",
+        "type-error",
+        "constraint-error",
+        "unique-error"
+      ],
+      "partial": false,
+      "errors": [],
+      "stats": {
+        "errors": 0
+      },
+      "valid": true
+    },
+    {
+      "resource": {
+        "description": "Conjunto de dados contendo informações cadastrais e funcionais dos fiscais de contratos administrativos vinculados aos órgãos e entidades do Governo do Estado de Minas Gerais",
+        "dialect": {
+          "delimiter": ";"
+        },
+        "encoding": "utf-8-sig",
+        "format": "csv",
+        "hashing": "md5",
+        "name": "fiscais_contratos_2026",
+        "path": "data/fiscais_contratos_2026.csv",
+        "profile": "tabular-data-resource",
+        "schema": {
+          "fields": [
+            {
+              "name": "numero_do_processo_formatado",
+              "type": "string"
+            },
+            {
+              "name": "numero_do_contrato",
+              "type": "integer"
+            },
+            {
+              "name": "situacao_do_contrato",
+              "type": "string"
+            },
+            {
+              "name": "tipo_do_contrato",
+              "type": "string"
+            },
+            {
+              "name": "data_de_publicacao",
+              "type": "date"
+            },
+            {
+              "name": "data_inicio_de_vigencia",
+              "type": "date"
+            },
+            {
+              "name": "data_fim_de_vigencia",
+              "type": "date"
+            },
+            {
+              "name": "orgaos_participantes",
+              "type": "string"
+            },
+            {
+              "name": "cnpj_cpf",
+              "type": "string"
+            },
+            {
+              "name": "nome_fornecedor",
+              "type": "string"
+            },
+            {
+              "name": "unidade_gestora_do_contrato",
+              "type": "string"
+            },
+            {
+              "name": "gestores_do_contrato_portal_de_compras",
+              "type": "string"
+            },
+            {
+              "name": "fiscais_do_contrato",
+              "type": "string"
+            },
+            {
+              "name": "objeto",
+              "type": "string"
+            },
+            {
+              "name": "valor_inicial",
+              "type": "string"
+            },
+            {
+              "name": "valor_atual",
+              "type": "string"
+            },
+            {
+              "name": "link_arquivo_do_contrato",
+              "type": "string"
+            }
+          ]
+        },
+        "scheme": "file",
+        "title": "Fiscais de Contrato 2026",
+        "stats": {
+          "hash": "6f5c45120ab74bb2cfe5ad265e9ae435",
+          "bytes": 859898,
+          "fields": 17,
+          "rows": 1060
+        }
+      },
+      "time": 0.089,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -74751,7 +74872,7 @@
   ],
   "stats": {
     "errors": 2006,
-    "tasks": 4
+    "tasks": 5
   },
   "valid": false
 }
