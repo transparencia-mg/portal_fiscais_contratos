@@ -4,7 +4,6 @@ Os dados são organizados em arquivos anuais e seguem um padrão estruturado, fa
 
 Periodicidade de Atualização: Mensal
 
-
 ## Como participar
 
 Fique a vontade para utilizar os canais oficiais de atendimento do Poder Executivo Estadual:
@@ -12,6 +11,3 @@ Fique a vontade para utilizar os canais oficiais de atendimento do Poder Executi
 - [Fale Conosco](https://www.mg.gov.br/planejamento/pagina/atendimento/fale-conosco/fale-conosco): Dúvidas
 - [Manifestações de Ouvidoria](http://www.ouvidoriageral.mg.gov.br/): Denúncia, Reclamação, Crítica, Elogio ou Sugestões
 - [Pedido de Acesso à Informação](http://www.acessoainformacao.mg.gov.br/sistema/site/index.html): Acesso às informações dos órgãos e entidades estaduais que não estejam publicamente disponíveis.
-
-
-
