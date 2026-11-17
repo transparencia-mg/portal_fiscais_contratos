@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.741,
+  "time": 0.667,
   "errors": [],
   "tasks": [
     {
@@ -94,13 +94,13 @@
         "scheme": "file",
         "title": "Fiscais de Contratos 2022",
         "stats": {
-          "hash": "5b3ae770735499d9a00723a7823efd59",
-          "bytes": 2801182,
+          "hash": "707f3c71205893e49696c89e343954a3",
+          "bytes": 2801214,
           "fields": 18,
           "rows": 4107
         }
       },
-      "time": 0.192,
+      "time": 0.165,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -460,7 +460,7 @@
           "rows": 0
         }
       },
-      "time": 0.078,
+      "time": 0.082,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -37592,7 +37592,7 @@
           "rows": 0
         }
       },
-      "time": 0.078,
+      "time": 0.082,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -74714,13 +74714,13 @@
         "scheme": "file",
         "title": "Fiscais de Contrato 2025",
         "stats": {
-          "hash": "fc828d37b2543d047e327476d7713414",
-          "bytes": 2638535,
+          "hash": "3b94c0051e32ff9383360004350e5f37",
+          "bytes": 2638610,
           "fields": 17,
           "rows": 3770
         }
       },
-      "time": 0.169,
+      "time": 0.148,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -74841,7 +74841,7 @@
           "rows": 3443
         }
       },
-      "time": 0.159,
+      "time": 0.129,
       "scope": [
         "hash-count-error",
         "byte-count-error",
